@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/cmake-build-debug/VeStore.ini" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/cmake-build-debug/clientdll.dll" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/cmake-build-debug/serverdll.dll" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/resclass/block.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/compressstatus.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/container.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/containerreadandwrite.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/data.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/id.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/metada.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/path.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/status.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/task.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/taskinfo.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/taskread.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/taskwrite.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/thl_container_compress.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/thl_container_read.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/thl_container_write.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/thl_task_compress.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/thltaskwrite.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/resclass/tlhtaskread.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/utils" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/vs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/vs/RTDBDefine.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/vs/RTDBInterface.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/lib" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/lib/RTDBInterface.dll" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lib/VeStore.ini" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lib/libserverdll.so" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/proto" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/proto/vs.grpc.pb.h" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/proto/vs.proto" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/service/service.hpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/service/service.hpp" charset="UTF-8" />
+  </component>
+</project>

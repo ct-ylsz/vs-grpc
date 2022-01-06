@@ -1,0 +1,192 @@
+syntax = "proto3";
+
+package vs;
+
+option go_package = "pb/vs";
+// Vs 服务
+service VsService {
+  // 具体的值获取
+  rpc TagValuesGet(TagValuesGetReq) returns (TagValuesGetResp);
+  // 获取tag的特征值
+  rpc TagFeatureGet(TagFeatureGetReq) returns (TagFeatureGetResp);
+  // 获取tag开始时间和结束时间
+  rpc TagTimeSection(TagTimeSectionReq) returns (TagTimeSectionResp);
+  // 获取测点描述字段
+  rpc TagDescGet(TagDescGetReq) returns (TagDescGetResp);
+  // 数据库ping
+  rpc DbPing(DbPingReq) returns (DbPingResp);
+  // 配置文件设置
+  rpc ConfigFileSet(ConfigFileSetReq) returns (ConfigFileSetResp);
+  // 获取范围内tag的数量
+  rpc TagCountByRangeGet(TagCountByRangeGetReq) returns (TagCountByRangeGetResp);
+  // 获取Tag的列表
+  rpc TagListGet(TagListGetReq) returns (TagListGetResp);
+  // 分数量获取tagValue
+  rpc TagValuesByCountGet(TagValuesByCountGetReq) returns (TagValuesByCountGetResp);
+}
+
+
+message KVInfo{
+  map<string, string> Kvs = 1;
+}
+
+message TagCountByRangeGetReq{
+  int32 Start = 1;
+  int32 End = 2;
+  string TagName = 3;
+  int32 TagId = 4;
+  KVInfo Kvs = 5;
+
+}
+
+message TagCountByRangeGetResp{
+  int32 Count = 1;
+}
+
+
+message TagListGetReq{
+  string Addr = 1;
+  string Username = 2;
+  string Password = 3;
+  string Port = 4;
+  KVInfo Kvs = 5;
+  int32 Page = 6;
+  int32 Size = 7;
+}
+
+message TagListGetResp{
+  message Filed{
+    string ColumnName = 1;
+    string DataType = 2;
+    int32 DataLength = 3;
+    string Desc = 4;
+  }
+  message TagInfoMap{
+    map<string, string> Info = 1;
+    repeated Filed Fileds = 2;
+  }
+  repeated TagInfoMap Tags = 1;
+}
+
+
+message ConfigFileSetReq{
+}
+
+message ConfigFileSetResp{
+}
+
+message DbPingReq{
+  string Ip = 1;
+  int32 Port = 2;
+  string Username = 3;
+  string Password = 4;
+  KVInfo Kvs = 5;
+}
+
+message DbPingResp{
+  int32 Flag = 1;
+}
+
+message ErrInfo{
+  int32 ErrCode = 1;
+  string ErrMsg = 2;
+}
+
+message VsValue{
+  double Value = 1;        //返回点的数值
+  int32 Time = 2;        //返回点的时间，秒
+  int32 Status = 3;        //返回点的状态
+}
+
+message TagValuesByCountGetReq{
+  int32 Start = 1;
+  int32 End = 2;
+  string TagName = 3;
+  int32 TagId = 4;
+  string Addr = 5;
+  string Username = 6;
+  string Password = 7;
+  int32 Count = 8;
+  KVInfo Kvs = 9;
+  map<string, string> Meta = 10;
+}
+
+message TagValuesByCountGetResp{
+  message VsValue{
+    map<string, string> ValueMap = 1;
+  }
+  ErrInfo Err = 1;
+  repeated VsValue Values = 2;
+  string ValueType = 3;
+  int32 Start = 4;
+  int32 End = 5;
+  bool IsLast = 6;
+}
+
+message TagValuesGetReq{
+  int32 Start = 1;
+  int32 End = 2;
+  string TagName = 3;
+  int32 TagId = 4;
+  string Addr = 5;
+  string Username = 6;
+  string Password = 7;
+  int32 Count = 8;
+  KVInfo Kvs = 9;
+  map<string, string> Extend = 10;
+}
+
+message TagValuesGetResp{
+  ErrInfo Err = 1;
+  message VsValue{
+    map<string, string> ValueMap = 1;
+  }
+  repeated VsValue Values = 2;
+  int32 Start = 3;
+  int32 End = 4;
+}
+
+message TagFeatureGetReq{
+  int64 Start = 1;
+  int64 End = 2;
+  string TagName = 3;
+  int32 TagId = 4;
+  repeated int32 Verifies = 5;
+  int32 Count = 6;
+  string Addr = 7;
+  string Username = 8;
+  string Password = 9;
+  KVInfo Kvs = 10;
+}
+
+message TagFeatureGetResp{
+  ErrInfo Err = 1;
+  map<string, VsValue> Feat = 2;
+  int32 Start = 3;
+  int32 End = 4;
+}
+
+message TagDescGetReq{
+  KVInfo Kvs = 1;
+}
+
+message TagDescGetResp{
+  string Name = 1;
+  map<string, string> Desc = 2;
+}
+
+message TagTimeSectionReq{
+  string TagName = 1;
+  int32 TagId = 2;
+  string Addr = 3;
+  string Username = 4;
+  string Password = 5;
+  int32 Start = 6;
+  int32 End = 7;
+  KVInfo Kvs = 8;
+}
+
+message TagTimeSectionResp{
+  int32 Start = 1;
+  int32 End = 2;
+}
