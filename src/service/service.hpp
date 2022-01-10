@@ -406,33 +406,72 @@ public:
         auto start = request->start();
         auto end = request->end();
         const auto &name = request->tagname();
-        auto id = request->tagid();
 
         if (request->kvs().kvs().empty()) {
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
+
         auto err_c = ConfigSetInternal(request->kvs().kvs());
         if (err_c != 0) {
-            log_->Error("ConfigSetInternal(kvs);");
+            log_->Error(boost::str(boost::format("ConfigSetInternal(kvs): %1%") % err_c));
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
+        char dll_path[128];
+        char config_path[128];
 
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
+
+        for (int i = 0; i < request->verifies().size(); i++) {
+            switch (request->verifies()[i]) {
+
+            }
+        }
+//        ConfigSetInternal(req->kvs_);
+//        log_->Info((boost::format("dll_path :%1%,config_path : %2%") % req->dll_path_ % req->config_path_).str());
+//        if (req->dll_path_.empty() || req->config_path_.empty()) {
+//            log_->Error((boost::format("dllpath and configpath is not valid")).str());
+//            return {-1, "dllpath is not valid", res.ToErrString(-1, "dllpath is not valid")};
+//        }
+//
+//        char *dll_path = (char *) malloc(128);
+//        char *config_path = (char *) malloc(128);
+//
+//        strcpy(dll_path, req->dll_path_.c_str());
+//        strcpy(config_path, req->config_path_.c_str());
+//
+//        auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
+//
+//        free(dll_path);
+//        free(config_path);
+//
+//        if (err.err_code != 0) {
+//            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
+//            return {err.err_code, "connect database failed", res.ToErrString(err.err_code, err.err_msg)};
+//        }
+//
+//        TagData tagData;
+//        err = DbVs::TagGetAggregation(req->tag_info_.name_, req->range_.start_, req->range_.end_, 3,
+//                                      req->range_.end_ - req->range_.start_, &tagData);
+//        if (err.err_code != 0) {
+//            log_->Error((boost::format("TagGetAggregatione failed :%1%:%2%") % err.err_code % err.err_msg).str());
+//            return {err.err_code, "TagGetAggregation failed", res.ToErrString(err.err_code, err.err_msg)};
+//        }
+//        TagDataInfo data;
+//        data.value_ = tagData.value;
+//        data.status_ = tagData.status;
+//        data.ts_ = tagData.time;
+
+
 
         long tmp_count = 0;
         long count = 1024;
