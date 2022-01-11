@@ -31,6 +31,8 @@ static const char* VsService_method_names[] = {
   "/vs.VsService/TagCountByRangeGet",
   "/vs.VsService/TagListGet",
   "/vs.VsService/TagValuesByCountGet",
+  "/vs.VsService/ServiceStop",
+  "/vs.VsService/TagSnapshotValue",
 };
 
 std::unique_ptr< VsService::Stub> VsService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -49,6 +51,8 @@ VsService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel,
   , rpcmethod_TagCountByRangeGet_(VsService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TagListGet_(VsService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TagValuesByCountGet_(VsService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ServiceStop_(VsService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TagSnapshotValue_(VsService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status VsService::Stub::TagValuesGet(::grpc::ClientContext* context, const ::vs::TagValuesGetReq& request, ::vs::TagValuesGetResp* response) {
@@ -258,6 +262,52 @@ void VsService::Stub::async::TagValuesByCountGet(::grpc::ClientContext* context,
   return result;
 }
 
+::grpc::Status VsService::Stub::ServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::vs::ServiceStopResp* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::vs::ServiceStopReq, ::vs::ServiceStopResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ServiceStop_, context, request, response);
+}
+
+void VsService::Stub::async::ServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::vs::ServiceStopReq, ::vs::ServiceStopResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ServiceStop_, context, request, response, std::move(f));
+}
+
+void VsService::Stub::async::ServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ServiceStop_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::ServiceStopResp>* VsService::Stub::PrepareAsyncServiceStopRaw(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::vs::ServiceStopResp, ::vs::ServiceStopReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ServiceStop_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::ServiceStopResp>* VsService::Stub::AsyncServiceStopRaw(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncServiceStopRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status VsService::Stub::TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::vs::TagSnapshotValueResp* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TagSnapshotValue_, context, request, response);
+}
+
+void VsService::Stub::async::TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TagSnapshotValue_, context, request, response, std::move(f));
+}
+
+void VsService::Stub::async::TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_TagSnapshotValue_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::TagSnapshotValueResp>* VsService::Stub::PrepareAsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::vs::TagSnapshotValueResp, ::vs::TagSnapshotValueReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_TagSnapshotValue_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::TagSnapshotValueResp>* VsService::Stub::AsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncTagSnapshotValueRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 VsService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       VsService_method_names[0],
@@ -349,6 +399,26 @@ VsService::Service::Service() {
              ::vs::TagValuesByCountGetResp* resp) {
                return service->TagValuesByCountGet(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      VsService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::ServiceStopReq, ::vs::ServiceStopResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](VsService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::vs::ServiceStopReq* req,
+             ::vs::ServiceStopResp* resp) {
+               return service->ServiceStop(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      VsService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](VsService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::vs::TagSnapshotValueReq* req,
+             ::vs::TagSnapshotValueResp* resp) {
+               return service->TagSnapshotValue(ctx, req, resp);
+             }, this)));
 }
 
 VsService::Service::~Service() {
@@ -411,6 +481,20 @@ VsService::Service::~Service() {
 }
 
 ::grpc::Status VsService::Service::TagValuesByCountGet(::grpc::ServerContext* context, const ::vs::TagValuesByCountGetReq* request, ::vs::TagValuesByCountGetResp* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status VsService::Service::ServiceStop(::grpc::ServerContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status VsService::Service::TagSnapshotValue(::grpc::ServerContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response) {
   (void) context;
   (void) request;
   (void) response;

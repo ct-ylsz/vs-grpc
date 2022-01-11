@@ -23,6 +23,11 @@ service VsService {
   rpc TagListGet(TagListGetReq) returns (TagListGetResp);
   // 分数量获取tagValue
   rpc TagValuesByCountGet(TagValuesByCountGetReq) returns (TagValuesByCountGetResp);
+  // 退出程序
+  rpc ServiceStop(ServiceStopReq) returns (ServiceStopResp);
+  // 获取快照值
+  rpc TagSnapshotValue(TagSnapshotValueReq) returns (TagSnapshotValueResp);
+
 }
 
 
@@ -189,4 +194,29 @@ message TagTimeSectionReq{
 message TagTimeSectionResp{
   int32 Start = 1;
   int32 End = 2;
+}
+
+message ServiceStopReq{
+}
+
+message ServiceStopResp{
+}
+
+message TagSnapshotValueReq{
+  string TagName = 1;
+  int32 TagId = 2;
+  string Addr = 3;
+  string Username = 4;
+  string Password = 5;
+  int32 Start = 6;
+  int32 End = 7;
+  KVInfo Kvs = 8;
+}
+
+message TagSnapshotValueResp{
+  ErrInfo Err = 1;
+  message VsValue{
+    map<string, string> ValueMap = 1;
+  }
+  VsValue Values = 2;
 }

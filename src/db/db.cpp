@@ -61,10 +61,9 @@ int DbVs::Init(const std::string &dll_path) {
             m_AppendRTTagDataByBatch = (pAppendRTTagDataByBatch) GetProcAddress(hInst, "AppendRTTagDataByBatch");
             m_RTDBFreePointer = (pRTDBFreePointer) GetProcAddress(hInst, "RTDBFreePointer");
             m_AppendRTTagDataByTagName = (pAppendRTTagDataByTagName) GetProcAddress(hInst, "AppendRTTagDataByTagName");
-            m_GetAggregationDataByTagName = (pGetAggregationDataByTagName) GetProcAddress(hInst,
-                                                                                          "GetAggregationDataByTagName");
+            m_GetAggregationDataByTagName = (pGetAggregationDataByTagName) GetProcAddress(hInst,"GetAggregationDataByTagName");
             m_GetSummaryFilter = (pGetSummaryFilter) GetProcAddress(hInst, "GetSummaryFilter");
-            m_GetSummaryFilterEx = (pGetSummaryFilterEx) GetProcAddress(hInst,"GetSummaryFilterEx");
+            m_GetSummaryFilterEx = (pGetSummaryFilterEx) GetProcAddress(hInst, "GetSummaryFilterEx");
         }
     }, dll_path, &err);
     return err;
@@ -100,6 +99,9 @@ void GetErr(DbError *err) {
         case kArgBad:
             err->err_msg = "arg is invalid";
             break;
+        case kDbConfigErr:
+            err->err_msg = "init dll failed ";
+            break;
         default:
             err->err_msg = "unkonw error";
             break;
@@ -110,12 +112,12 @@ DbError DbVs::DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2)
     DbError err;
     auto errNo = Init(dllPath);
     if (errNo != 0) {
-        err.err_code = 2;
+        err.err_code = kDbConfigErr;
         GetErr(&err);
         return err;
     }
     if (dllPath == nullptr || configPath == nullptr) {
-        err.err_code = 1;
+        err.err_code = kArgBad;
         GetErr(&err);
         return err;
     }
@@ -125,9 +127,10 @@ DbError DbVs::DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2)
     strParameters[2] = opt1;
     strParameters[3] = opt2;
 #ifdef WIN32
-    std::call_once(once2_, [](char *para[4], DbError *err1) {
-        err1->err_code = m_InitConnect(para, 4);
-    }, strParameters, &err);
+    err.err_code = m_InitConnect(strParameters, 4);
+//    std::call_once(once2_, [](char *para[4], DbError *err1) {
+//        err1->err_code = m_InitConnect(para, 4);
+//    }, strParameters, &err);
 #else
     err.err_code = InitConnect(strParameters,4);
 #endif
@@ -584,7 +587,7 @@ DbError DbVs::TagDescGet(const std::string &tag_name, long start, long end, TagD
 //    tagData->status = 1;
 //    tagData->time = 168956236;
 //    err.err_code = m_GetSummaryFilterEx(tag_name.c_str(), start, end, vType, "",tagData);
-   // err.err_code = m_GetSummaryFilter(tag_name.c_str(), start, end, vType, "", -99999, 99999, 1, tagData);
+    // err.err_code = m_GetSummaryFilter(tag_name.c_str(), start, end, vType, "", -99999, 99999, 1, tagData);
 #else
     //char *str = "";
         tagData->value = 1;
@@ -665,13 +668,12 @@ DbError DbVs::TagGetAggregation(const std::string &tag_name, long start, long en
 #ifdef WIN32
     err.err_code = m_GetAggregationDataByTagName(&req, tagData);
 #else
-    /*        std::cout << GetHistoryDataByTimeSpan <<std::endl;*/
     err.err_code = GetAggregationDataByTagName(req, tagData);
 #endif
     if (err.err_code != 0) {
         GetErr(&err);
         return err;
     }
-    return {};
+    return err;
 }
 

@@ -72,7 +72,7 @@ public:
         delete log_;
     }
 
-    int ConfigSetInternal(google::protobuf::Map<std::string, std::string> kvs) const {
+    [[nodiscard]] int ConfigSetInternal(google::protobuf::Map<std::string, std::string> kvs) const {
         if (kvs.empty()) {
             log_->Error((boost::format("kvs empty")).str());
             return -1;
@@ -202,6 +202,7 @@ public:
         return Status::OK;
     }
 
+    // 获取所有值
     Status TagValuesGet(ServerContext *context, const TagValuesGetReq *request, TagValuesGetResp *response) override {
         log_->Info((boost::format("TagValuesGet:%1%") % request->Utf8DebugString()).str());
         auto start = request->start();
@@ -294,6 +295,7 @@ public:
         return Status::OK;
     }
 
+    // 根据数量获取值
     Status TagValuesByCountGet(ServerContext *context, const TagValuesByCountGetReq *request,
                                TagValuesByCountGetResp *response) override {
         log_->Info((boost::format("TagValuesByCountGet:%1%") % request->Utf8DebugString()).str());
@@ -400,6 +402,7 @@ public:
         return Status::OK;
     }
 
+    // 获取特征值
     Status
     TagFeatureGet(ServerContext *context, const TagFeatureGetReq *request, TagFeatureGetResp *response) override {
         log_->Info((boost::format("TagFeatureGet:%1%") % request->Utf8DebugString()).str());
@@ -430,47 +433,44 @@ public:
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
-
-        for (int i = 0; i < request->verifies().size(); i++) {
-            switch (request->verifies()[i]) {
-
+        auto it = response->mutable_feat();
+        TagData feat;
+        VsValue info;
+        for (int i: request->verifies()) {
+            switch (i) {
+                case 1:
+                    err = DbVs::TagGetAggregation(name, start, end, i, end - start, &feat);
+                    if (err.err_code == 0) {
+                        log_->Info((boost::format("get value %1%") % feat.value).str());
+                        info.set_value(feat.value);
+                        info.set_status(feat.status);
+                        (*it)["max"] = info;
+                    }
+                    continue;
+                case 2:
+                    err = DbVs::TagGetAggregation(name, start, end, i, end - start, &feat);
+                    if (err.err_code == 0) {
+                        VsValue info;
+                        log_->Info((boost::format("get value %1%") % feat.value).str());
+                        info.set_value(feat.value);
+                        info.set_status(feat.status);
+                        (*it)["min"] = info;
+                    }
+                    continue;
+                case 3:
+                    err = DbVs::TagGetAggregation(name, start, end, i, end - start, &feat);
+                    if (err.err_code == 0) {
+                        log_->Info((boost::format("get value %1%") % feat.value).str());
+                        info.set_value(feat.value);
+                        info.set_status(feat.status);
+                        (*it)["avg"] = info;
+                    }
+                    continue;
+                default:
+                    log_->Error((boost::format("unsupported types ")).str());
+                    continue;
             }
         }
-//        ConfigSetInternal(req->kvs_);
-//        log_->Info((boost::format("dll_path :%1%,config_path : %2%") % req->dll_path_ % req->config_path_).str());
-//        if (req->dll_path_.empty() || req->config_path_.empty()) {
-//            log_->Error((boost::format("dllpath and configpath is not valid")).str());
-//            return {-1, "dllpath is not valid", res.ToErrString(-1, "dllpath is not valid")};
-//        }
-//
-//        char *dll_path = (char *) malloc(128);
-//        char *config_path = (char *) malloc(128);
-//
-//        strcpy(dll_path, req->dll_path_.c_str());
-//        strcpy(config_path, req->config_path_.c_str());
-//
-//        auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-//
-//        free(dll_path);
-//        free(config_path);
-//
-//        if (err.err_code != 0) {
-//            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
-//            return {err.err_code, "connect database failed", res.ToErrString(err.err_code, err.err_msg)};
-//        }
-//
-//        TagData tagData;
-//        err = DbVs::TagGetAggregation(req->tag_info_.name_, req->range_.start_, req->range_.end_, 3,
-//                                      req->range_.end_ - req->range_.start_, &tagData);
-//        if (err.err_code != 0) {
-//            log_->Error((boost::format("TagGetAggregatione failed :%1%:%2%") % err.err_code % err.err_msg).str());
-//            return {err.err_code, "TagGetAggregation failed", res.ToErrString(err.err_code, err.err_msg)};
-//        }
-//        TagDataInfo data;
-//        data.value_ = tagData.value;
-//        data.status_ = tagData.status;
-//        data.ts_ = tagData.time;
-
 
 
         long tmp_count = 0;
@@ -506,8 +506,6 @@ public:
             ver.push_back(iter);
         }
 
-        auto it = response->mutable_feat();
-        VsValue info;
         info.set_value(tmp_count);
         info.set_status(100);
         (*it)["count"] = info;
@@ -517,6 +515,7 @@ public:
         return Status::OK;
     }
 
+    // 获取时间段
     Status
     TagTimeSection(ServerContext *context, const TagTimeSectionReq *request, TagTimeSectionResp *response) override {
         log_->Info((boost::format("TagTimeSection:%1%") % request->Utf8DebugString()).str());
@@ -585,6 +584,7 @@ public:
         return Status::OK;
     }
 
+    //Ping 数据库
     Status DbPing(ServerContext *context, const DbPingReq *request, DbPingResp *response) override {
         log_->Info((boost::format("DbPing:%1%") % request->Utf8DebugString()).str());
 
@@ -623,6 +623,7 @@ public:
         return Status::OK;
     }
 
+    // 获取范围内值数量
     Status TagCountByRangeGet(ServerContext *context, const TagCountByRangeGetReq *request,
                               TagCountByRangeGetResp *response) override {
         log_->Info((boost::format("TagCountByRangeGet:%1%") % request->Utf8DebugString()).str());
@@ -660,10 +661,6 @@ public:
         long count = 1024;
         while (count == 1024 && start < end) {
             auto *data1 = new std::vector<TagData>();
-//            ReadHiDataRequest req;
-//            strcpy(req.pointName, name.c_str());
-//            req.stTime = start;
-//            req.enTime = end;
             err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
             if (err.err_code == 0 && !data1->empty()) {
                 log_->Info((boost::format("get count size %1%") % data1->size()).str());
@@ -682,6 +679,71 @@ public:
         return Status::OK;
     }
 
+    // 停止服务
+    Status ServiceStop(ServerContext *context, const ServiceStopReq *request, ServiceStopResp *response) override {
+        log_->Info((boost::format("ServiceStop:%1%") % request->Utf8DebugString()).str());
+        DbVs::DbReleaseConnect();
+        return Status::OK;
+    }
+
+    // 获取快照值
+    Status TagSnapshotValue(ServerContext *context, const TagSnapshotValueReq *request,
+                            TagSnapshotValueResp *response) override {
+        log_->Info((boost::format("TagSnapshotValue:%1%") % request->Utf8DebugString()).str());
+        auto start = request->start();
+        auto end = request->end();
+        auto tag_name = request->tagname();
+        const auto &addr = request->addr();
+        const auto &username = request->username();
+        const auto &password = request->password();
+        if (start > end || start < 0 || end < 0 || tag_name.empty()) {
+            log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
+            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+        }
+
+        // 检查kvs 是否输入
+        if (request->kvs().kvs_size() == 0) {
+            log_->Error("request->kvs().kvs_size() == 0");
+            return {StatusCode::INVALID_ARGUMENT, "addr or username is empty"};
+        }
+
+        auto err_c = ConfigSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("ConfigSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
+
+        char *dll_path = (char *) malloc(128);
+        char *config_path = (char *) malloc(128);
+
+        strcpy(dll_path, "./");
+        strcpy(config_path, "./");
+
+        auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
+        free(dll_path);
+        free(config_path);
+
+        if (err.err_code != 0) {
+            DbVs::DbReleaseConnect();
+            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), "connect database failed"};
+        }
+
+        TagData value;
+        err = DbVs::TagRealTimeDataGetByName(tag_name.c_str(), &value);
+        if (err.err_code != 0) {
+            DbVs::DbReleaseConnect();
+            log_->Error((boost::format("get snapshot failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), "get snapshot failed"};
+        }
+
+        DbVs::DbReleaseConnect();
+        auto t = response->mutable_values()->mutable_valuemap();
+        (*t)["ts"] = std::to_string(value.time);
+        (*t)["value"] = std::to_string(value.value);
+        (*t)["status"] = std::to_string(value.status);
+        return Status::OK;
+    }
 
     void Run() {
         if (ip_.empty() || port_.empty()) {

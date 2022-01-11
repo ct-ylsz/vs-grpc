@@ -50,7 +50,7 @@ struct TableStruct_vs_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[33]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[39]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -79,6 +79,12 @@ extern KVInfoDefaultTypeInternal _KVInfo_default_instance_;
 class KVInfo_KvsEntry_DoNotUse;
 struct KVInfo_KvsEntry_DoNotUseDefaultTypeInternal;
 extern KVInfo_KvsEntry_DoNotUseDefaultTypeInternal _KVInfo_KvsEntry_DoNotUse_default_instance_;
+class ServiceStopReq;
+struct ServiceStopReqDefaultTypeInternal;
+extern ServiceStopReqDefaultTypeInternal _ServiceStopReq_default_instance_;
+class ServiceStopResp;
+struct ServiceStopRespDefaultTypeInternal;
+extern ServiceStopRespDefaultTypeInternal _ServiceStopResp_default_instance_;
 class TagCountByRangeGetReq;
 struct TagCountByRangeGetReqDefaultTypeInternal;
 extern TagCountByRangeGetReqDefaultTypeInternal _TagCountByRangeGetReq_default_instance_;
@@ -118,6 +124,18 @@ extern TagListGetResp_TagInfoMapDefaultTypeInternal _TagListGetResp_TagInfoMap_d
 class TagListGetResp_TagInfoMap_InfoEntry_DoNotUse;
 struct TagListGetResp_TagInfoMap_InfoEntry_DoNotUseDefaultTypeInternal;
 extern TagListGetResp_TagInfoMap_InfoEntry_DoNotUseDefaultTypeInternal _TagListGetResp_TagInfoMap_InfoEntry_DoNotUse_default_instance_;
+class TagSnapshotValueReq;
+struct TagSnapshotValueReqDefaultTypeInternal;
+extern TagSnapshotValueReqDefaultTypeInternal _TagSnapshotValueReq_default_instance_;
+class TagSnapshotValueResp;
+struct TagSnapshotValueRespDefaultTypeInternal;
+extern TagSnapshotValueRespDefaultTypeInternal _TagSnapshotValueResp_default_instance_;
+class TagSnapshotValueResp_VsValue;
+struct TagSnapshotValueResp_VsValueDefaultTypeInternal;
+extern TagSnapshotValueResp_VsValueDefaultTypeInternal _TagSnapshotValueResp_VsValue_default_instance_;
+class TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse;
+struct TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUseDefaultTypeInternal;
+extern TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUseDefaultTypeInternal _TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse_default_instance_;
 class TagTimeSectionReq;
 struct TagTimeSectionReqDefaultTypeInternal;
 extern TagTimeSectionReqDefaultTypeInternal _TagTimeSectionReq_default_instance_;
@@ -166,6 +184,8 @@ template<> ::vs::DbPingResp* Arena::CreateMaybeMessage<::vs::DbPingResp>(Arena*)
 template<> ::vs::ErrInfo* Arena::CreateMaybeMessage<::vs::ErrInfo>(Arena*);
 template<> ::vs::KVInfo* Arena::CreateMaybeMessage<::vs::KVInfo>(Arena*);
 template<> ::vs::KVInfo_KvsEntry_DoNotUse* Arena::CreateMaybeMessage<::vs::KVInfo_KvsEntry_DoNotUse>(Arena*);
+template<> ::vs::ServiceStopReq* Arena::CreateMaybeMessage<::vs::ServiceStopReq>(Arena*);
+template<> ::vs::ServiceStopResp* Arena::CreateMaybeMessage<::vs::ServiceStopResp>(Arena*);
 template<> ::vs::TagCountByRangeGetReq* Arena::CreateMaybeMessage<::vs::TagCountByRangeGetReq>(Arena*);
 template<> ::vs::TagCountByRangeGetResp* Arena::CreateMaybeMessage<::vs::TagCountByRangeGetResp>(Arena*);
 template<> ::vs::TagDescGetReq* Arena::CreateMaybeMessage<::vs::TagDescGetReq>(Arena*);
@@ -179,6 +199,10 @@ template<> ::vs::TagListGetResp* Arena::CreateMaybeMessage<::vs::TagListGetResp>
 template<> ::vs::TagListGetResp_Filed* Arena::CreateMaybeMessage<::vs::TagListGetResp_Filed>(Arena*);
 template<> ::vs::TagListGetResp_TagInfoMap* Arena::CreateMaybeMessage<::vs::TagListGetResp_TagInfoMap>(Arena*);
 template<> ::vs::TagListGetResp_TagInfoMap_InfoEntry_DoNotUse* Arena::CreateMaybeMessage<::vs::TagListGetResp_TagInfoMap_InfoEntry_DoNotUse>(Arena*);
+template<> ::vs::TagSnapshotValueReq* Arena::CreateMaybeMessage<::vs::TagSnapshotValueReq>(Arena*);
+template<> ::vs::TagSnapshotValueResp* Arena::CreateMaybeMessage<::vs::TagSnapshotValueResp>(Arena*);
+template<> ::vs::TagSnapshotValueResp_VsValue* Arena::CreateMaybeMessage<::vs::TagSnapshotValueResp_VsValue>(Arena*);
+template<> ::vs::TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse* Arena::CreateMaybeMessage<::vs::TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse>(Arena*);
 template<> ::vs::TagTimeSectionReq* Arena::CreateMaybeMessage<::vs::TagTimeSectionReq>(Arena*);
 template<> ::vs::TagTimeSectionResp* Arena::CreateMaybeMessage<::vs::TagTimeSectionResp>(Arena*);
 template<> ::vs::TagValuesByCountGetReq* Arena::CreateMaybeMessage<::vs::TagValuesByCountGetReq>(Arena*);
@@ -5086,6 +5110,842 @@ class TagTimeSectionResp final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_vs_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ServiceStopReq final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:vs.ServiceStopReq) */ {
+ public:
+  inline ServiceStopReq() : ServiceStopReq(nullptr) {}
+  explicit constexpr ServiceStopReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ServiceStopReq(const ServiceStopReq& from);
+  ServiceStopReq(ServiceStopReq&& from) noexcept
+    : ServiceStopReq() {
+    *this = ::std::move(from);
+  }
+
+  inline ServiceStopReq& operator=(const ServiceStopReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ServiceStopReq& operator=(ServiceStopReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ServiceStopReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ServiceStopReq* internal_default_instance() {
+    return reinterpret_cast<const ServiceStopReq*>(
+               &_ServiceStopReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  friend void swap(ServiceStopReq& a, ServiceStopReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ServiceStopReq* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ServiceStopReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ServiceStopReq* New() const final {
+    return new ServiceStopReq();
+  }
+
+  ServiceStopReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ServiceStopReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ServiceStopReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ServiceStopReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.ServiceStopReq";
+  }
+  protected:
+  explicit ServiceStopReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:vs.ServiceStopReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ServiceStopResp final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:vs.ServiceStopResp) */ {
+ public:
+  inline ServiceStopResp() : ServiceStopResp(nullptr) {}
+  explicit constexpr ServiceStopResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ServiceStopResp(const ServiceStopResp& from);
+  ServiceStopResp(ServiceStopResp&& from) noexcept
+    : ServiceStopResp() {
+    *this = ::std::move(from);
+  }
+
+  inline ServiceStopResp& operator=(const ServiceStopResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ServiceStopResp& operator=(ServiceStopResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ServiceStopResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ServiceStopResp* internal_default_instance() {
+    return reinterpret_cast<const ServiceStopResp*>(
+               &_ServiceStopResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  friend void swap(ServiceStopResp& a, ServiceStopResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ServiceStopResp* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ServiceStopResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ServiceStopResp* New() const final {
+    return new ServiceStopResp();
+  }
+
+  ServiceStopResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ServiceStopResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ServiceStopResp& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ServiceStopResp& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.ServiceStopResp";
+  }
+  protected:
+  explicit ServiceStopResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:vs.ServiceStopResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TagSnapshotValueReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vs.TagSnapshotValueReq) */ {
+ public:
+  inline TagSnapshotValueReq() : TagSnapshotValueReq(nullptr) {}
+  ~TagSnapshotValueReq() override;
+  explicit constexpr TagSnapshotValueReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TagSnapshotValueReq(const TagSnapshotValueReq& from);
+  TagSnapshotValueReq(TagSnapshotValueReq&& from) noexcept
+    : TagSnapshotValueReq() {
+    *this = ::std::move(from);
+  }
+
+  inline TagSnapshotValueReq& operator=(const TagSnapshotValueReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TagSnapshotValueReq& operator=(TagSnapshotValueReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TagSnapshotValueReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TagSnapshotValueReq* internal_default_instance() {
+    return reinterpret_cast<const TagSnapshotValueReq*>(
+               &_TagSnapshotValueReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  friend void swap(TagSnapshotValueReq& a, TagSnapshotValueReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TagSnapshotValueReq* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TagSnapshotValueReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TagSnapshotValueReq* New() const final {
+    return new TagSnapshotValueReq();
+  }
+
+  TagSnapshotValueReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TagSnapshotValueReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TagSnapshotValueReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TagSnapshotValueReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TagSnapshotValueReq* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.TagSnapshotValueReq";
+  }
+  protected:
+  explicit TagSnapshotValueReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagNameFieldNumber = 1,
+    kAddrFieldNumber = 3,
+    kUsernameFieldNumber = 4,
+    kPasswordFieldNumber = 5,
+    kKvsFieldNumber = 8,
+    kTagIdFieldNumber = 2,
+    kStartFieldNumber = 6,
+    kEndFieldNumber = 7,
+  };
+  // string TagName = 1;
+  void clear_tagname();
+  const std::string& tagname() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_tagname(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_tagname();
+  PROTOBUF_MUST_USE_RESULT std::string* release_tagname();
+  void set_allocated_tagname(std::string* tagname);
+  private:
+  const std::string& _internal_tagname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_tagname(const std::string& value);
+  std::string* _internal_mutable_tagname();
+  public:
+
+  // string Addr = 3;
+  void clear_addr();
+  const std::string& addr() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_addr(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_addr();
+  PROTOBUF_MUST_USE_RESULT std::string* release_addr();
+  void set_allocated_addr(std::string* addr);
+  private:
+  const std::string& _internal_addr() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_addr(const std::string& value);
+  std::string* _internal_mutable_addr();
+  public:
+
+  // string Username = 4;
+  void clear_username();
+  const std::string& username() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_username(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_username();
+  PROTOBUF_MUST_USE_RESULT std::string* release_username();
+  void set_allocated_username(std::string* username);
+  private:
+  const std::string& _internal_username() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(const std::string& value);
+  std::string* _internal_mutable_username();
+  public:
+
+  // string Password = 5;
+  void clear_password();
+  const std::string& password() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_password(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_password();
+  PROTOBUF_MUST_USE_RESULT std::string* release_password();
+  void set_allocated_password(std::string* password);
+  private:
+  const std::string& _internal_password() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(const std::string& value);
+  std::string* _internal_mutable_password();
+  public:
+
+  // .vs.KVInfo Kvs = 8;
+  bool has_kvs() const;
+  private:
+  bool _internal_has_kvs() const;
+  public:
+  void clear_kvs();
+  const ::vs::KVInfo& kvs() const;
+  PROTOBUF_MUST_USE_RESULT ::vs::KVInfo* release_kvs();
+  ::vs::KVInfo* mutable_kvs();
+  void set_allocated_kvs(::vs::KVInfo* kvs);
+  private:
+  const ::vs::KVInfo& _internal_kvs() const;
+  ::vs::KVInfo* _internal_mutable_kvs();
+  public:
+  void unsafe_arena_set_allocated_kvs(
+      ::vs::KVInfo* kvs);
+  ::vs::KVInfo* unsafe_arena_release_kvs();
+
+  // int32 TagId = 2;
+  void clear_tagid();
+  ::PROTOBUF_NAMESPACE_ID::int32 tagid() const;
+  void set_tagid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_tagid() const;
+  void _internal_set_tagid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 Start = 6;
+  void clear_start();
+  ::PROTOBUF_NAMESPACE_ID::int32 start() const;
+  void set_start(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_start() const;
+  void _internal_set_start(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 End = 7;
+  void clear_end();
+  ::PROTOBUF_NAMESPACE_ID::int32 end() const;
+  void set_end(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_end() const;
+  void _internal_set_end(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:vs.TagSnapshotValueReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tagname_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr addr_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+  ::vs::KVInfo* kvs_;
+  ::PROTOBUF_NAMESPACE_ID::int32 tagid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 start_;
+  ::PROTOBUF_NAMESPACE_ID::int32 end_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse();
+  explicit constexpr TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse& other);
+  static const TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse*>(&_TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "vs.TagSnapshotValueResp.VsValue.ValueMapEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "vs.TagSnapshotValueResp.VsValue.ValueMapEntry.value");
+ }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+};
+
+// -------------------------------------------------------------------
+
+class TagSnapshotValueResp_VsValue final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vs.TagSnapshotValueResp.VsValue) */ {
+ public:
+  inline TagSnapshotValueResp_VsValue() : TagSnapshotValueResp_VsValue(nullptr) {}
+  ~TagSnapshotValueResp_VsValue() override;
+  explicit constexpr TagSnapshotValueResp_VsValue(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TagSnapshotValueResp_VsValue(const TagSnapshotValueResp_VsValue& from);
+  TagSnapshotValueResp_VsValue(TagSnapshotValueResp_VsValue&& from) noexcept
+    : TagSnapshotValueResp_VsValue() {
+    *this = ::std::move(from);
+  }
+
+  inline TagSnapshotValueResp_VsValue& operator=(const TagSnapshotValueResp_VsValue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TagSnapshotValueResp_VsValue& operator=(TagSnapshotValueResp_VsValue&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TagSnapshotValueResp_VsValue& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TagSnapshotValueResp_VsValue* internal_default_instance() {
+    return reinterpret_cast<const TagSnapshotValueResp_VsValue*>(
+               &_TagSnapshotValueResp_VsValue_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    37;
+
+  friend void swap(TagSnapshotValueResp_VsValue& a, TagSnapshotValueResp_VsValue& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TagSnapshotValueResp_VsValue* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TagSnapshotValueResp_VsValue* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TagSnapshotValueResp_VsValue* New() const final {
+    return new TagSnapshotValueResp_VsValue();
+  }
+
+  TagSnapshotValueResp_VsValue* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TagSnapshotValueResp_VsValue>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TagSnapshotValueResp_VsValue& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TagSnapshotValueResp_VsValue& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TagSnapshotValueResp_VsValue* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.TagSnapshotValueResp.VsValue";
+  }
+  protected:
+  explicit TagSnapshotValueResp_VsValue(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValueMapFieldNumber = 1,
+  };
+  // map<string, string> ValueMap = 1;
+  int valuemap_size() const;
+  private:
+  int _internal_valuemap_size() const;
+  public:
+  void clear_valuemap();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_valuemap() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_valuemap();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      valuemap() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_valuemap();
+
+  // @@protoc_insertion_point(class_scope:vs.TagSnapshotValueResp.VsValue)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      TagSnapshotValueResp_VsValue_ValueMapEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> valuemap_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TagSnapshotValueResp final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vs.TagSnapshotValueResp) */ {
+ public:
+  inline TagSnapshotValueResp() : TagSnapshotValueResp(nullptr) {}
+  ~TagSnapshotValueResp() override;
+  explicit constexpr TagSnapshotValueResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TagSnapshotValueResp(const TagSnapshotValueResp& from);
+  TagSnapshotValueResp(TagSnapshotValueResp&& from) noexcept
+    : TagSnapshotValueResp() {
+    *this = ::std::move(from);
+  }
+
+  inline TagSnapshotValueResp& operator=(const TagSnapshotValueResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TagSnapshotValueResp& operator=(TagSnapshotValueResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TagSnapshotValueResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TagSnapshotValueResp* internal_default_instance() {
+    return reinterpret_cast<const TagSnapshotValueResp*>(
+               &_TagSnapshotValueResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    38;
+
+  friend void swap(TagSnapshotValueResp& a, TagSnapshotValueResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TagSnapshotValueResp* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TagSnapshotValueResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TagSnapshotValueResp* New() const final {
+    return new TagSnapshotValueResp();
+  }
+
+  TagSnapshotValueResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TagSnapshotValueResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TagSnapshotValueResp& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TagSnapshotValueResp& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TagSnapshotValueResp* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.TagSnapshotValueResp";
+  }
+  protected:
+  explicit TagSnapshotValueResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef TagSnapshotValueResp_VsValue VsValue;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrFieldNumber = 1,
+    kValuesFieldNumber = 2,
+  };
+  // .vs.ErrInfo Err = 1;
+  bool has_err() const;
+  private:
+  bool _internal_has_err() const;
+  public:
+  void clear_err();
+  const ::vs::ErrInfo& err() const;
+  PROTOBUF_MUST_USE_RESULT ::vs::ErrInfo* release_err();
+  ::vs::ErrInfo* mutable_err();
+  void set_allocated_err(::vs::ErrInfo* err);
+  private:
+  const ::vs::ErrInfo& _internal_err() const;
+  ::vs::ErrInfo* _internal_mutable_err();
+  public:
+  void unsafe_arena_set_allocated_err(
+      ::vs::ErrInfo* err);
+  ::vs::ErrInfo* unsafe_arena_release_err();
+
+  // .vs.TagSnapshotValueResp.VsValue Values = 2;
+  bool has_values() const;
+  private:
+  bool _internal_has_values() const;
+  public:
+  void clear_values();
+  const ::vs::TagSnapshotValueResp_VsValue& values() const;
+  PROTOBUF_MUST_USE_RESULT ::vs::TagSnapshotValueResp_VsValue* release_values();
+  ::vs::TagSnapshotValueResp_VsValue* mutable_values();
+  void set_allocated_values(::vs::TagSnapshotValueResp_VsValue* values);
+  private:
+  const ::vs::TagSnapshotValueResp_VsValue& _internal_values() const;
+  ::vs::TagSnapshotValueResp_VsValue* _internal_mutable_values();
+  public:
+  void unsafe_arena_set_allocated_values(
+      ::vs::TagSnapshotValueResp_VsValue* values);
+  ::vs::TagSnapshotValueResp_VsValue* unsafe_arena_release_values();
+
+  // @@protoc_insertion_point(class_scope:vs.TagSnapshotValueResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::vs::ErrInfo* err_;
+  ::vs::TagSnapshotValueResp_VsValue* values_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
 // ===================================================================
 
 
@@ -8758,9 +9618,586 @@ inline void TagTimeSectionResp::set_end(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:vs.TagTimeSectionResp.End)
 }
 
+// -------------------------------------------------------------------
+
+// ServiceStopReq
+
+// -------------------------------------------------------------------
+
+// ServiceStopResp
+
+// -------------------------------------------------------------------
+
+// TagSnapshotValueReq
+
+// string TagName = 1;
+inline void TagSnapshotValueReq::clear_tagname() {
+  tagname_.ClearToEmpty();
+}
+inline const std::string& TagSnapshotValueReq::tagname() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.TagName)
+  return _internal_tagname();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TagSnapshotValueReq::set_tagname(ArgT0&& arg0, ArgT... args) {
+ 
+ tagname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:vs.TagSnapshotValueReq.TagName)
+}
+inline std::string* TagSnapshotValueReq::mutable_tagname() {
+  std::string* _s = _internal_mutable_tagname();
+  // @@protoc_insertion_point(field_mutable:vs.TagSnapshotValueReq.TagName)
+  return _s;
+}
+inline const std::string& TagSnapshotValueReq::_internal_tagname() const {
+  return tagname_.Get();
+}
+inline void TagSnapshotValueReq::_internal_set_tagname(const std::string& value) {
+  
+  tagname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::_internal_mutable_tagname() {
+  
+  return tagname_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::release_tagname() {
+  // @@protoc_insertion_point(field_release:vs.TagSnapshotValueReq.TagName)
+  return tagname_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TagSnapshotValueReq::set_allocated_tagname(std::string* tagname) {
+  if (tagname != nullptr) {
+    
+  } else {
+    
+  }
+  tagname_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tagname,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:vs.TagSnapshotValueReq.TagName)
+}
+
+// int32 TagId = 2;
+inline void TagSnapshotValueReq::clear_tagid() {
+  tagid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TagSnapshotValueReq::_internal_tagid() const {
+  return tagid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TagSnapshotValueReq::tagid() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.TagId)
+  return _internal_tagid();
+}
+inline void TagSnapshotValueReq::_internal_set_tagid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  tagid_ = value;
+}
+inline void TagSnapshotValueReq::set_tagid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_tagid(value);
+  // @@protoc_insertion_point(field_set:vs.TagSnapshotValueReq.TagId)
+}
+
+// string Addr = 3;
+inline void TagSnapshotValueReq::clear_addr() {
+  addr_.ClearToEmpty();
+}
+inline const std::string& TagSnapshotValueReq::addr() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.Addr)
+  return _internal_addr();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TagSnapshotValueReq::set_addr(ArgT0&& arg0, ArgT... args) {
+ 
+ addr_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:vs.TagSnapshotValueReq.Addr)
+}
+inline std::string* TagSnapshotValueReq::mutable_addr() {
+  std::string* _s = _internal_mutable_addr();
+  // @@protoc_insertion_point(field_mutable:vs.TagSnapshotValueReq.Addr)
+  return _s;
+}
+inline const std::string& TagSnapshotValueReq::_internal_addr() const {
+  return addr_.Get();
+}
+inline void TagSnapshotValueReq::_internal_set_addr(const std::string& value) {
+  
+  addr_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::_internal_mutable_addr() {
+  
+  return addr_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::release_addr() {
+  // @@protoc_insertion_point(field_release:vs.TagSnapshotValueReq.Addr)
+  return addr_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TagSnapshotValueReq::set_allocated_addr(std::string* addr) {
+  if (addr != nullptr) {
+    
+  } else {
+    
+  }
+  addr_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), addr,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:vs.TagSnapshotValueReq.Addr)
+}
+
+// string Username = 4;
+inline void TagSnapshotValueReq::clear_username() {
+  username_.ClearToEmpty();
+}
+inline const std::string& TagSnapshotValueReq::username() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.Username)
+  return _internal_username();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TagSnapshotValueReq::set_username(ArgT0&& arg0, ArgT... args) {
+ 
+ username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:vs.TagSnapshotValueReq.Username)
+}
+inline std::string* TagSnapshotValueReq::mutable_username() {
+  std::string* _s = _internal_mutable_username();
+  // @@protoc_insertion_point(field_mutable:vs.TagSnapshotValueReq.Username)
+  return _s;
+}
+inline const std::string& TagSnapshotValueReq::_internal_username() const {
+  return username_.Get();
+}
+inline void TagSnapshotValueReq::_internal_set_username(const std::string& value) {
+  
+  username_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::_internal_mutable_username() {
+  
+  return username_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::release_username() {
+  // @@protoc_insertion_point(field_release:vs.TagSnapshotValueReq.Username)
+  return username_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TagSnapshotValueReq::set_allocated_username(std::string* username) {
+  if (username != nullptr) {
+    
+  } else {
+    
+  }
+  username_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), username,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:vs.TagSnapshotValueReq.Username)
+}
+
+// string Password = 5;
+inline void TagSnapshotValueReq::clear_password() {
+  password_.ClearToEmpty();
+}
+inline const std::string& TagSnapshotValueReq::password() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.Password)
+  return _internal_password();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TagSnapshotValueReq::set_password(ArgT0&& arg0, ArgT... args) {
+ 
+ password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:vs.TagSnapshotValueReq.Password)
+}
+inline std::string* TagSnapshotValueReq::mutable_password() {
+  std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:vs.TagSnapshotValueReq.Password)
+  return _s;
+}
+inline const std::string& TagSnapshotValueReq::_internal_password() const {
+  return password_.Get();
+}
+inline void TagSnapshotValueReq::_internal_set_password(const std::string& value) {
+  
+  password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::_internal_mutable_password() {
+  
+  return password_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TagSnapshotValueReq::release_password() {
+  // @@protoc_insertion_point(field_release:vs.TagSnapshotValueReq.Password)
+  return password_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TagSnapshotValueReq::set_allocated_password(std::string* password) {
+  if (password != nullptr) {
+    
+  } else {
+    
+  }
+  password_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:vs.TagSnapshotValueReq.Password)
+}
+
+// int32 Start = 6;
+inline void TagSnapshotValueReq::clear_start() {
+  start_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TagSnapshotValueReq::_internal_start() const {
+  return start_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TagSnapshotValueReq::start() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.Start)
+  return _internal_start();
+}
+inline void TagSnapshotValueReq::_internal_set_start(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  start_ = value;
+}
+inline void TagSnapshotValueReq::set_start(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_start(value);
+  // @@protoc_insertion_point(field_set:vs.TagSnapshotValueReq.Start)
+}
+
+// int32 End = 7;
+inline void TagSnapshotValueReq::clear_end() {
+  end_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TagSnapshotValueReq::_internal_end() const {
+  return end_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TagSnapshotValueReq::end() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.End)
+  return _internal_end();
+}
+inline void TagSnapshotValueReq::_internal_set_end(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  end_ = value;
+}
+inline void TagSnapshotValueReq::set_end(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_end(value);
+  // @@protoc_insertion_point(field_set:vs.TagSnapshotValueReq.End)
+}
+
+// .vs.KVInfo Kvs = 8;
+inline bool TagSnapshotValueReq::_internal_has_kvs() const {
+  return this != internal_default_instance() && kvs_ != nullptr;
+}
+inline bool TagSnapshotValueReq::has_kvs() const {
+  return _internal_has_kvs();
+}
+inline void TagSnapshotValueReq::clear_kvs() {
+  if (GetArenaForAllocation() == nullptr && kvs_ != nullptr) {
+    delete kvs_;
+  }
+  kvs_ = nullptr;
+}
+inline const ::vs::KVInfo& TagSnapshotValueReq::_internal_kvs() const {
+  const ::vs::KVInfo* p = kvs_;
+  return p != nullptr ? *p : reinterpret_cast<const ::vs::KVInfo&>(
+      ::vs::_KVInfo_default_instance_);
+}
+inline const ::vs::KVInfo& TagSnapshotValueReq::kvs() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueReq.Kvs)
+  return _internal_kvs();
+}
+inline void TagSnapshotValueReq::unsafe_arena_set_allocated_kvs(
+    ::vs::KVInfo* kvs) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(kvs_);
+  }
+  kvs_ = kvs;
+  if (kvs) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:vs.TagSnapshotValueReq.Kvs)
+}
+inline ::vs::KVInfo* TagSnapshotValueReq::release_kvs() {
+  
+  ::vs::KVInfo* temp = kvs_;
+  kvs_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::vs::KVInfo* TagSnapshotValueReq::unsafe_arena_release_kvs() {
+  // @@protoc_insertion_point(field_release:vs.TagSnapshotValueReq.Kvs)
+  
+  ::vs::KVInfo* temp = kvs_;
+  kvs_ = nullptr;
+  return temp;
+}
+inline ::vs::KVInfo* TagSnapshotValueReq::_internal_mutable_kvs() {
+  
+  if (kvs_ == nullptr) {
+    auto* p = CreateMaybeMessage<::vs::KVInfo>(GetArenaForAllocation());
+    kvs_ = p;
+  }
+  return kvs_;
+}
+inline ::vs::KVInfo* TagSnapshotValueReq::mutable_kvs() {
+  ::vs::KVInfo* _msg = _internal_mutable_kvs();
+  // @@protoc_insertion_point(field_mutable:vs.TagSnapshotValueReq.Kvs)
+  return _msg;
+}
+inline void TagSnapshotValueReq::set_allocated_kvs(::vs::KVInfo* kvs) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete kvs_;
+  }
+  if (kvs) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::vs::KVInfo>::GetOwningArena(kvs);
+    if (message_arena != submessage_arena) {
+      kvs = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, kvs, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  kvs_ = kvs;
+  // @@protoc_insertion_point(field_set_allocated:vs.TagSnapshotValueReq.Kvs)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// TagSnapshotValueResp_VsValue
+
+// map<string, string> ValueMap = 1;
+inline int TagSnapshotValueResp_VsValue::_internal_valuemap_size() const {
+  return valuemap_.size();
+}
+inline int TagSnapshotValueResp_VsValue::valuemap_size() const {
+  return _internal_valuemap_size();
+}
+inline void TagSnapshotValueResp_VsValue::clear_valuemap() {
+  valuemap_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+TagSnapshotValueResp_VsValue::_internal_valuemap() const {
+  return valuemap_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+TagSnapshotValueResp_VsValue::valuemap() const {
+  // @@protoc_insertion_point(field_map:vs.TagSnapshotValueResp.VsValue.ValueMap)
+  return _internal_valuemap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+TagSnapshotValueResp_VsValue::_internal_mutable_valuemap() {
+  return valuemap_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+TagSnapshotValueResp_VsValue::mutable_valuemap() {
+  // @@protoc_insertion_point(field_mutable_map:vs.TagSnapshotValueResp.VsValue.ValueMap)
+  return _internal_mutable_valuemap();
+}
+
+// -------------------------------------------------------------------
+
+// TagSnapshotValueResp
+
+// .vs.ErrInfo Err = 1;
+inline bool TagSnapshotValueResp::_internal_has_err() const {
+  return this != internal_default_instance() && err_ != nullptr;
+}
+inline bool TagSnapshotValueResp::has_err() const {
+  return _internal_has_err();
+}
+inline void TagSnapshotValueResp::clear_err() {
+  if (GetArenaForAllocation() == nullptr && err_ != nullptr) {
+    delete err_;
+  }
+  err_ = nullptr;
+}
+inline const ::vs::ErrInfo& TagSnapshotValueResp::_internal_err() const {
+  const ::vs::ErrInfo* p = err_;
+  return p != nullptr ? *p : reinterpret_cast<const ::vs::ErrInfo&>(
+      ::vs::_ErrInfo_default_instance_);
+}
+inline const ::vs::ErrInfo& TagSnapshotValueResp::err() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueResp.Err)
+  return _internal_err();
+}
+inline void TagSnapshotValueResp::unsafe_arena_set_allocated_err(
+    ::vs::ErrInfo* err) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(err_);
+  }
+  err_ = err;
+  if (err) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:vs.TagSnapshotValueResp.Err)
+}
+inline ::vs::ErrInfo* TagSnapshotValueResp::release_err() {
+  
+  ::vs::ErrInfo* temp = err_;
+  err_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::vs::ErrInfo* TagSnapshotValueResp::unsafe_arena_release_err() {
+  // @@protoc_insertion_point(field_release:vs.TagSnapshotValueResp.Err)
+  
+  ::vs::ErrInfo* temp = err_;
+  err_ = nullptr;
+  return temp;
+}
+inline ::vs::ErrInfo* TagSnapshotValueResp::_internal_mutable_err() {
+  
+  if (err_ == nullptr) {
+    auto* p = CreateMaybeMessage<::vs::ErrInfo>(GetArenaForAllocation());
+    err_ = p;
+  }
+  return err_;
+}
+inline ::vs::ErrInfo* TagSnapshotValueResp::mutable_err() {
+  ::vs::ErrInfo* _msg = _internal_mutable_err();
+  // @@protoc_insertion_point(field_mutable:vs.TagSnapshotValueResp.Err)
+  return _msg;
+}
+inline void TagSnapshotValueResp::set_allocated_err(::vs::ErrInfo* err) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete err_;
+  }
+  if (err) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::vs::ErrInfo>::GetOwningArena(err);
+    if (message_arena != submessage_arena) {
+      err = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, err, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  err_ = err;
+  // @@protoc_insertion_point(field_set_allocated:vs.TagSnapshotValueResp.Err)
+}
+
+// .vs.TagSnapshotValueResp.VsValue Values = 2;
+inline bool TagSnapshotValueResp::_internal_has_values() const {
+  return this != internal_default_instance() && values_ != nullptr;
+}
+inline bool TagSnapshotValueResp::has_values() const {
+  return _internal_has_values();
+}
+inline void TagSnapshotValueResp::clear_values() {
+  if (GetArenaForAllocation() == nullptr && values_ != nullptr) {
+    delete values_;
+  }
+  values_ = nullptr;
+}
+inline const ::vs::TagSnapshotValueResp_VsValue& TagSnapshotValueResp::_internal_values() const {
+  const ::vs::TagSnapshotValueResp_VsValue* p = values_;
+  return p != nullptr ? *p : reinterpret_cast<const ::vs::TagSnapshotValueResp_VsValue&>(
+      ::vs::_TagSnapshotValueResp_VsValue_default_instance_);
+}
+inline const ::vs::TagSnapshotValueResp_VsValue& TagSnapshotValueResp::values() const {
+  // @@protoc_insertion_point(field_get:vs.TagSnapshotValueResp.Values)
+  return _internal_values();
+}
+inline void TagSnapshotValueResp::unsafe_arena_set_allocated_values(
+    ::vs::TagSnapshotValueResp_VsValue* values) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(values_);
+  }
+  values_ = values;
+  if (values) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:vs.TagSnapshotValueResp.Values)
+}
+inline ::vs::TagSnapshotValueResp_VsValue* TagSnapshotValueResp::release_values() {
+  
+  ::vs::TagSnapshotValueResp_VsValue* temp = values_;
+  values_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::vs::TagSnapshotValueResp_VsValue* TagSnapshotValueResp::unsafe_arena_release_values() {
+  // @@protoc_insertion_point(field_release:vs.TagSnapshotValueResp.Values)
+  
+  ::vs::TagSnapshotValueResp_VsValue* temp = values_;
+  values_ = nullptr;
+  return temp;
+}
+inline ::vs::TagSnapshotValueResp_VsValue* TagSnapshotValueResp::_internal_mutable_values() {
+  
+  if (values_ == nullptr) {
+    auto* p = CreateMaybeMessage<::vs::TagSnapshotValueResp_VsValue>(GetArenaForAllocation());
+    values_ = p;
+  }
+  return values_;
+}
+inline ::vs::TagSnapshotValueResp_VsValue* TagSnapshotValueResp::mutable_values() {
+  ::vs::TagSnapshotValueResp_VsValue* _msg = _internal_mutable_values();
+  // @@protoc_insertion_point(field_mutable:vs.TagSnapshotValueResp.Values)
+  return _msg;
+}
+inline void TagSnapshotValueResp::set_allocated_values(::vs::TagSnapshotValueResp_VsValue* values) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete values_;
+  }
+  if (values) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::vs::TagSnapshotValueResp_VsValue>::GetOwningArena(values);
+    if (message_arena != submessage_arena) {
+      values = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, values, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  values_ = values;
+  // @@protoc_insertion_point(field_set_allocated:vs.TagSnapshotValueResp.Values)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

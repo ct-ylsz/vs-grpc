@@ -40,59 +40,6 @@ ErrResp<int> Cmd(int argc, char *argv[], boost::program_options::variables_map *
     return {};
 }
 
-//#include "db/dbvs.h"
-//#include "iostream"
-//
-//int main(int argc, char **argv) {
-//    auto err = DbVs::DbConnect("./", "./", nullptr, nullptr);
-//    if (err.err_code != 0) {
-//        std::cout << "DbConnect  " << err.err_code << "  " << err.err_msg << std::endl;
-//        return -1;
-//    }
-//    auto *tagValues = new std::vector<TagData>();
-//    ReadHiDataRequest req;
-//    req.stTime = 1638685047;
-//    req.enTime = 1639117047;
-//    req.tPeriod = 1000;//(1638835047 - 1638865047) 1638841047 1638851047 1638856047 1638858047
-//    req.reqType = 0;
-//    strcpy(req.pointName, "test_001");
-//    long count = 1000;
-//    err = DbVs::TagValuesGet(req, count, tagValues);
-//    if (err.err_code != 0) {
-//        std::cout << "TagValuesGet" << err.err_code << err.err_msg << std::endl;
-//        return -2;
-//    }
-//    tagValues->clear();
-//    delete tagValues;
-//    long start = 1638685047;
-//    long end = 1639117047;
-//    TagData data;
-//    err = DbVs::TagDescGet("test_001", start, end, &data, 1);
-//    if (err.err_code != 0) {
-//        std::cout << "TagDescGet" << err.err_code << err.err_msg << std::endl;
-//        return -2;
-//    }
-//    err = DbVs::TagValidCount("test_001", start, end, &data);
-//    if (err.err_code != 0) {
-//        std::cout << "TagValidCount" << err.err_code << err.err_msg << std::endl;
-//        return -2;
-//    }
-//
-//
-//    err = DbVs::TagGetAggregation("dec01-test_001", start, end, 1, 0, &data);
-//    if (err.err_code != 0) {
-//        std::cout << "TagGetAggregation" << err.err_code << err.err_msg << std::endl;
-//        return -2;
-//    }
-//
-//    err = DbVs::DbReleaseConnect();
-//    if (err.err_code != 0) {
-//        std::cout << "DbReleaseConnect  " << err.err_code << err.err_msg << std::endl;
-//        return -2;
-//    }
-//    return 0;
-//}
-
 int main(int argc, char **argv) {
 
     auto *log = new Logger;
