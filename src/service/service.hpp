@@ -83,7 +83,7 @@ public:
         for (auto &kv: kvs) {
             std::vector<std::string> dest;
             boost::split(dest, kv.first, boost::is_any_of("."),
-                         boost::token_compress_on);//å¦‚æžœæ­¤å¤„ä½¿ç”¨boost::token_compress_off
+                         boost::token_compress_on);//Èç¹û´Ë´¦Ê¹ÓÃboost::token_compress_off
             if (dest.size() == 2) {
                 Kv k;
                 k.key_ = dest[1];
@@ -109,10 +109,10 @@ public:
         return 0;
     }
 
-    // èŽ·å–æ ‡ç­¾åˆ—è¡¨
+    // »ñÈ¡±êÇ©ÁÐ±í
     Status TagListGet(ServerContext *context, const TagListGetReq *request, TagListGetResp *response) override {
         log_->Info((boost::format("TagListGet:%1%") % request->DebugString()).str());
-        // æ£€æŸ¥kvs æ˜¯å¦è¾“å…¥
+        // ¼ì²ékvs ÊÇ·ñÊäÈë
         if (request->kvs().kvs_size() == 0) {
             log_->Error("request->kvs().kvs_size() == 0");
             return {StatusCode::INVALID_ARGUMENT, "addr or username is empty"};
@@ -202,7 +202,7 @@ public:
         return Status::OK;
     }
 
-    // èŽ·å–æ‰€æœ‰å€¼
+    // »ñÈ¡ËùÓÐÖµ
     Status TagValuesGet(ServerContext *context, const TagValuesGetReq *request, TagValuesGetResp *response) override {
         log_->Info((boost::format("TagValuesGet:%1%") % request->Utf8DebugString()).str());
         auto start = request->start();
@@ -216,7 +216,7 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        // æ£€æŸ¥kvs æ˜¯å¦è¾“å…¥
+        // ¼ì²ékvs ÊÇ·ñÊäÈë
         if (request->kvs().kvs_size() == 0) {
             log_->Error("request->kvs().kvs_size() == 0");
             return {StatusCode::INVALID_ARGUMENT, "addr or username is empty"};
@@ -295,7 +295,7 @@ public:
         return Status::OK;
     }
 
-    // æ ¹æ®æ•°é‡èŽ·å–å€¼
+    // ¸ù¾ÝÊýÁ¿»ñÈ¡Öµ
     Status TagValuesByCountGet(ServerContext *context, const TagValuesByCountGetReq *request,
                                TagValuesByCountGetResp *response) override {
         log_->Info((boost::format("TagValuesByCountGet:%1%") % request->Utf8DebugString()).str());
@@ -381,14 +381,21 @@ public:
                 if (start_tmp == 0) {
                     start_tmp = request->start();
                 }
-                end = data2->back().time;
+                if (!data2->empty()) {
+                    end = data2->back().time;
+                }
                 log_->Info((boost::format("query no data")).str());
                 delete data2;
                 break;
             }
         }
-
         DbVs::DbReleaseConnect();
+        if (end == 0) {
+            time_t t;
+            time(&t);
+            end = t;
+        }
+
         response->set_start(start_tmp);
         response->set_end(end);
 
@@ -402,10 +409,7 @@ public:
         return Status::OK;
     }
 
-    long tmp_start = 0;
-    long tmp_end = 0;
-
-    // èŽ·å–ç‰¹å¾å€¼
+    // »ñÈ¡ÌØÕ÷Öµ
     Status
     TagFeatureGet(ServerContext *context, const TagFeatureGetReq *request, TagFeatureGetResp *response) override {
         log_->Info((boost::format("TagFeatureGet:%1%") % request->Utf8DebugString()).str());
@@ -483,7 +487,7 @@ public:
                         err = DbVs::TagValuesGet(req, count, data2);
                         if (err.err_code == 0 && !data2->empty()) {
                             log_->Info((boost::format("get count size %1%") % data2->size()).str());
-                            tmp_count += count; //æ€»æ•°é‡
+                            tmp_count += count; //×ÜÊýÁ¿
                             start = data2->back().time + 1;
                             if (tmp_start == 0) {
                                 tmp_start = data2->front().time;
@@ -520,7 +524,7 @@ public:
         return Status::OK;
     }
 
-    // èŽ·å–æ—¶é—´æ®µ
+    // »ñÈ¡Ê±¼ä¶Î
     Status
     TagTimeSection(ServerContext *context, const TagTimeSectionReq *request, TagTimeSectionResp *response) override {
         log_->Info((boost::format("TagTimeSection:%1%") % request->Utf8DebugString()).str());
@@ -564,10 +568,11 @@ public:
             start_tmp = data1->front().time;
             data1->clear();
             delete data1;
-            err = DbVs::TagRealTimeDataGetByName(name.c_str(),&da);
-            if (err.err_code != 0){
+            err = DbVs::TagRealTimeDataGetByName(name.c_str(), &da);
+            if (err.err_code != 0) {
                 DbVs::DbReleaseConnect();
-                log_->Error((boost::format("TagRealTimeDataGetByName failed :%1%:%2%") % err.err_code % err.err_msg).str());
+                log_->Error(
+                        (boost::format("TagRealTimeDataGetByName failed :%1%:%2%") % err.err_code % err.err_msg).str());
                 return {StatusCode(err.err_code), "TagRealTimeDataGetByNamefailed"};
             }
         } else {
@@ -578,7 +583,7 @@ public:
             delete data1;
             DbVs::DbReleaseConnect();
         }
-        if (da.time > 0){
+        if (da.time > 0) {
             end_tmp = da.time;
         }
 //        long tmp_count = 0;
@@ -589,7 +594,7 @@ public:
 //            err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
 //            if (err.err_code == 0 && !data1->empty()) {
 //                log_->Info((boost::format("get count size %1%") % data1->size()).str());
-//                tmp_count += count; //æ€»æ•°é‡
+//                tmp_count += count; //×ÜÊýÁ¿
 //                start = data1->back().time;
 //                if (start_tmp == 0) {
 //                    start_tmp = data1->front().time;
@@ -616,7 +621,7 @@ public:
         return Status::OK;
     }
 
-    //Ping æ•°æ®åº“
+    //Ping Êý¾Ý¿â
     Status DbPing(ServerContext *context, const DbPingReq *request, DbPingResp *response) override {
         log_->Info((boost::format("DbPing:%1%") % request->Utf8DebugString()).str());
 
@@ -655,7 +660,7 @@ public:
         return Status::OK;
     }
 
-    // èŽ·å–èŒƒå›´å†…å€¼æ•°é‡
+    // »ñÈ¡·¶Î§ÄÚÖµÊýÁ¿
     Status TagCountByRangeGet(ServerContext *context, const TagCountByRangeGetReq *request,
                               TagCountByRangeGetResp *response) override {
         log_->Info((boost::format("TagCountByRangeGet:%1%") % request->Utf8DebugString()).str());
@@ -696,7 +701,7 @@ public:
             err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
             if (err.err_code == 0 && !data1->empty()) {
                 log_->Info((boost::format("get count size %1%") % data1->size()).str());
-                tmp_count += count; //æ€»æ•°é‡
+                tmp_count += count; //×ÜÊýÁ¿
                 start = data1->back().time;
                 data1->clear();
                 delete data1;
@@ -711,14 +716,14 @@ public:
         return Status::OK;
     }
 
-    // åœæ­¢æœåŠ¡
+    // Í£Ö¹·þÎñ
     Status ServiceStop(ServerContext *context, const ServiceStopReq *request, ServiceStopResp *response) override {
         log_->Info((boost::format("ServiceStop:%1%") % request->Utf8DebugString()).str());
         DbVs::DbReleaseConnect();
         return Status::OK;
     }
 
-    // èŽ·å–å¿«ç…§å€¼
+    // »ñÈ¡¿ìÕÕÖµ
     Status TagSnapshotValue(ServerContext *context, const TagSnapshotValueReq *request,
                             TagSnapshotValueResp *response) override {
         log_->Info((boost::format("TagSnapshotValue:%1%") % request->Utf8DebugString()).str());
@@ -733,7 +738,7 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        // æ£€æŸ¥kvs æ˜¯å¦è¾“å…¥
+        // ¼ì²ékvs ÊÇ·ñÊäÈë
         if (request->kvs().kvs_size() == 0) {
             log_->Error("request->kvs().kvs_size() == 0");
             return {StatusCode::INVALID_ARGUMENT, "addr or username is empty"};

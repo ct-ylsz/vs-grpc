@@ -36,7 +36,6 @@
     <file url="file://$PROJECT_DIR$/proto/vs.grpc.pb.h" charset="GBK" />
     <file url="file://$PROJECT_DIR$/proto/vs.proto" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/service/service.hpp" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/service/service.hpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/service/service.hpp" charset="GBK" />
   </component>
 </project>
