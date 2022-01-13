@@ -140,6 +140,9 @@ public:
 
     // 获取历史时间段
     static DbError HistoryTimeSpan(const std::string &tag_name, long start, long end, TagData *tagData);
+
+    // 获取历史快照值
+    static DbError TagSnapshotByName(ReadHiDataRequest *req,std::vector<TagData> *tagValues);
 };
 
 

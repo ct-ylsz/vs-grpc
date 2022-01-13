@@ -402,6 +402,9 @@ public:
         return Status::OK;
     }
 
+    long tmp_start = 0;
+    long tmp_end = 0;
+
     // 获取特征值
     Status
     TagFeatureGet(ServerContext *context, const TagFeatureGetReq *request, TagFeatureGetResp *response) override {
@@ -436,6 +439,10 @@ public:
         auto it = response->mutable_feat();
         TagData feat;
         VsValue info;
+        long tmp_start = 0;
+        long tmp_end = 0;
+        long tmp_count = 0;
+        long count = 1024;
         for (int i: request->verifies()) {
             switch (i) {
                 case 1:
@@ -466,52 +473,50 @@ public:
                         (*it)["avg"] = info;
                     }
                     continue;
+                case 99:
+                    while (count == 1024 && start < end) {
+                        auto *data2 = new std::vector<TagData>();
+                        ReadHiDataRequest req;
+                        strcpy(req.pointName, name.c_str());
+                        req.stTime = start;
+                        req.enTime = end;
+                        err = DbVs::TagValuesGet(req, count, data2);
+                        if (err.err_code == 0 && !data2->empty()) {
+                            log_->Info((boost::format("get count size %1%") % data2->size()).str());
+                            tmp_count += count; //总数量
+                            start = data2->back().time + 1;
+                            if (tmp_start == 0) {
+                                tmp_start = data2->front().time;
+                            }
+                            tmp_end = data2->back().time + 1;
+                            delete data2;
+                        } else {
+                            log_->Info((boost::format("query no data")).str());
+                            tmp_count += count;
+                            delete data2;
+                            DbVs::DbReleaseConnect();
+                        }
+                    }
+                    info.set_value(tmp_count);
+                    info.set_status(100);
+                    (*it)["count"] = info;
+                    continue;
                 default:
                     log_->Error((boost::format("unsupported types ")).str());
                     continue;
             }
         }
 
-
-        long tmp_count = 0;
-        long count = 1024;
-        long tmp_start = 0;
-        long tmp_end = 0;
-        while (count == 1024 && start < end) {
-            auto *data2 = new std::vector<TagData>();
-            ReadHiDataRequest req;
-            strcpy(req.pointName, name.c_str());
-            req.stTime = start;
-            req.enTime = end;
-            err = DbVs::TagValuesGet(req, count, data2);
-            if (err.err_code == 0 && !data2->empty()) {
-                log_->Info((boost::format("get count size %1%") % data2->size()).str());
-                tmp_count += count; //总数量
-                start = data2->back().time + 1;
-                if (tmp_start == 0) {
-                    tmp_start = data2->front().time;
-                }
-                tmp_end = data2->back().time + 1;
-                delete data2;
-            } else {
-                log_->Info((boost::format("query no data")).str());
-                tmp_count += count;
-                delete data2;
-                DbVs::DbReleaseConnect();
-            }
+        if (tmp_start > 0) {
+            response->set_start(tmp_start);
+        } else {
+            response->set_start(start);
         }
-
-        std::vector<int> ver;
-        for (int iter: request->verifies()) {
-            ver.push_back(iter);
+        if (tmp_end > 0) {
+            response->set_end(tmp_end);
+        } else {
+            response->set_start(end);
         }
-
-        info.set_value(tmp_count);
-        info.set_status(100);
-        (*it)["count"] = info;
-
-        response->set_start(tmp_start);
-        response->set_end(tmp_end);
         return Status::OK;
     }
 
@@ -548,36 +553,63 @@ public:
         long start = request->start();
         auto end = request->end();
         const auto &name = request->tagname();
-        long tmp_count = 0;
-        long count = 1024;
         long start_tmp = 0;
         long end_tmp = 0;
-        while (count == 1024 && start < end) {
-            auto *data1 = new std::vector<TagData>();
-            err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
-            if (err.err_code == 0 && !data1->empty()) {
-                log_->Info((boost::format("get count size %1%") % data1->size()).str());
-                tmp_count += count; //总数量
-                start = data1->back().time;
-                if (start_tmp == 0) {
-                    start_tmp = data1->front().time;
-                }
-                end_tmp = data1->back().time;
-                data1->clear();
-                delete data1;
-            } else {
-                if (start_tmp == 0) {
-                    start_tmp = request->start();
-                }
-                if (count > 0) {
-                    end_tmp = data1->back().time + 1;
-                }
-                log_->Info((boost::format("query no data")).str());
-                tmp_count += count;
-                delete data1;
+        long count = 1;
+        TagData da;
+        auto *data1 = new std::vector<TagData>();
+        err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
+        if (err.err_code == 0 && !data1->empty()) {
+            log_->Info((boost::format("get count size %1%") % data1->size()).str());
+            start_tmp = data1->front().time;
+            data1->clear();
+            delete data1;
+            err = DbVs::TagRealTimeDataGetByName(name.c_str(),&da);
+            if (err.err_code != 0){
                 DbVs::DbReleaseConnect();
+                log_->Error((boost::format("TagRealTimeDataGetByName failed :%1%:%2%") % err.err_code % err.err_msg).str());
+                return {StatusCode(err.err_code), "TagRealTimeDataGetByNamefailed"};
             }
+        } else {
+            if (start_tmp == 0) {
+                start_tmp = request->start();
+            }
+            log_->Info((boost::format("query no data")).str());
+            delete data1;
+            DbVs::DbReleaseConnect();
         }
+        if (da.time > 0){
+            end_tmp = da.time;
+        }
+//        long tmp_count = 0;
+//        long start_tmp = 0;
+//        long end_tmp = 0;
+//        while (count == 1024 && start < end) {
+//            auto *data1 = new std::vector<TagData>();
+//            err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
+//            if (err.err_code == 0 && !data1->empty()) {
+//                log_->Info((boost::format("get count size %1%") % data1->size()).str());
+//                tmp_count += count; //总数量
+//                start = data1->back().time;
+//                if (start_tmp == 0) {
+//                    start_tmp = data1->front().time;
+//                }
+//                end_tmp = data1->back().time;
+//                data1->clear();
+//                delete data1;
+//            } else {
+//                if (start_tmp == 0) {
+//                    start_tmp = request->start();
+//                }
+//                if (count > 0) {
+//                    end_tmp = data1->back().time + 1;
+//                }
+//                log_->Info((boost::format("query no data")).str());
+//                tmp_count += count;
+//                delete data1;
+//                DbVs::DbReleaseConnect();
+//            }
+//        }
 
         response->set_start(start_tmp);
         response->set_end(end_tmp);
