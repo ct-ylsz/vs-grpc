@@ -135,7 +135,7 @@ public:
         free(config_path);
 
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -154,7 +154,7 @@ public:
             err = DbVs::TagListByCount(begin, tags, size);
             // DbVs::DbReleaseConnect();
             if (err.err_code != 0) {
-                DbVs::DbReleaseConnect();
+//                DbVs::DbReleaseConnect();
                 log_->Error((boost::format("get tagList failed  err_code %1%: err_msg %2%") % err.err_code %
                              err.err_msg).str());
                 if (!tags->empty()) {
@@ -165,7 +165,7 @@ public:
             }
         } else {
             err = DbVs::TagListAll(tags);
-            DbVs::DbReleaseConnect();
+//            DbVs::DbReleaseConnect();
             log_->Info((boost::format("get TagsNameGet err_code %1%:%2%") % err.err_code % err.err_msg).str());
             if (err.err_code != 0) {
                 log_->Error((boost::format("taglist get all err_code %1%:%2%") % err.err_code % err.err_msg).str());
@@ -239,7 +239,7 @@ public:
         free(config_path);
 
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -283,7 +283,7 @@ public:
             }
         }
 
-        DbVs::DbReleaseConnect();
+        //DbVs::DbReleaseConnect();
 
         for (auto &value: dataF.tags_) {
             auto t = response->add_values()->mutable_valuemap();
@@ -331,7 +331,7 @@ public:
         free(config_path);
 
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -389,7 +389,7 @@ public:
                 break;
             }
         }
-        DbVs::DbReleaseConnect();
+        //DbVs::DbReleaseConnect();
         if (end == 0) {
             time_t t;
             time(&t);
@@ -436,7 +436,7 @@ public:
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -498,7 +498,7 @@ public:
                             log_->Info((boost::format("query no data")).str());
                             tmp_count += count;
                             delete data2;
-                            DbVs::DbReleaseConnect();
+                            //DbVs::DbReleaseConnect();
                         }
                     }
                     info.set_value(tmp_count);
@@ -549,7 +549,7 @@ public:
         free(config_path);
 
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -570,7 +570,7 @@ public:
             delete data1;
             err = DbVs::TagRealTimeDataGetByName(name.c_str(), &da);
             if (err.err_code != 0) {
-                DbVs::DbReleaseConnect();
+                //DbVs::DbReleaseConnect();
                 log_->Error(
                         (boost::format("TagRealTimeDataGetByName failed :%1%:%2%") % err.err_code % err.err_msg).str());
                 return {StatusCode(err.err_code), "TagRealTimeDataGetByNamefailed"};
@@ -581,7 +581,7 @@ public:
             }
             log_->Info((boost::format("query no data")).str());
             delete data1;
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
         }
         if (da.time > 0) {
             end_tmp = da.time;
@@ -642,7 +642,7 @@ public:
         free(config_path);
 
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -650,7 +650,7 @@ public:
         long size = 1;
         auto *tags = new std::vector<TagInfo>();
         err = DbVs::TagListByCount(0, tags, size);
-        DbVs::DbReleaseConnect();
+        //DbVs::DbReleaseConnect();
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
@@ -686,7 +686,7 @@ public:
         free(config_path);
 
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -709,7 +709,7 @@ public:
                 log_->Info((boost::format("query no data")).str());
                 tmp_count += count;
                 delete data1;
-                DbVs::DbReleaseConnect();
+                //DbVs::DbReleaseConnect();
             }
         }
         response->set_count(tmp_count);
@@ -720,6 +720,7 @@ public:
     Status ServiceStop(ServerContext *context, const ServiceStopReq *request, ServiceStopResp *response) override {
         log_->Info((boost::format("ServiceStop:%1%") % request->Utf8DebugString()).str());
         DbVs::DbReleaseConnect();
+        exit(0);
         return Status::OK;
     }
 
@@ -761,7 +762,7 @@ public:
         free(config_path);
 
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -769,12 +770,12 @@ public:
         TagData value;
         err = DbVs::TagRealTimeDataGetByName(tag_name.c_str(), &value);
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
+            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("get snapshot failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "get snapshot failed"};
         }
 
-        DbVs::DbReleaseConnect();
+        //DbVs::DbReleaseConnect();
         auto t = response->mutable_values()->mutable_valuemap();
         (*t)["ts"] = std::to_string(value.time);
         (*t)["value"] = std::to_string(value.value);

@@ -143,6 +143,8 @@ public:
 
     // 获取历史快照值
     static DbError TagSnapshotByName(ReadHiDataRequest *req,std::vector<TagData> *tagValues);
+
+    static DbError TagDataInsert(InsertData *data);
 };
 
 

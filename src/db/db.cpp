@@ -65,6 +65,7 @@ int DbVs::Init(const std::string &dll_path) {
                                                                                           "GetAggregationDataByTagName");
             m_GetSummaryFilter = (pGetSummaryFilter) GetProcAddress(hInst, "GetSummaryFilter");
             m_GetSummaryFilterEx = (pGetSummaryFilterEx) GetProcAddress(hInst, "GetSummaryFilterEx");
+            m_AppendRTTagDataByTagName = (pAppendRTTagDataByTagName) GetProcAddress(hInst, "AppendRTTagDataByTagName");
         }
     }, dll_path, &err);
     return err;
@@ -128,10 +129,10 @@ DbError DbVs::DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2)
     strParameters[2] = opt1;
     strParameters[3] = opt2;
 #ifdef WIN32
-    err.err_code = m_InitConnect(strParameters, 4);
-//    std::call_once(once2_, [](char *para[4], DbError *err1) {
-//        err1->err_code = m_InitConnect(para, 4);
-//    }, strParameters, &err);
+    //err.err_code = m_InitConnect(strParameters, 4);
+    std::call_once(once2_, [](char *para[4], DbError *err1) {
+        err1->err_code = m_InitConnect(para, 4);
+    }, strParameters, &err);
 #else
     err.err_code = InitConnect(strParameters,4);
 #endif
@@ -715,5 +716,19 @@ DbError DbVs::TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *ta
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     log_->Info((boost::format("over")).str());
     return {err.err_code, err.err_msg};
+}
+
+DbError DbVs::TagDataInsert(InsertData *data) {
+    DbError err;
+#ifdef WIN32
+    err.err_code = m_AppendRTTagDataByTagName(data);
+#else
+    err.err_code = GetSnapshotDataByTagName(req, tagData);
+#endif
+    if (err.err_code != 0) {
+        GetErr(&err);
+        return err;
+    }
+    return err;
 }
 
