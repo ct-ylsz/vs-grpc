@@ -211,7 +211,7 @@ public:
         const auto &addr = request->addr();
         const auto &username = request->username();
         const auto &password = request->password();
-        if (start > end || start < 0 || end < 0 || tag_name.empty()) {
+        if (start > end || start <= 0 || end <= 0 || tag_name.empty()) {
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
@@ -305,7 +305,7 @@ public:
         const auto &addr = request->addr();
         const auto &username = request->username();
         const auto &password = request->password();
-        if (start > end || start < 0 || end < 0 || tag_name.empty()) {
+        if (start > end || start <= 0 || end <= 0 || tag_name.empty()) {
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
@@ -532,6 +532,13 @@ public:
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
+        long start = request->start();
+        long end = request->end();
+        if (start > end || start <= 0 || end <= 0 || request->tagname().empty()) {
+            log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % request->tagname()).str());
+            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+        }
+
         auto err_c = ConfigSetInternal(request->kvs().kvs());
         if (err_c != 0) {
             log_->Error("ConfigSetInternal(kvs);");
@@ -554,8 +561,6 @@ public:
             return {StatusCode(err.err_code), "connect database failed"};
         }
 
-        long start = request->start();
-        auto end = request->end();
         const auto &name = request->tagname();
         long start_tmp = 0;
         long end_tmp = 0;
