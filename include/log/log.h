@@ -54,7 +54,7 @@ public:
                     );
             auto sink = boost::log::add_file_log
                     (
-                            keywords::open_mode = std::ios::out,
+                            keywords::open_mode = std::ios::out | std::ios::app,
                             keywords::file_name = "./log/beat_%N.log",                                        /*< file name pattern >*/
                             keywords::target_file_name = "beat_%Y%m%d_%N.log",
                             keywords::rotation_size =

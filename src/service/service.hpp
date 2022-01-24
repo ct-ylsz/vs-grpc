@@ -436,7 +436,6 @@ public:
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
         if (err.err_code != 0) {
-            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -498,7 +497,6 @@ public:
                             log_->Info((boost::format("query no data")).str());
                             tmp_count += count;
                             delete data2;
-                            //DbVs::DbReleaseConnect();
                         }
                     }
                     info.set_value(tmp_count);
