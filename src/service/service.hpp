@@ -13,6 +13,7 @@
 #include <grpc++/server_context.h>
 #include <boost/program_options.hpp>
 #include <boost/format.hpp>
+#include <boost/thread/thread.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/iostreams/device/file.hpp>
 #include <boost/iostreams/stream.hpp>
@@ -111,7 +112,7 @@ public:
 
     // 获取标签列表
     Status TagListGet(ServerContext *context, const TagListGetReq *request, TagListGetResp *response) override {
-        log_->Info((boost::format("TagListGet:%1%") % request->DebugString()).str());
+        log_->Info((boost::format("TagListGet:%1%") % request->Utf8DebugString()).str());
         // 检查kvs 是否输入
         if (request->kvs().kvs_size() == 0) {
             log_->Error("request->kvs().kvs_size() == 0");
@@ -690,16 +691,19 @@ public:
 
     // 停止服务
     Status ServiceStop(ServerContext *context, const ServiceStopReq *request, ServiceStopResp *response) override {
-        log_->Info((boost::format("ServiceStop:%1%") % request->Utf8DebugString()).str());
-        DbVs::DbReleaseConnect();
-        exit(0);
+        log_->Info((boost::format("ServiceStop:%1%") % request->DebugString()).str());
+        boost::thread th([]() {
+            DbVs::DbReleaseConnect();
+            Sleep(10000);
+            exit(0);
+        });//创建新的进程，并传递参数
         return Status::OK;
     }
 
     // 获取快照值
     Status TagSnapshotValue(ServerContext *context, const TagSnapshotValueReq *request,
                             TagSnapshotValueResp *response) override {
-        log_->Info((boost::format("TagSnapshotValue:%1%") % request->Utf8DebugString()).str());
+        log_->Info((boost::format("TagSnapshotValue:%1%") % request->DebugString()).str());
         auto start = request->start();
         auto end = request->end();
         auto tag_name = request->tagname();

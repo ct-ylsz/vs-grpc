@@ -3,29 +3,29 @@ syntax = "proto3";
 package vs;
 
 option go_package = "pb/vs";
-// Vs 服务
+
 service VsService {
-  // 具体的值获取
+
   rpc TagValuesGet(TagValuesGetReq) returns (TagValuesGetResp);
-  // 获取tag的特征值
+
   rpc TagFeatureGet(TagFeatureGetReq) returns (TagFeatureGetResp);
-  // 获取tag开始时间和结束时间
+
   rpc TagTimeSection(TagTimeSectionReq) returns (TagTimeSectionResp);
-  // 获取测点描述字段
+
   rpc TagDescGet(TagDescGetReq) returns (TagDescGetResp);
-  // 数据库ping
+
   rpc DbPing(DbPingReq) returns (DbPingResp);
-  // 配置文件设置
+
   rpc ConfigFileSet(ConfigFileSetReq) returns (ConfigFileSetResp);
-  // 获取范围内tag的数量
+
   rpc TagCountByRangeGet(TagCountByRangeGetReq) returns (TagCountByRangeGetResp);
-  // 获取Tag的列表
+
   rpc TagListGet(TagListGetReq) returns (TagListGetResp);
-  // 分数量获取tagValue
+
   rpc TagValuesByCountGet(TagValuesByCountGetReq) returns (TagValuesByCountGetResp);
-  // 退出程序
+
   rpc ServiceStop(ServiceStopReq) returns (ServiceStopResp);
-  // 获取快照值
+
   rpc TagSnapshotValue(TagSnapshotValueReq) returns (TagSnapshotValueResp);
 
 }
@@ -67,7 +67,7 @@ message TagListGetResp{
     string Desc = 4;
   }
   message TagInfoMap{
-    map<string, string> Info = 1;
+    map<string, bytes> Info = 1;
     repeated Filed Fileds = 2;
   }
   repeated TagInfoMap Tags = 1;
@@ -98,9 +98,9 @@ message ErrInfo{
 }
 
 message VsValue{
-  double Value = 1;        //返回点的数值
-  int32 Time = 2;        //返回点的时间，秒
-  int32 Status = 3;        //返回点的状态
+  double Value = 1;
+  int32 Time = 2;
+  int32 Status = 3;
 }
 
 message TagValuesByCountGetReq{
@@ -176,8 +176,8 @@ message TagDescGetReq{
 }
 
 message TagDescGetResp{
-  string Name = 1;
-  map<string, string> Desc = 2;
+  bytes Name = 1;
+  map<string, bytes> Desc = 2;
 }
 
 message TagTimeSectionReq{
