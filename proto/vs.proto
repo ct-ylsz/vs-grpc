@@ -38,7 +38,7 @@ message KVInfo{
 message TagCountByRangeGetReq{
   int32 Start = 1;
   int32 End = 2;
-  string TagName = 3;
+  bytes TagName = 3;
   int32 TagId = 4;
   KVInfo Kvs = 5;
 
@@ -106,7 +106,7 @@ message VsValue{
 message TagValuesByCountGetReq{
   int32 Start = 1;
   int32 End = 2;
-  string TagName = 3;
+  bytes TagName = 3;
   int32 TagId = 4;
   string Addr = 5;
   string Username = 6;
@@ -131,7 +131,7 @@ message TagValuesByCountGetResp{
 message TagValuesGetReq{
   int32 Start = 1;
   int32 End = 2;
-  string TagName = 3;
+  bytes TagName = 3;
   int32 TagId = 4;
   string Addr = 5;
   string Username = 6;
@@ -154,7 +154,7 @@ message TagValuesGetResp{
 message TagFeatureGetReq{
   int64 Start = 1;
   int64 End = 2;
-  string TagName = 3;
+  bytes TagName = 3;
   int32 TagId = 4;
   repeated int32 Verifies = 5;
   int32 Count = 6;
@@ -181,7 +181,7 @@ message TagDescGetResp{
 }
 
 message TagTimeSectionReq{
-  string TagName = 1;
+  bytes TagName = 1;
   int32 TagId = 2;
   string Addr = 3;
   string Username = 4;
@@ -203,7 +203,7 @@ message ServiceStopResp{
 }
 
 message TagSnapshotValueReq{
-  string TagName = 1;
+  bytes TagName = 1;
   int32 TagId = 2;
   string Addr = 3;
   string Username = 4;
