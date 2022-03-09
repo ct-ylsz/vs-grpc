@@ -6,13 +6,7 @@
 #define PI_GRPC_PI_CONFIG_H
 #include <iostream>
 #include <string>
-class PiConfig {
-public:
-    std::string ip_;
-    std::string port_;
-    std::string config_path_;
 
-};
 
 
 #endif //PI_GRPC_PI_CONFIG_H

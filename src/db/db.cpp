@@ -233,7 +233,7 @@ DbError DbVs::TagListAll(std::vector<TagInfo> *tags) {
 #endif
         if (err.err_code != 0) {
             delete[] tag;
-            continue;
+            return err;
         }
         //≈–∂œ”ÎΩ¯––¿©»›
         for (int i = 0; i < count; i++) {
@@ -242,10 +242,6 @@ DbError DbVs::TagListAll(std::vector<TagInfo> *tags) {
         delete[] tag;
         index += count;
     }
-    GetErr(&err);
-    log_->Info((boost::format("get tags->size :%1%") % tags->size()).str());
-    log_->Info((boost::format("get over ")).str());
-    return err;
 }
 
 DbError DbVs::TagsNameGet(std::vector<TagInfo *> *tags) {
@@ -359,7 +355,6 @@ DbVs::TagValuesGet(const std::string &tag_name, long start, long end, long &coun
         }
     }
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
-    log_->Info((boost::format("over")).str());
     return {err.err_code, err.err_msg};
 }
 
@@ -368,14 +363,6 @@ DbError
 DbVs::TagValuesGet(ReadHiDataRequest req, long &count, std::vector<TagData> *tagValues) {
     DbError err;
     log_->Info(boost::format("start to collect data ").str());
-
-//    ReadHiDataRequest req;
-//    req.stTime = start;
-//    req.enTime = end;
-//    req.reqType = 0;
-//    req.tPeriod = 0;
-//    strcpy(req.pointName, tag_name.c_str());
-    auto tmp_count = count;
     auto *tag = new TagData[count];
 #ifdef WIN32
     err.err_code = m_GetRawDataByTagName(&req, tag, &count);
@@ -390,12 +377,10 @@ DbVs::TagValuesGet(ReadHiDataRequest req, long &count, std::vector<TagData> *tag
     } else {
         log_->Error((boost::format("get value success ")).str());
         for (int i = 0; i < count; i++) {
-            auto x = tag[i];
             tagValues->push_back(tag[i]);
         }
     }
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
-    log_->Info((boost::format("over")).str());
     return {err.err_code, err.err_msg};
 }
 

@@ -10,12 +10,12 @@
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 #include "rapidjson/prettywriter.h"
-
+#include "error/error.h"
 template<class T>
 class ErrResp {
 public:
     int err_code_ = 0;
-    std::string err_msg_ = "";
+    std::string err_msg_;
     T data_;
 public:
     ErrResp() {

@@ -34,7 +34,7 @@ void ParseYamlFile(const std::string &config_path, SourceInfo *s) {
 }
 
 
-void ParseYamlConfig(const std::string &config_path, PiConfig *s) {
+void ParseYamlConfig(const std::string &config_path, Config *s) {
     YAML::Node config;
     // 当文件不存在或yaml格式出错时，抛异常
     try {

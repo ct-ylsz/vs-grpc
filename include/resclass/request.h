@@ -12,7 +12,6 @@
 #include "rapidjson/writer.h"
 #include "rapidjson/prettywriter.h"
 #include "rapidjson/stringbuffer.h"
-#include "error/error.h"
 #include "sourceinfo.h"
 #include "arrange_info.h"
 #include "block.h"
@@ -46,14 +45,6 @@ public:
     void ToObj(const std::string &data);
 };
 
-class RequestMetaData {
-public:
-    std::string path_;
-public:
-    ErrResp<int> ToObj(std::string data) {
-        return {0, "ok"};
-    }
-};
 
 class RequestDesc : public TimeSection {
 public:

@@ -5,16 +5,15 @@
 #include <boost/program_options.hpp>
 #include <boost/format.hpp>
 #include "log/log.h"
-#include "error/error.h"
 #include "src/service/service.hpp"
+#include "error/error.h"
 
 ErrResp<int> Cmd(int argc, char *argv[], boost::program_options::variables_map *args) {
-    boost::program_options::options_description des_cmd("\n Usage:HiBeatC \n\n Options: \n");
+    boost::program_options::options_description des_cmd("\n Usage:Beat-Vs \n\n Options: \n");
 
     des_cmd.add_options()
             ("ip", boost::program_options::value<std::string>()->default_value("0.0.0.0"), "listen ip")
-            ("port", boost::program_options::value<std::string>()->default_value("9485"), "port")
-            ("type", boost::program_options::value<std::string>()->default_value("1"), "type")
+            ("port", boost::program_options::value<std::string>()->default_value("9485"), " port")
             ("path", boost::program_options::value<std::string>()->default_value("./"), "path")
             ("dll_path", boost::program_options::value<std::string>()->default_value("./"), "driver path")
             ("config_path", boost::program_options::value<std::string>()->default_value("./config.yml"), "config path")
@@ -44,12 +43,12 @@ int main(int argc, char **argv) {
 
     auto *log = new Logger;
     if (argc < 2) {
-        log->Error("please input beat-pi run");
+        log->Error("please input beat-vs run");
         return -1;
     }
 
     if (strcmp(argv[1], "run") != 0) {
-        log->Error("please input beat-pi run ");
+        log->Error("please input beat-vs run ");
         return -2;
     }
 

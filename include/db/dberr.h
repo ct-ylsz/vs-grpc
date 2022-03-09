@@ -4,7 +4,9 @@
 
 #ifndef PI_GRPC_DBERR_H
 #define PI_GRPC_DBERR_H
+
 #include <string>
+
 enum kDbError {
     kDbOK = 0,
     kDbNetworkErr = -1,
@@ -17,9 +19,10 @@ enum kDbError {
 
 class DbError {
 public:
-    int err_code_ = 0;
+    kDbError err_code_ = kDbOK;
     std::string err_msg_ = "ok";
 
     std::string ToString();
 };
+
 #endif //PI_GRPC_DBERR_H

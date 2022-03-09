@@ -3,7 +3,7 @@
 //
 #include "utils/flie.h"
 
-int FileUtil::FileWrite(std::string path, std::string data, std::ios_base::openmode mode) {
+int FileUtil::FileWrite(const std::string& path, const std::string& data, std::ios_base::openmode mode) {
     boost::filesystem::path filePath(path);
     if (!boost::filesystem::exists(filePath.parent_path().c_str())) {
         boost::filesystem::create_directories(filePath.parent_path().c_str());
@@ -20,7 +20,7 @@ int FileUtil::FileWrite(std::string path, std::string data, std::ios_base::openm
     return 0;
 };
 
-int FileUtil::FileReadAll(std::string path, std::string *data) {
+int FileUtil::FileReadAll(const std::string& path, std::string *data) {
     if (boost::filesystem::exists(path) && boost::filesystem::is_regular_file(path)) {
         std::ifstream f(path);
         std::string data2((std::istreambuf_iterator<char>(f)), std::istreambuf_iterator<char>());
@@ -31,7 +31,7 @@ int FileUtil::FileReadAll(std::string path, std::string *data) {
     return -1;
 }
 
-int FileUtil::FileReadLine(std::string path, std::vector<std::string> *data, int line) {
+int FileUtil::FileReadLine(const std::string& path, std::vector<std::string> *data, int line) {
     if (boost::filesystem::exists(path) && boost::filesystem::is_regular_file(path)) {
         std::ifstream f(path, std::ios::in);
         std::string tmp;
@@ -47,10 +47,9 @@ int FileUtil::FileReadLine(std::string path, std::vector<std::string> *data, int
     return -1;
 }
 
-int FileUtil::FileRename(std::string src, std::string dst) {
+int FileUtil::FileRename(std::string src, const std::string& dst) {
     boost::filesystem::path srcp(src);
     boost::filesystem::path dstp(dst);
     boost::filesystem::rename(srcp, dstp);
-    //boost::filesystem::remove_all(srcp);
     return 0;
 }
