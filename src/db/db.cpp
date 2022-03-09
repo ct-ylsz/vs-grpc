@@ -242,6 +242,7 @@ DbError DbVs::TagListAll(std::vector<TagInfo> *tags) {
         delete[] tag;
         index += count;
     }
+    return err;
 }
 
 DbError DbVs::TagsNameGet(std::vector<TagInfo *> *tags) {

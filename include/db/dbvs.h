@@ -49,7 +49,7 @@ enum kValueType {
 
 struct DbError {
     int err_code = 0;
-    std::string err_msg = "³É¹¦";
+    std::string err_msg = "success";
 };
 
 
