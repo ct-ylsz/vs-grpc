@@ -212,12 +212,12 @@ namespace vs {
 class KVInfo_KvsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<KVInfo_KvsEntry_DoNotUse, 
     std::string, std::string,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BYTES> {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
 public:
   typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<KVInfo_KvsEntry_DoNotUse, 
     std::string, std::string,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BYTES> SuperType;
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
   KVInfo_KvsEntry_DoNotUse();
   explicit constexpr KVInfo_KvsEntry_DoNotUse(
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -227,7 +227,9 @@ public:
   static bool ValidateKey(std::string* s) {
     return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "vs.KVInfo.KvsEntry.key");
  }
-  static bool ValidateValue(void*) { return true; }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "vs.KVInfo.KvsEntry.value");
+ }
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
   ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
 };
@@ -356,7 +358,7 @@ class KVInfo final :
   enum : int {
     kKvsFieldNumber = 1,
   };
-  // map<string, bytes> Kvs = 1;
+  // map<string, string> Kvs = 1;
   int kvs_size() const;
   private:
   int _internal_kvs_size() const;
@@ -384,7 +386,7 @@ class KVInfo final :
       KVInfo_KvsEntry_DoNotUse,
       std::string, std::string,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_BYTES> kvs_;
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> kvs_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_vs_2eproto;
 };
@@ -5375,7 +5377,7 @@ class TagSnapshotValueResp final :
 
 // KVInfo
 
-// map<string, bytes> Kvs = 1;
+// map<string, string> Kvs = 1;
 inline int KVInfo::_internal_kvs_size() const {
   return kvs_.size();
 }

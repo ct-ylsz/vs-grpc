@@ -31,7 +31,7 @@ service VsService {
 }
 
 message KVInfo{
-  map<string, bytes> Kvs = 1;
+  map<string, string> Kvs = 1;
 }
 
 message ErrInfo{

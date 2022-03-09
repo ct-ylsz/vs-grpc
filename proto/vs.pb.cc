@@ -910,7 +910,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 const char descriptor_table_protodef_vs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\010vs.proto\022\002vs\"V\n\006KVInfo\022 \n\003Kvs\030\001 \003(\0132\023."
   "vs.KVInfo.KvsEntry\032*\n\010KvsEntry\022\013\n\003key\030\001 "
-  "\001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"*\n\007ErrInfo\022\017\n\007Err"
+  "\001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"*\n\007ErrInfo\022\017\n\007Err"
   "Code\030\001 \001(\005\022\016\n\006ErrMsg\030\002 \001(\014\"W\n\007HeadReq\022\r\n"
   "\005Start\030\001 \001(\005\022\013\n\003End\030\002 \001(\005\022\016\n\006Period\030\003 \001("
   "\005\022\017\n\007ReqType\030\004 \001(\005\022\017\n\007TagName\030\005 \001(\014\"\311\001\n\030"
@@ -1093,7 +1093,7 @@ const char* KVInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // map<string, bytes> Kvs = 1;
+      // map<string, string> Kvs = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr -= 1;
@@ -1135,7 +1135,7 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // map<string, bytes> Kvs = 1;
+  // map<string, string> Kvs = 1;
   if (!this->_internal_kvs().empty()) {
     typedef ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_pointer
         ConstPtr;
@@ -1148,6 +1148,10 @@ failure:
           p->first.data(), static_cast<int>(p->first.length()),
           ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
           "vs.KVInfo.KvsEntry.key");
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+          p->second.data(), static_cast<int>(p->second.length()),
+          ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+          "vs.KVInfo.KvsEntry.value");
       }
     };
 
@@ -1193,7 +1197,7 @@ size_t KVInfo::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, bytes> Kvs = 1;
+  // map<string, string> Kvs = 1;
   total_size += 1 *
       ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_kvs_size());
   for (::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >::const_iterator
