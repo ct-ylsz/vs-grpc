@@ -822,6 +822,51 @@ public:
         return Status::OK;
     }
 
+    //Ping 描述信息
+    Status TagDescGet(ServerContext *context, const TagDescGetReq *request, TagDescGetResp *response) override {
+        log_->Info((boost::format("TagDescGet:%1%") % request->Utf8DebugString()).str());
+
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
+
+        char *dll_path = (char *) malloc(128);
+        char *config_path = (char *) malloc(128);
+
+        strcpy(dll_path, "./");
+        strcpy(config_path, "./");
+
+        auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
+
+        free(dll_path);
+        free(config_path);
+
+        if (err.err_code != 0) {
+            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), "connect database failed"};
+        }
+
+        TagInfo tagInfo;
+        char *name = (char *) malloc(128);
+        strcpy(name, request->tagname().c_str());
+        err = DbVs::TagDescInfoGet(name, &tagInfo);
+        free(name);
+        if (err.err_code != 0) {
+            log_->Error((boost::format("get desc info faield :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), err.err_msg};
+        }
+
+        auto it = response->mutable_desc();
+        (*it)["desc"] = tagInfo.desc;
+        (*it)["name"] = tagInfo.name;
+        (*it)["min"] = std::to_string(tagInfo.min);
+        (*it)["max"] = std::to_string(tagInfo.max);
+        (*it)["unit"] = tagInfo.unit;
+        return Status::OK;
+    }
+
     void Run() {
         if (ip_.empty() || port_.empty()) {
             log_->Error((boost::format("please input correct address :%1%-%2%") % ip_ % port_).str());
