@@ -192,9 +192,6 @@ public:
             m_map["name"] = tag.name;
             google::protobuf::Map<std::string, std::string> m(m_map.begin(), m_map.end());
             x->mutable_infos()->swap(m);
-//            x->mutable_fileds()->Add()->set_columnname("ts");
-//            x->mutable_fileds()->Add()->set_columnname("value");
-//            x->mutable_fileds()->Add()->set_columnname("status");
         }
         if (!tags->empty()) {
             tags->clear();
@@ -541,9 +538,14 @@ public:
         auto *data1 = new std::vector<TagData>();
         err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
         if (err.err_code != 0) {
+            if (count == 0) {
+                response->set_start(end);
+                response->set_end(end);
+                return Status::OK;
+            }
             response->mutable_err()->set_errcode(err.err_code);
             response->mutable_err()->set_errmsg(err.err_msg);
-            log_->Error((boost::format("get value failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            log_->Error((boost::format("get time section failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), err.err_msg};
         }
         if (!data1->empty()) {
