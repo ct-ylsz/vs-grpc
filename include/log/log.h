@@ -52,6 +52,9 @@ public:
                             keywords::format = "[%TimeStamp%]: %Message%",
                             keywords::auto_flush = true
                     );
+//            consoleSink->set_filter(
+//                    boost::log::trivial::severity >= boost::log::trivial::error
+//            );
             auto sink = boost::log::add_file_log
                     (
                             keywords::open_mode = std::ios::out | std::ios::app,
@@ -69,7 +72,9 @@ public:
                     keywords::target = "./log/",                         // 备份日志文件保存目录
                     keywords::max_size = 10 * 1024 * 1024 * 10  //所有日志加起来的最大大小
             ));
-
+//            boost::log::core::get()->set_filter(
+//                    trvl::severity == trvl::info
+//            );
             boost::log::add_common_attributes();
         });
         slog_ = new boost::log::sources::severity_logger<Severity_level>();

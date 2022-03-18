@@ -539,8 +539,8 @@ public:
         err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
         if (err.err_code != 0) {
             if (count == 0) {
-                response->set_start(end);
-                response->set_end(end);
+                response->set_start(0);
+                response->set_end(0);
                 return Status::OK;
             }
             response->mutable_err()->set_errcode(err.err_code);
@@ -687,7 +687,7 @@ public:
         auto start = request->start();
         auto end = request->end();
         auto tag_name = request->tagname();
-        if (start > end || start < 0 || end < 0 || tag_name.empty()) {
+        if (tag_name.empty()) {
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
