@@ -27,9 +27,7 @@
 #include <vs.grpc.pb.h>
 #include "resclass/tag.h"
 #include "utils/config.h"
-#include "resclass/pi_config.h"
 #include "utils/util.h"
-#include "resclass/request.h"
 #include "db/dbvs.h"
 #include "resclass/tag_data.h"
 
@@ -114,7 +112,7 @@ public:
 
     // 获取标签列表
     Status TagListGet(ServerContext *context, const TagListGetReq *request, TagListGetResp *response) override {
-        log_->Info((boost::format("TagListGet:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagListGet:%1%") % request->Utf8DebugString()).str());
         // 检查kvs 是否输入
         if (request->kvs().kvs_size() == 0) {
             log_->Error("request->kvs().kvs_size() == 0");
@@ -167,7 +165,7 @@ public:
             }
         } else {
             err = DbVs::TagListAll(tags);
-            log_->Info((boost::format("get TagsNameGet err_code %1%:%2%") % err.err_code % err.err_msg).str());
+            log_->Debug((boost::format("get TagsNameGet err_code %1%:%2%") % err.err_code % err.err_msg).str());
             if (err.err_code != 0) {
                 log_->Error((boost::format("taglist get all err_code %1%:%2%") % err.err_code % err.err_msg).str());
                 if (!tags->empty()) {
@@ -202,7 +200,7 @@ public:
 
     // 获取所有值
     Status TagValuesGet(ServerContext *context, const TagValuesGetReq *request, TagValuesGetResp *response) override {
-        log_->Info((boost::format("TagValuesGet:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagValuesGet:%1%") % request->Utf8DebugString()).str());
         auto start = request->head().start();
         auto end = request->head().end();
         auto tag_name = request->head().tagname();
@@ -291,7 +289,7 @@ public:
     // 根据数量获取值
     Status TagValuesByCountGet(ServerContext *context, const TagValuesByCountGetReq *request,
                                TagValuesByCountGetResp *response) override {
-        log_->Info((boost::format("TagValuesByCountGet:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagValuesByCountGet:%1%") % request->Utf8DebugString()).str());
         auto start = request->head().start();
         auto end = request->head().end();
         auto tag_name = request->head().tagname();
@@ -392,7 +390,7 @@ public:
     // 获取特征值
     Status
     TagFeatureGet(ServerContext *context, const TagFeatureGetReq *request, TagFeatureGetResp *response) override {
-        log_->Info((boost::format("TagFeatureGet:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagFeatureGet:%1%") % request->Utf8DebugString()).str());
         long start = request->start();
         long end = request->end();
         const auto &name = request->tagname();
@@ -496,7 +494,7 @@ public:
     // 获取时间段
     Status
     TagTimeSection(ServerContext *context, const TagTimeSectionReq *request, TagTimeSectionResp *response) override {
-        log_->Info((boost::format("TagTimeSection:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagTimeSection:%1%") % request->Utf8DebugString()).str());
         long start = request->start();
         long end = request->end();
         const auto &name = request->tagname();
@@ -574,7 +572,7 @@ public:
 
     //Ping 数据库
     Status DbPing(ServerContext *context, const DbPingReq *request, DbPingResp *response) override {
-        log_->Info((boost::format("DbPing:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("DbPing:%1%") % request->Utf8DebugString()).str());
 
         auto err_c = configSetInternal(request->kvs().kvs());
         if (err_c != 0) {
@@ -613,7 +611,7 @@ public:
     // 获取范围内值数量
     Status TagCountByRangeGet(ServerContext *context, const TagCountByRangeGetReq *request,
                               TagCountByRangeGetResp *response) override {
-        log_->Info((boost::format("TagCountByRangeGet:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagCountByRangeGet:%1%") % request->Utf8DebugString()).str());
         if (request->kvs().kvs().empty()) {
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
@@ -671,7 +669,7 @@ public:
 
     // 停止服务
     Status ServiceStop(ServerContext *context, const ServiceStopReq *request, ServiceStopResp *response) override {
-        log_->Info((boost::format("ServiceStop:%1%") % request->DebugString()).str());
+        log_->Debug((boost::format("ServiceStop:%1%") % request->DebugString()).str());
         boost::thread th([]() {
             DbVs::DbReleaseConnect();
             Sleep(10000);
@@ -683,7 +681,7 @@ public:
     // 获取快照值
     Status TagSnapshotValue(ServerContext *context, const TagSnapshotValueReq *request,
                             TagSnapshotValueResp *response) override {
-        log_->Info((boost::format("TagSnapshotValue:%1%") % request->DebugString()).str());
+        log_->Debug((boost::format("TagSnapshotValue:%1%") % request->DebugString()).str());
         auto start = request->start();
         auto end = request->end();
         auto tag_name = request->tagname();
@@ -736,7 +734,7 @@ public:
     // 获取断面值
     Status TagFractureSectionGet(ServerContext *context, const TagFractureSectionGetReq *request,
                                  TagFractureSectionGetResp *response) override {
-        log_->Info((boost::format("TagFractureSectionGet:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagFractureSectionGet:%1%") % request->Utf8DebugString()).str());
         long count = request->count();
         if (request->head().start() > request->head().end() || request->head().start() <= 0 ||
             request->head().end() <= 0 || request->head().tagname().empty()) {
@@ -772,10 +770,6 @@ public:
             return {StatusCode(err.err_code), "connect database failed"};
         }
 
-        long start_tmp = 0;
-        long end_tmp = 0;
-        long start = request->head().start();
-        long end = request->head().end();
         auto *dataF = new TagDataF();
         ReadHiDataRequest req;
         strcpy(req.pointName, request->head().tagname().c_str());
@@ -823,7 +817,7 @@ public:
 
     //Ping 描述信息
     Status TagDescGet(ServerContext *context, const TagDescGetReq *request, TagDescGetResp *response) override {
-        log_->Info((boost::format("TagDescGet:%1%") % request->Utf8DebugString()).str());
+        log_->Debug((boost::format("TagDescGet:%1%") % request->Utf8DebugString()).str());
 
         auto err_c = configSetInternal(request->kvs().kvs());
         if (err_c != 0) {

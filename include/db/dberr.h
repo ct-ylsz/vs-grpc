@@ -22,7 +22,7 @@ public:
     kDbError err_code_ = kDbOK;
     std::string err_msg_ = "ok";
 
-    std::string ToString();
+    [[nodiscard]] std::string ToString() const;
 };
 
 #endif //PI_GRPC_DBERR_H

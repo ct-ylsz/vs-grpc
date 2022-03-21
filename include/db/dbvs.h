@@ -32,7 +32,9 @@ enum kDbError {
     kDbConfigErr = 2
 };
 
-//valueType ：1最小值，2最大值，3算术平均值，4时间加权平均值，5积分值，6累积值（直接累加），7差值（结束值-开始值），8开始值,9结束值，99有效数值个数
+//valueType ：1最小值，2最大值，3算术平均值，
+// 4时间加权平均值，5积分值，6累积值（直接累加），
+// 7差值（结束值-开始值），8开始值,9结束值，99有效数值个数
 
 enum kValueType {
     kMin = 1,
@@ -97,6 +99,7 @@ public:
     // 获取时间段数据
     static DbError
     TagValuesGet(const std::string &tag_name, long start, long end, long &count, std::vector<TagData> *tagValues);
+
     // 获取时间段数据
     static DbError
     TagValuesGet(ReadHiDataRequest req, long &count, std::vector<TagData> *tagValues);
@@ -142,8 +145,9 @@ public:
     static DbError HistoryTimeSpan(const std::string &tag_name, long start, long end, TagData *tagData);
 
     // 获取历史快照值
-    static DbError TagSnapshotByName(ReadHiDataRequest *req,std::vector<TagData> *tagValues);
+    static DbError TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *tagValues);
 
+    // 插入数据
     static DbError TagDataInsert(InsertData *data);
 };
 

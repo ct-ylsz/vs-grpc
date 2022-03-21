@@ -3,12 +3,11 @@
 //
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
 #include "rapidjson/prettywriter.h"
 #include "db/dberr.h"
 
 
-std::string DbError::ToString() {
+std::string DbError::ToString() const {
     rapidjson::StringBuffer strBuf;
     rapidjson::PrettyWriter<rapidjson::StringBuffer> write(strBuf);
     write.StartObject();

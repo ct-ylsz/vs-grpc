@@ -39,7 +39,7 @@ pGetSummaryFilterEx m_GetSummaryFilterEx;
 int DbVs::Init(const std::string &dll_path) {
 #ifdef WIN32
     int err = 0;
-    log_->Info((boost::format("dll_path : %1%") % dll_path).str());
+    log_->Debug((boost::format("dll_path : %1%") % dll_path).str());
     std::call_once(once_, [](const std::string &dll, int *err) {
         HINSTANCE hInst;
         hInst = LoadLibrary(TEXT((dll + "RTDBInterface.dll").c_str()));

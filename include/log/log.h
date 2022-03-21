@@ -8,6 +8,7 @@
 #pragma once
 
 #include <iostream>
+#include <boost/log/expressions.hpp>
 #include <boost/log/common.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/utility/setup/file.hpp>
@@ -28,15 +29,6 @@ namespace sinks = boost::log::sinks;
 namespace expr = boost::log::expressions;
 namespace trvl = boost::log::trivial;
 
-enum Severity_level {
-    normal,
-    notification,
-    warning,
-    error,
-    critical
-};
-
-
 class Logger {
 public:
     static inline std::once_flag once_ = std::once_flag();
@@ -52,9 +44,9 @@ public:
                             keywords::format = "[%TimeStamp%]: %Message%",
                             keywords::auto_flush = true
                     );
-//            consoleSink->set_filter(
-//                    boost::log::trivial::severity >= boost::log::trivial::error
-//            );
+            consoleSink->set_filter(
+                    trvl::severity >= trvl::info
+            );
             auto sink = boost::log::add_file_log
                     (
                             keywords::open_mode = std::ios::out | std::ios::app,
@@ -72,29 +64,29 @@ public:
                     keywords::target = "./log/",                         // 备份日志文件保存目录
                     keywords::max_size = 10 * 1024 * 1024 * 10  //所有日志加起来的最大大小
             ));
-//            boost::log::core::get()->set_filter(
-//                    trvl::severity == trvl::info
-//            );
             boost::log::add_common_attributes();
         });
-        slog_ = new boost::log::sources::severity_logger<Severity_level>();
+        slog_ = new boost::log::sources::severity_logger<boost::log::trivial::severity_level>();
     }
 
     void Info(const std::string &log) {
-//        \033[0m\033[1;31m%s\033[0m
-        BOOST_LOG_SEV(*slog_, normal) << log.c_str();
+        BOOST_LOG_SEV(*slog_, boost::log::trivial::info) << log.c_str();
     }
 
     void Warn(const std::string &log) {
-        BOOST_LOG_SEV(*slog_, warning) << log.c_str();
+        BOOST_LOG_SEV(*slog_, boost::log::trivial::warning) << log.c_str();
+    }
+
+    void Debug(const std::string &log) {
+        BOOST_LOG_SEV(*slog_, boost::log::trivial::debug) << log.c_str();
     }
 
     void Error(const std::string &log) {
-        BOOST_LOG_SEV(*slog_, error) << log.c_str();
+        BOOST_LOG_SEV(*slog_, boost::log::trivial::error) << log.c_str();
     }
 
 private:
-    boost::log::sources::severity_logger<Severity_level> *slog_;
+    boost::log::sources::severity_logger<boost::log::trivial::severity_level> *slog_;
 };
 
 #endif
