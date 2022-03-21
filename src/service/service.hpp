@@ -125,17 +125,12 @@ public:
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
@@ -205,7 +200,7 @@ public:
         auto end = request->head().end();
         auto tag_name = request->head().tagname();
 
-        if (start > end || start <= 0 || end <= 0 || tag_name.empty()) {
+        if (start > end || start <= 0 || end <= 0 || tag_name.empty() || request->kvs().kvs().empty()) {
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
@@ -222,17 +217,12 @@ public:
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
@@ -294,37 +284,27 @@ public:
         auto end = request->head().end();
         auto tag_name = request->head().tagname();
 
-        if (start > end || start <= 0 || end <= 0 || tag_name.empty()) {
+        if (start > end || start <= 0 || end <= 0 || tag_name.empty() || request->kvs().kvs().empty()) {
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        if (request->kvs().kvs().empty()) {
-            log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
-        }
         auto err_c = configSetInternal(request->kvs().kvs());
         if (err_c != 0) {
             log_->Error("configSetInternal(kvs);");
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
-
 
         long count = 1024;
         long tmp_count = 0;
@@ -422,8 +402,6 @@ public:
         auto it = response->mutable_feats();
         TagData feat;
         VsValue info;
-        long tmp_start = 0;
-        long tmp_end = 0;
         long tmp_count = 0;
         long count = 1024;
         for (int i: request->verifies()) {
@@ -440,7 +418,6 @@ public:
                 case Min:
                     err = DbVs::TagGetAggregation(name, start, end, i, end - start, &feat);
                     if (err.err_code == 0) {
-                        VsValue info;
                         log_->Info((boost::format("get value %1%") % feat.value).str());
                         info.set_value(feat.value);
                         info.set_status(feat.status);
@@ -499,13 +476,8 @@ public:
         long end = request->end();
         const auto &name = request->tagname();
 
-        if (request->kvs().kvs().empty()) {
+        if (request->kvs().kvs().empty() || request->tagname().empty()) {
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
-        }
-
-        if (request->tagname().empty()) {
-            log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % request->tagname()).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
@@ -515,16 +487,12 @@ public:
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-        free(dll_path);
-        free(config_path);
 
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
@@ -574,23 +542,23 @@ public:
     Status DbPing(ServerContext *context, const DbPingReq *request, DbPingResp *response) override {
         log_->Debug((boost::format("DbPing:%1%") % request->Utf8DebugString()).str());
 
+        if (request->kvs().kvs().empty()) {
+            log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
+            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+        }
+
         auto err_c = configSetInternal(request->kvs().kvs());
         if (err_c != 0) {
             log_->Error("configSetInternal(kvs);");
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
@@ -622,17 +590,12 @@ public:
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
@@ -685,15 +648,9 @@ public:
         auto start = request->start();
         auto end = request->end();
         auto tag_name = request->tagname();
-        if (tag_name.empty()) {
+        if (tag_name.empty() || request->kvs().kvs().empty()) {
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
-        }
-
-        // 检查kvs 是否输入
-        if (request->kvs().kvs_size() == 0) {
-            log_->Error("request->kvs().kvs_size() == 0");
-            return {StatusCode::INVALID_ARGUMENT, "addr or username is empty"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -702,16 +659,11 @@ public:
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
-
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
@@ -737,16 +689,10 @@ public:
         log_->Debug((boost::format("TagFractureSectionGet:%1%") % request->Utf8DebugString()).str());
         long count = request->count();
         if (request->head().start() > request->head().end() || request->head().start() <= 0 ||
-            request->head().end() <= 0 || request->head().tagname().empty()) {
+            request->head().end() <= 0 || request->head().tagname().empty() || request->kvs().kvs().empty()) {
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % request->head().start() % request->head().end() %
                          request->head().tagname()).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
-        }
-
-        // 检查kvs 是否输入
-        if (request->kvs().kvs_size() == 0) {
-            log_->Error("request->kvs().kvs_size() == 0");
-            return {StatusCode::INVALID_ARGUMENT, "addr or username is empty"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -755,16 +701,12 @@ public:
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
@@ -818,24 +760,22 @@ public:
     //Ping 描述信息
     Status TagDescGet(ServerContext *context, const TagDescGetReq *request, TagDescGetResp *response) override {
         log_->Debug((boost::format("TagDescGet:%1%") % request->Utf8DebugString()).str());
-
+        if (request->kvs().kvs().empty()) {
+            log_->Error((boost::format("TagValuesGet:%1%") % "arg is not valid").str());
+            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+        }
         auto err_c = configSetInternal(request->kvs().kvs());
         if (err_c != 0) {
             log_->Error("configSetInternal(kvs);");
             return {StatusCode(err_c), "write config_file failed"};
         }
 
-        char *dll_path = (char *) malloc(128);
-        char *config_path = (char *) malloc(128);
-
+        char dll_path[128];
+        char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-        free(dll_path);
-        free(config_path);
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
