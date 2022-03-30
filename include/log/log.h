@@ -45,7 +45,7 @@ public:
                             keywords::auto_flush = true
                     );
             consoleSink->set_filter(
-                    trvl::severity >= trvl::info
+                    trvl::severity >= trvl::debug
             );
             auto sink = boost::log::add_file_log
                     (

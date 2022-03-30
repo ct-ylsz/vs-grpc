@@ -39,7 +39,7 @@ using grpc::StatusCode;
 using namespace vs;
 
 enum FeatureType {
-    Min = 1, Max, Avg, Count = 99
+    Max = 1, Min, Avg, Count = 99
 };
 
 class VsServiceImpl final : public VsService::Service {
