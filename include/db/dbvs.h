@@ -148,7 +148,7 @@ public:
     static DbError TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *tagValues);
 
     // ≤Â»Î ˝æ›
-    static DbError TagDataInsert(InsertData *data);
+    static DbError TagDataInsert(InsertData *data,int count);
 };
 
 

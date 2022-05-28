@@ -95,7 +95,7 @@ public:
 
         if (config.empty()) {
             log_->Error(
-                    R"(boost::filesystem::is_regular_file(inline_task.block_["target_file"] + ".tmp") is already has )");
+                    R"(configInfo is empty)");
             return -2;
         }
         std::ofstream f;
@@ -799,6 +799,63 @@ public:
         (*it)["unit"] = tagInfo.unit;
         return Status::OK;
     }
+
+    //TagAppendRTTagDataByBatch 批量写入实时数据
+    Status TagAppendRTTagDataByBatch(ServerContext *context, const TagAppendRTTagDataByBatchReq *request,
+                                     TagAppendRTTagDataByBatchResp *response) override {
+        log_->Debug((boost::format("TagAppendRTTagDataByBatch:%1%") % request->Utf8DebugString()).str());
+        if (request->kvs().kvs().empty()) {
+            log_->Error((boost::format("TagAppendRTTagDataByBatch:%1%") % "arg is not valid").str());
+            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+        }
+        if (request->data().empty()){
+            log_->Error((boost::format("TagAppendRTTagDataByBatch:%1%") % "arg is not valid").str());
+            return {StatusCode::INVALID_ARGUMENT, "no data to write"};
+        }
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
+
+        char dll_path[128];
+        char config_path[128];
+        strcpy(dll_path, "./");
+        strcpy(config_path, "./");
+
+        auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
+        if (err.err_code != 0) {
+            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), "connect database failed"};
+        }
+
+
+        auto *data = (InsertData_struct *) malloc(request->data().size());
+        for (int i = 0; i < request->data().size(); i++) {
+            data[i].value = request->data()[i].value();
+            data[i].type = request->data()[i].type();
+            strcpy(data[i].pointName, request->data()[i].tagname().c_str());
+            data[i].status = request->data()[i].status();
+            data[i].time = request->data()[i].time();
+        }
+        err = DbVs::TagDataInsert(data, request->data().size());
+        if (err.err_code != 0) {
+            log_->Error((boost::format("get desc info faield :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), err.err_msg};
+        }
+
+        for (int i = 0; i < request->data().size(); i++) {
+            auto x = response->add_data();
+            x->set_tagname(data[i].pointName);
+            x->set_type(data[i].type);
+            x->set_status(data[i].status);
+            x->set_value(data[i].value);
+            x->set_time(data[i].time);
+        }
+        free(data);
+        return Status::OK;
+    }
+
 
     void Run() {
         if (ip_.empty() || port_.empty()) {

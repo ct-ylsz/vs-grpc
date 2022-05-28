@@ -112,6 +112,13 @@ class VsService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagFractureSectionGetResp>> PrepareAsyncTagFractureSectionGet(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagFractureSectionGetResp>>(PrepareAsyncTagFractureSectionGetRaw(context, request, cq));
     }
+    virtual ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::vs::TagAppendRTTagDataByBatchResp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagAppendRTTagDataByBatchResp>> AsyncTagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagAppendRTTagDataByBatchResp>>(AsyncTagAppendRTTagDataByBatchRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagAppendRTTagDataByBatchResp>> PrepareAsyncTagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagAppendRTTagDataByBatchResp>>(PrepareAsyncTagAppendRTTagDataByBatchRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -137,6 +144,8 @@ class VsService final {
       virtual void TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void TagFractureSectionGet(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq* request, ::vs::TagFractureSectionGetResp* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TagFractureSectionGet(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq* request, ::vs::TagFractureSectionGetResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void TagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq* request, ::vs::TagAppendRTTagDataByBatchResp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void TagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq* request, ::vs::TagAppendRTTagDataByBatchResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -164,6 +173,8 @@ class VsService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagSnapshotValueResp>* PrepareAsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagFractureSectionGetResp>* AsyncTagFractureSectionGetRaw(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagFractureSectionGetResp>* PrepareAsyncTagFractureSectionGetRaw(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagAppendRTTagDataByBatchResp>* AsyncTagAppendRTTagDataByBatchRaw(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagAppendRTTagDataByBatchResp>* PrepareAsyncTagAppendRTTagDataByBatchRaw(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -245,6 +256,13 @@ class VsService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagFractureSectionGetResp>> PrepareAsyncTagFractureSectionGet(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagFractureSectionGetResp>>(PrepareAsyncTagFractureSectionGetRaw(context, request, cq));
     }
+    ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::vs::TagAppendRTTagDataByBatchResp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagAppendRTTagDataByBatchResp>> AsyncTagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagAppendRTTagDataByBatchResp>>(AsyncTagAppendRTTagDataByBatchRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagAppendRTTagDataByBatchResp>> PrepareAsyncTagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagAppendRTTagDataByBatchResp>>(PrepareAsyncTagAppendRTTagDataByBatchRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -270,6 +288,8 @@ class VsService final {
       void TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       void TagFractureSectionGet(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq* request, ::vs::TagFractureSectionGetResp* response, std::function<void(::grpc::Status)>) override;
       void TagFractureSectionGet(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq* request, ::vs::TagFractureSectionGetResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void TagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq* request, ::vs::TagAppendRTTagDataByBatchResp* response, std::function<void(::grpc::Status)>) override;
+      void TagAppendRTTagDataByBatch(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq* request, ::vs::TagAppendRTTagDataByBatchResp* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -303,6 +323,8 @@ class VsService final {
     ::grpc::ClientAsyncResponseReader< ::vs::TagSnapshotValueResp>* PrepareAsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vs::TagFractureSectionGetResp>* AsyncTagFractureSectionGetRaw(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vs::TagFractureSectionGetResp>* PrepareAsyncTagFractureSectionGetRaw(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vs::TagAppendRTTagDataByBatchResp>* AsyncTagAppendRTTagDataByBatchRaw(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vs::TagAppendRTTagDataByBatchResp>* PrepareAsyncTagAppendRTTagDataByBatchRaw(::grpc::ClientContext* context, const ::vs::TagAppendRTTagDataByBatchReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_TagValuesGet_;
     const ::grpc::internal::RpcMethod rpcmethod_TagFeatureGet_;
     const ::grpc::internal::RpcMethod rpcmethod_TagTimeSection_;
@@ -314,6 +336,7 @@ class VsService final {
     const ::grpc::internal::RpcMethod rpcmethod_ServiceStop_;
     const ::grpc::internal::RpcMethod rpcmethod_TagSnapshotValue_;
     const ::grpc::internal::RpcMethod rpcmethod_TagFractureSectionGet_;
+    const ::grpc::internal::RpcMethod rpcmethod_TagAppendRTTagDataByBatch_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -332,6 +355,7 @@ class VsService final {
     virtual ::grpc::Status ServiceStop(::grpc::ServerContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response);
     virtual ::grpc::Status TagSnapshotValue(::grpc::ServerContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response);
     virtual ::grpc::Status TagFractureSectionGet(::grpc::ServerContext* context, const ::vs::TagFractureSectionGetReq* request, ::vs::TagFractureSectionGetResp* response);
+    virtual ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ServerContext* context, const ::vs::TagAppendRTTagDataByBatchReq* request, ::vs::TagAppendRTTagDataByBatchResp* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_TagValuesGet : public BaseClass {
@@ -553,7 +577,27 @@ class VsService final {
       ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TagValuesGet<WithAsyncMethod_TagFeatureGet<WithAsyncMethod_TagTimeSection<WithAsyncMethod_TagDescGet<WithAsyncMethod_DbPing<WithAsyncMethod_TagCountByRangeGet<WithAsyncMethod_TagListGet<WithAsyncMethod_TagValuesByCountGet<WithAsyncMethod_ServiceStop<WithAsyncMethod_TagSnapshotValue<WithAsyncMethod_TagFractureSectionGet<Service > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_TagAppendRTTagDataByBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_TagAppendRTTagDataByBatch() {
+      ::grpc::Service::MarkMethodAsync(11);
+    }
+    ~WithAsyncMethod_TagAppendRTTagDataByBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTagAppendRTTagDataByBatch(::grpc::ServerContext* context, ::vs::TagAppendRTTagDataByBatchReq* request, ::grpc::ServerAsyncResponseWriter< ::vs::TagAppendRTTagDataByBatchResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_TagValuesGet<WithAsyncMethod_TagFeatureGet<WithAsyncMethod_TagTimeSection<WithAsyncMethod_TagDescGet<WithAsyncMethod_DbPing<WithAsyncMethod_TagCountByRangeGet<WithAsyncMethod_TagListGet<WithAsyncMethod_TagValuesByCountGet<WithAsyncMethod_ServiceStop<WithAsyncMethod_TagSnapshotValue<WithAsyncMethod_TagFractureSectionGet<WithAsyncMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TagValuesGet : public BaseClass {
    private:
@@ -851,7 +895,34 @@ class VsService final {
     virtual ::grpc::ServerUnaryReactor* TagFractureSectionGet(
       ::grpc::CallbackServerContext* /*context*/, const ::vs::TagFractureSectionGetReq* /*request*/, ::vs::TagFractureSectionGetResp* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TagValuesGet<WithCallbackMethod_TagFeatureGet<WithCallbackMethod_TagTimeSection<WithCallbackMethod_TagDescGet<WithCallbackMethod_DbPing<WithCallbackMethod_TagCountByRangeGet<WithCallbackMethod_TagListGet<WithCallbackMethod_TagValuesByCountGet<WithCallbackMethod_ServiceStop<WithCallbackMethod_TagSnapshotValue<WithCallbackMethod_TagFractureSectionGet<Service > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_TagAppendRTTagDataByBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_TagAppendRTTagDataByBatch() {
+      ::grpc::Service::MarkMethodCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::vs::TagAppendRTTagDataByBatchReq* request, ::vs::TagAppendRTTagDataByBatchResp* response) { return this->TagAppendRTTagDataByBatch(context, request, response); }));}
+    void SetMessageAllocatorFor_TagAppendRTTagDataByBatch(
+        ::grpc::MessageAllocator< ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_TagAppendRTTagDataByBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* TagAppendRTTagDataByBatch(
+      ::grpc::CallbackServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_TagValuesGet<WithCallbackMethod_TagFeatureGet<WithCallbackMethod_TagTimeSection<WithCallbackMethod_TagDescGet<WithCallbackMethod_DbPing<WithCallbackMethod_TagCountByRangeGet<WithCallbackMethod_TagListGet<WithCallbackMethod_TagValuesByCountGet<WithCallbackMethod_ServiceStop<WithCallbackMethod_TagSnapshotValue<WithCallbackMethod_TagFractureSectionGet<WithCallbackMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TagValuesGet : public BaseClass {
@@ -1036,6 +1107,23 @@ class VsService final {
     }
     // disable synchronous version of this method
     ::grpc::Status TagFractureSectionGet(::grpc::ServerContext* /*context*/, const ::vs::TagFractureSectionGetReq* /*request*/, ::vs::TagFractureSectionGetResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_TagAppendRTTagDataByBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_TagAppendRTTagDataByBatch() {
+      ::grpc::Service::MarkMethodGeneric(11);
+    }
+    ~WithGenericMethod_TagAppendRTTagDataByBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1258,6 +1346,26 @@ class VsService final {
     }
     void RequestTagFractureSectionGet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_TagAppendRTTagDataByBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_TagAppendRTTagDataByBatch() {
+      ::grpc::Service::MarkMethodRaw(11);
+    }
+    ~WithRawMethod_TagAppendRTTagDataByBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestTagAppendRTTagDataByBatch(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1500,6 +1608,28 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* TagFractureSectionGet(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_TagAppendRTTagDataByBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_TagAppendRTTagDataByBatch() {
+      ::grpc::Service::MarkMethodRawCallback(11,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TagAppendRTTagDataByBatch(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_TagAppendRTTagDataByBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* TagAppendRTTagDataByBatch(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1799,9 +1929,36 @@ class VsService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTagFractureSectionGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vs::TagFractureSectionGetReq,::vs::TagFractureSectionGetResp>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_TagFractureSectionGet<Service > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_TagAppendRTTagDataByBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_TagAppendRTTagDataByBatch() {
+      ::grpc::Service::MarkMethodStreamed(11,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>* streamer) {
+                       return this->StreamedTagAppendRTTagDataByBatch(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_TagAppendRTTagDataByBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status TagAppendRTTagDataByBatch(::grpc::ServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedTagAppendRTTagDataByBatch(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vs::TagAppendRTTagDataByBatchReq,::vs::TagAppendRTTagDataByBatchResp>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_TagFractureSectionGet<WithStreamedUnaryMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_TagFractureSectionGet<Service > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_TagFractureSectionGet<WithStreamedUnaryMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace vs

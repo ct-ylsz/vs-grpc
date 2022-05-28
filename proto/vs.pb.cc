@@ -494,8 +494,50 @@ struct TagSnapshotValueRespDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TagSnapshotValueRespDefaultTypeInternal _TagSnapshotValueResp_default_instance_;
+constexpr InsertData::InsertData(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : tagname_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , type_(0)
+  , status_(0)
+  , value_(0)
+  , time_(0){}
+struct InsertDataDefaultTypeInternal {
+  constexpr InsertDataDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~InsertDataDefaultTypeInternal() {}
+  union {
+    InsertData _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT InsertDataDefaultTypeInternal _InsertData_default_instance_;
+constexpr TagAppendRTTagDataByBatchReq::TagAppendRTTagDataByBatchReq(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : data_()
+  , kvs_(nullptr){}
+struct TagAppendRTTagDataByBatchReqDefaultTypeInternal {
+  constexpr TagAppendRTTagDataByBatchReqDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~TagAppendRTTagDataByBatchReqDefaultTypeInternal() {}
+  union {
+    TagAppendRTTagDataByBatchReq _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TagAppendRTTagDataByBatchReqDefaultTypeInternal _TagAppendRTTagDataByBatchReq_default_instance_;
+constexpr TagAppendRTTagDataByBatchResp::TagAppendRTTagDataByBatchResp(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : data_()
+  , err_(nullptr){}
+struct TagAppendRTTagDataByBatchRespDefaultTypeInternal {
+  constexpr TagAppendRTTagDataByBatchRespDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~TagAppendRTTagDataByBatchRespDefaultTypeInternal() {}
+  union {
+    TagAppendRTTagDataByBatchResp _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT TagAppendRTTagDataByBatchRespDefaultTypeInternal _TagAppendRTTagDataByBatchResp_default_instance_;
 }  // namespace vs
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_vs_2eproto[36];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_vs_2eproto[39];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_vs_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_vs_2eproto = nullptr;
 
@@ -828,6 +870,33 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_vs_2eproto::offsets[] PROTOBUF
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::vs::TagSnapshotValueResp, err_),
   PROTOBUF_FIELD_OFFSET(::vs::TagSnapshotValueResp, values_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::vs::InsertData, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::vs::InsertData, type_),
+  PROTOBUF_FIELD_OFFSET(::vs::InsertData, status_),
+  PROTOBUF_FIELD_OFFSET(::vs::InsertData, value_),
+  PROTOBUF_FIELD_OFFSET(::vs::InsertData, time_),
+  PROTOBUF_FIELD_OFFSET(::vs::InsertData, tagname_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::vs::TagAppendRTTagDataByBatchReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::vs::TagAppendRTTagDataByBatchReq, kvs_),
+  PROTOBUF_FIELD_OFFSET(::vs::TagAppendRTTagDataByBatchReq, data_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::vs::TagAppendRTTagDataByBatchResp, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::vs::TagAppendRTTagDataByBatchResp, err_),
+  PROTOBUF_FIELD_OFFSET(::vs::TagAppendRTTagDataByBatchResp, data_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 8, -1, sizeof(::vs::KVInfo_KvsEntry_DoNotUse)},
@@ -866,6 +935,9 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 304, -1, -1, sizeof(::vs::ServiceStopResp)},
   { 310, -1, -1, sizeof(::vs::TagSnapshotValueReq)},
   { 320, -1, -1, sizeof(::vs::TagSnapshotValueResp)},
+  { 328, -1, -1, sizeof(::vs::InsertData)},
+  { 339, -1, -1, sizeof(::vs::TagAppendRTTagDataByBatchReq)},
+  { 347, -1, -1, sizeof(::vs::TagAppendRTTagDataByBatchResp)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -905,6 +977,9 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_ServiceStopResp_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_TagSnapshotValueReq_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_TagSnapshotValueResp_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_InsertData_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_TagAppendRTTagDataByBatchReq_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_TagAppendRTTagDataByBatchResp_default_instance_),
 };
 
 const char descriptor_table_protodef_vs_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -976,31 +1051,40 @@ const char descriptor_table_protodef_vs_2eproto[] PROTOBUF_SECTION_VARIABLE(prot
   "Req\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\017\n\007TagName\030"
   "\002 \001(\014\022\r\n\005Start\030\003 \001(\005\022\013\n\003End\030\004 \001(\005\"P\n\024Tag"
   "SnapshotValueResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrI"
-  "nfo\022\036\n\006Values\030\002 \001(\0132\016.vs.VsValueMap2\312\005\n\t"
-  "VsService\0229\n\014TagValuesGet\022\023.vs.TagValues"
-  "GetReq\032\024.vs.TagValuesGetResp\022<\n\rTagFeatu"
-  "reGet\022\024.vs.TagFeatureGetReq\032\025.vs.TagFeat"
-  "ureGetResp\022\?\n\016TagTimeSection\022\025.vs.TagTim"
-  "eSectionReq\032\026.vs.TagTimeSectionResp\0223\n\nT"
-  "agDescGet\022\021.vs.TagDescGetReq\032\022.vs.TagDes"
-  "cGetResp\022\'\n\006DbPing\022\r.vs.DbPingReq\032\016.vs.D"
-  "bPingResp\022K\n\022TagCountByRangeGet\022\031.vs.Tag"
-  "CountByRangeGetReq\032\032.vs.TagCountByRangeG"
-  "etResp\0223\n\nTagListGet\022\021.vs.TagListGetReq\032"
-  "\022.vs.TagListGetResp\022N\n\023TagValuesByCountG"
-  "et\022\032.vs.TagValuesByCountGetReq\032\033.vs.TagV"
-  "aluesByCountGetResp\0226\n\013ServiceStop\022\022.vs."
-  "ServiceStopReq\032\023.vs.ServiceStopResp\022E\n\020T"
-  "agSnapshotValue\022\027.vs.TagSnapshotValueReq"
-  "\032\030.vs.TagSnapshotValueResp\022T\n\025TagFractur"
-  "eSectionGet\022\034.vs.TagFractureSectionGetRe"
-  "q\032\035.vs.TagFractureSectionGetRespB\007Z\005pb/v"
-  "sb\006proto3"
+  "nfo\022\036\n\006Values\030\002 \001(\0132\016.vs.VsValueMap\"X\n\nI"
+  "nsertData\022\014\n\004Type\030\001 \001(\005\022\016\n\006Status\030\002 \001(\005\022"
+  "\r\n\005Value\030\003 \001(\001\022\014\n\004Time\030\004 \001(\005\022\017\n\007TagName\030"
+  "\005 \001(\t\"U\n\034TagAppendRTTagDataByBatchReq\022\027\n"
+  "\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\034\n\004Data\030\002 \003(\0132\016.v"
+  "s.InsertData\"W\n\035TagAppendRTTagDataByBatc"
+  "hResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrInfo\022\034\n\004Data\030"
+  "\002 \003(\0132\016.vs.InsertData2\254\006\n\tVsService\0229\n\014T"
+  "agValuesGet\022\023.vs.TagValuesGetReq\032\024.vs.Ta"
+  "gValuesGetResp\022<\n\rTagFeatureGet\022\024.vs.Tag"
+  "FeatureGetReq\032\025.vs.TagFeatureGetResp\022\?\n\016"
+  "TagTimeSection\022\025.vs.TagTimeSectionReq\032\026."
+  "vs.TagTimeSectionResp\0223\n\nTagDescGet\022\021.vs"
+  ".TagDescGetReq\032\022.vs.TagDescGetResp\022\'\n\006Db"
+  "Ping\022\r.vs.DbPingReq\032\016.vs.DbPingResp\022K\n\022T"
+  "agCountByRangeGet\022\031.vs.TagCountByRangeGe"
+  "tReq\032\032.vs.TagCountByRangeGetResp\0223\n\nTagL"
+  "istGet\022\021.vs.TagListGetReq\032\022.vs.TagListGe"
+  "tResp\022N\n\023TagValuesByCountGet\022\032.vs.TagVal"
+  "uesByCountGetReq\032\033.vs.TagValuesByCountGe"
+  "tResp\0226\n\013ServiceStop\022\022.vs.ServiceStopReq"
+  "\032\023.vs.ServiceStopResp\022E\n\020TagSnapshotValu"
+  "e\022\027.vs.TagSnapshotValueReq\032\030.vs.TagSnaps"
+  "hotValueResp\022T\n\025TagFractureSectionGet\022\034."
+  "vs.TagFractureSectionGetReq\032\035.vs.TagFrac"
+  "tureSectionGetResp\022`\n\031TagAppendRTTagData"
+  "ByBatch\022 .vs.TagAppendRTTagDataByBatchRe"
+  "q\032!.vs.TagAppendRTTagDataByBatchRespB\007Z\005"
+  "pb/vsb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_vs_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_vs_2eproto = {
-  false, false, 3489, descriptor_table_protodef_vs_2eproto, "vs.proto", 
-  &descriptor_table_vs_2eproto_once, nullptr, 0, 36,
+  false, false, 3853, descriptor_table_protodef_vs_2eproto, "vs.proto", 
+  &descriptor_table_vs_2eproto_once, nullptr, 0, 39,
   schemas, file_default_instances, TableStruct_vs_2eproto::offsets,
   file_level_metadata_vs_2eproto, file_level_enum_descriptors_vs_2eproto, file_level_service_descriptors_vs_2eproto,
 };
@@ -8285,6 +8369,763 @@ void TagSnapshotValueResp::InternalSwap(TagSnapshotValueResp* other) {
       file_level_metadata_vs_2eproto[35]);
 }
 
+// ===================================================================
+
+class InsertData::_Internal {
+ public:
+};
+
+InsertData::InsertData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:vs.InsertData)
+}
+InsertData::InsertData(const InsertData& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  tagname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_tagname().empty()) {
+    tagname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_tagname(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&type_, &from.type_,
+    static_cast<size_t>(reinterpret_cast<char*>(&time_) -
+    reinterpret_cast<char*>(&type_)) + sizeof(time_));
+  // @@protoc_insertion_point(copy_constructor:vs.InsertData)
+}
+
+void InsertData::SharedCtor() {
+tagname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&type_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&time_) -
+    reinterpret_cast<char*>(&type_)) + sizeof(time_));
+}
+
+InsertData::~InsertData() {
+  // @@protoc_insertion_point(destructor:vs.InsertData)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void InsertData::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  tagname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void InsertData::ArenaDtor(void* object) {
+  InsertData* _this = reinterpret_cast< InsertData* >(object);
+  (void)_this;
+}
+void InsertData::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void InsertData::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void InsertData::Clear() {
+// @@protoc_insertion_point(message_clear_start:vs.InsertData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  tagname_.ClearToEmpty();
+  ::memset(&type_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&time_) -
+      reinterpret_cast<char*>(&type_)) + sizeof(time_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* InsertData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 Type = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 Status = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          status_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // double Value = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 Time = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string TagName = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_tagname();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "vs.InsertData.TagName"));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* InsertData::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:vs.InsertData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 Type = 1;
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_type(), target);
+  }
+
+  // int32 Status = 2;
+  if (this->_internal_status() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_status(), target);
+  }
+
+  // double Value = 3;
+  if (!(this->_internal_value() <= 0 && this->_internal_value() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_value(), target);
+  }
+
+  // int32 Time = 4;
+  if (this->_internal_time() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_time(), target);
+  }
+
+  // string TagName = 5;
+  if (!this->_internal_tagname().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_tagname().data(), static_cast<int>(this->_internal_tagname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "vs.InsertData.TagName");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_tagname(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:vs.InsertData)
+  return target;
+}
+
+size_t InsertData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:vs.InsertData)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string TagName = 5;
+  if (!this->_internal_tagname().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_tagname());
+  }
+
+  // int32 Type = 1;
+  if (this->_internal_type() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_type());
+  }
+
+  // int32 Status = 2;
+  if (this->_internal_status() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_status());
+  }
+
+  // double Value = 3;
+  if (!(this->_internal_value() <= 0 && this->_internal_value() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // int32 Time = 4;
+  if (this->_internal_time() != 0) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32SizePlusOne(this->_internal_time());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData InsertData::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    InsertData::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*InsertData::GetClassData() const { return &_class_data_; }
+
+void InsertData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<InsertData *>(to)->MergeFrom(
+      static_cast<const InsertData &>(from));
+}
+
+
+void InsertData::MergeFrom(const InsertData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:vs.InsertData)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_tagname().empty()) {
+    _internal_set_tagname(from._internal_tagname());
+  }
+  if (from._internal_type() != 0) {
+    _internal_set_type(from._internal_type());
+  }
+  if (from._internal_status() != 0) {
+    _internal_set_status(from._internal_status());
+  }
+  if (!(from._internal_value() <= 0 && from._internal_value() >= 0)) {
+    _internal_set_value(from._internal_value());
+  }
+  if (from._internal_time() != 0) {
+    _internal_set_time(from._internal_time());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void InsertData::CopyFrom(const InsertData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:vs.InsertData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool InsertData::IsInitialized() const {
+  return true;
+}
+
+void InsertData::InternalSwap(InsertData* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      &tagname_, lhs_arena,
+      &other->tagname_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(InsertData, time_)
+      + sizeof(InsertData::time_)
+      - PROTOBUF_FIELD_OFFSET(InsertData, type_)>(
+          reinterpret_cast<char*>(&type_),
+          reinterpret_cast<char*>(&other->type_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata InsertData::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
+      file_level_metadata_vs_2eproto[36]);
+}
+
+// ===================================================================
+
+class TagAppendRTTagDataByBatchReq::_Internal {
+ public:
+  static const ::vs::KVInfo& kvs(const TagAppendRTTagDataByBatchReq* msg);
+};
+
+const ::vs::KVInfo&
+TagAppendRTTagDataByBatchReq::_Internal::kvs(const TagAppendRTTagDataByBatchReq* msg) {
+  return *msg->kvs_;
+}
+TagAppendRTTagDataByBatchReq::TagAppendRTTagDataByBatchReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  data_(arena) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:vs.TagAppendRTTagDataByBatchReq)
+}
+TagAppendRTTagDataByBatchReq::TagAppendRTTagDataByBatchReq(const TagAppendRTTagDataByBatchReq& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      data_(from.data_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_kvs()) {
+    kvs_ = new ::vs::KVInfo(*from.kvs_);
+  } else {
+    kvs_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:vs.TagAppendRTTagDataByBatchReq)
+}
+
+void TagAppendRTTagDataByBatchReq::SharedCtor() {
+kvs_ = nullptr;
+}
+
+TagAppendRTTagDataByBatchReq::~TagAppendRTTagDataByBatchReq() {
+  // @@protoc_insertion_point(destructor:vs.TagAppendRTTagDataByBatchReq)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void TagAppendRTTagDataByBatchReq::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete kvs_;
+}
+
+void TagAppendRTTagDataByBatchReq::ArenaDtor(void* object) {
+  TagAppendRTTagDataByBatchReq* _this = reinterpret_cast< TagAppendRTTagDataByBatchReq* >(object);
+  (void)_this;
+}
+void TagAppendRTTagDataByBatchReq::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void TagAppendRTTagDataByBatchReq::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TagAppendRTTagDataByBatchReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:vs.TagAppendRTTagDataByBatchReq)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  data_.Clear();
+  if (GetArenaForAllocation() == nullptr && kvs_ != nullptr) {
+    delete kvs_;
+  }
+  kvs_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TagAppendRTTagDataByBatchReq::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .vs.KVInfo Kvs = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_kvs(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .vs.InsertData Data = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_data(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* TagAppendRTTagDataByBatchReq::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:vs.TagAppendRTTagDataByBatchReq)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .vs.KVInfo Kvs = 1;
+  if (this->_internal_has_kvs()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::kvs(this), target, stream);
+  }
+
+  // repeated .vs.InsertData Data = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_data_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_data(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:vs.TagAppendRTTagDataByBatchReq)
+  return target;
+}
+
+size_t TagAppendRTTagDataByBatchReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:vs.TagAppendRTTagDataByBatchReq)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .vs.InsertData Data = 2;
+  total_size += 1UL * this->_internal_data_size();
+  for (const auto& msg : this->data_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .vs.KVInfo Kvs = 1;
+  if (this->_internal_has_kvs()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *kvs_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TagAppendRTTagDataByBatchReq::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TagAppendRTTagDataByBatchReq::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TagAppendRTTagDataByBatchReq::GetClassData() const { return &_class_data_; }
+
+void TagAppendRTTagDataByBatchReq::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TagAppendRTTagDataByBatchReq *>(to)->MergeFrom(
+      static_cast<const TagAppendRTTagDataByBatchReq &>(from));
+}
+
+
+void TagAppendRTTagDataByBatchReq::MergeFrom(const TagAppendRTTagDataByBatchReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:vs.TagAppendRTTagDataByBatchReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  data_.MergeFrom(from.data_);
+  if (from._internal_has_kvs()) {
+    _internal_mutable_kvs()->::vs::KVInfo::MergeFrom(from._internal_kvs());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TagAppendRTTagDataByBatchReq::CopyFrom(const TagAppendRTTagDataByBatchReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:vs.TagAppendRTTagDataByBatchReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TagAppendRTTagDataByBatchReq::IsInitialized() const {
+  return true;
+}
+
+void TagAppendRTTagDataByBatchReq::InternalSwap(TagAppendRTTagDataByBatchReq* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  data_.InternalSwap(&other->data_);
+  swap(kvs_, other->kvs_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TagAppendRTTagDataByBatchReq::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
+      file_level_metadata_vs_2eproto[37]);
+}
+
+// ===================================================================
+
+class TagAppendRTTagDataByBatchResp::_Internal {
+ public:
+  static const ::vs::ErrInfo& err(const TagAppendRTTagDataByBatchResp* msg);
+};
+
+const ::vs::ErrInfo&
+TagAppendRTTagDataByBatchResp::_Internal::err(const TagAppendRTTagDataByBatchResp* msg) {
+  return *msg->err_;
+}
+TagAppendRTTagDataByBatchResp::TagAppendRTTagDataByBatchResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  data_(arena) {
+  SharedCtor();
+  if (!is_message_owned) {
+    RegisterArenaDtor(arena);
+  }
+  // @@protoc_insertion_point(arena_constructor:vs.TagAppendRTTagDataByBatchResp)
+}
+TagAppendRTTagDataByBatchResp::TagAppendRTTagDataByBatchResp(const TagAppendRTTagDataByBatchResp& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      data_(from.data_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_err()) {
+    err_ = new ::vs::ErrInfo(*from.err_);
+  } else {
+    err_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:vs.TagAppendRTTagDataByBatchResp)
+}
+
+void TagAppendRTTagDataByBatchResp::SharedCtor() {
+err_ = nullptr;
+}
+
+TagAppendRTTagDataByBatchResp::~TagAppendRTTagDataByBatchResp() {
+  // @@protoc_insertion_point(destructor:vs.TagAppendRTTagDataByBatchResp)
+  if (GetArenaForAllocation() != nullptr) return;
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+inline void TagAppendRTTagDataByBatchResp::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete err_;
+}
+
+void TagAppendRTTagDataByBatchResp::ArenaDtor(void* object) {
+  TagAppendRTTagDataByBatchResp* _this = reinterpret_cast< TagAppendRTTagDataByBatchResp* >(object);
+  (void)_this;
+}
+void TagAppendRTTagDataByBatchResp::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void TagAppendRTTagDataByBatchResp::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void TagAppendRTTagDataByBatchResp::Clear() {
+// @@protoc_insertion_point(message_clear_start:vs.TagAppendRTTagDataByBatchResp)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  data_.Clear();
+  if (GetArenaForAllocation() == nullptr && err_ != nullptr) {
+    delete err_;
+  }
+  err_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TagAppendRTTagDataByBatchResp::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .vs.ErrInfo Err = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_err(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .vs.InsertData Data = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_data(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* TagAppendRTTagDataByBatchResp::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:vs.TagAppendRTTagDataByBatchResp)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .vs.ErrInfo Err = 1;
+  if (this->_internal_has_err()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::err(this), target, stream);
+  }
+
+  // repeated .vs.InsertData Data = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_data_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, this->_internal_data(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:vs.TagAppendRTTagDataByBatchResp)
+  return target;
+}
+
+size_t TagAppendRTTagDataByBatchResp::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:vs.TagAppendRTTagDataByBatchResp)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .vs.InsertData Data = 2;
+  total_size += 1UL * this->_internal_data_size();
+  for (const auto& msg : this->data_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .vs.ErrInfo Err = 1;
+  if (this->_internal_has_err()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *err_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TagAppendRTTagDataByBatchResp::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    TagAppendRTTagDataByBatchResp::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TagAppendRTTagDataByBatchResp::GetClassData() const { return &_class_data_; }
+
+void TagAppendRTTagDataByBatchResp::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<TagAppendRTTagDataByBatchResp *>(to)->MergeFrom(
+      static_cast<const TagAppendRTTagDataByBatchResp &>(from));
+}
+
+
+void TagAppendRTTagDataByBatchResp::MergeFrom(const TagAppendRTTagDataByBatchResp& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:vs.TagAppendRTTagDataByBatchResp)
+  GOOGLE_DCHECK_NE(&from, this);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  data_.MergeFrom(from.data_);
+  if (from._internal_has_err()) {
+    _internal_mutable_err()->::vs::ErrInfo::MergeFrom(from._internal_err());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TagAppendRTTagDataByBatchResp::CopyFrom(const TagAppendRTTagDataByBatchResp& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:vs.TagAppendRTTagDataByBatchResp)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TagAppendRTTagDataByBatchResp::IsInitialized() const {
+  return true;
+}
+
+void TagAppendRTTagDataByBatchResp::InternalSwap(TagAppendRTTagDataByBatchResp* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  data_.InternalSwap(&other->data_);
+  swap(err_, other->err_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TagAppendRTTagDataByBatchResp::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
+      file_level_metadata_vs_2eproto[38]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace vs
 PROTOBUF_NAMESPACE_OPEN
@@ -8395,6 +9236,15 @@ template<> PROTOBUF_NOINLINE ::vs::TagSnapshotValueReq* Arena::CreateMaybeMessag
 }
 template<> PROTOBUF_NOINLINE ::vs::TagSnapshotValueResp* Arena::CreateMaybeMessage< ::vs::TagSnapshotValueResp >(Arena* arena) {
   return Arena::CreateMessageInternal< ::vs::TagSnapshotValueResp >(arena);
+}
+template<> PROTOBUF_NOINLINE ::vs::InsertData* Arena::CreateMaybeMessage< ::vs::InsertData >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vs::InsertData >(arena);
+}
+template<> PROTOBUF_NOINLINE ::vs::TagAppendRTTagDataByBatchReq* Arena::CreateMaybeMessage< ::vs::TagAppendRTTagDataByBatchReq >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vs::TagAppendRTTagDataByBatchReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::vs::TagAppendRTTagDataByBatchResp* Arena::CreateMaybeMessage< ::vs::TagAppendRTTagDataByBatchResp >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vs::TagAppendRTTagDataByBatchResp >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
