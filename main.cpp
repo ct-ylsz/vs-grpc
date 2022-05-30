@@ -109,7 +109,7 @@ int main(int argc, char **argv) {
 //}
 //
 //
-//int main(int argc,char **argv){
+//int main(int argc, char **argv) {
 //    char dll_path[128];
 //    char config_path[128];
 //    strcpy(dll_path, "./");
@@ -117,34 +117,44 @@ int main(int argc, char **argv) {
 //
 //    auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
 //    if (err.err_code != 0) {
-//        printf("%d",err.err_code);
+//        printf("%d", err.err_code);
 //        return 1;
 //    }
 //
 //    long count = 1024;
-//    auto *dataF = new TagDataF();
-//    ReadHiDataRequest req;
-//    strcpy(req.pointName, "test_001");
-//    req.stTime = 1638841806;
-//    req.enTime = 1638841821;
-//    req.tPeriod = 1638841821-1638841806;
-//    req.reqType = 1;
-//    auto *data2 = new std::vector<TagData>();
-//    err = DbVs::TagValuesGet(req, count, data2);
+////    auto *dataF = new TagDataF();
+////    ReadHiDataRequest req;
+////    strcpy(req.pointName, "test_001");
+////    req.stTime = 1638841806;
+////    req.enTime = 1638841821;
+////    req.tPeriod = 1638841821 - 1638841806;
+////    req.reqType = 1;
+//    //auto *data2 = new std::vector<TagData>();
 //
-//    auto *data = (InsertData_struct *) malloc(2);
-//    for (int i = 0; i < 2; i++) {
-//        data[i].value = 1;
-//        data[i].type = 1;
-//        strcpy(data[i].pointName, "test_001");
-//        data[i].status = 0;
-//        data[i].time = 1648841821;
-//    }
-//    err = DbVs::TagDataInsert(data, 2);
+//    auto *data2 = new std::vector<TagInfo>();
+//    err = DbVs::TagListByCount(0, data2, count);
 //    if (err.err_code != 0) {
-//        printf("%d",err.err_code);
-//        return 2;
+//        printf("%d", err.err_code);
+//        return 1;
 //    }
+//    auto *data = (InsertData_struct *) malloc(10000);
+//    auto ts = 1648841821;
+//    for (int i = 0; i < data2->size(); i++) {
+//        for (int j = 0; j < 10000; j++) {
+//            data[j].value = 1;
+//            data[j].type = 1;
+//            strcpy(data[j].pointName, data2[i].data()->name);
+//            data[j].status = 0;
+//            data[j].time = ts + j;
+//        }
+//        err = DbVs::TagDataInsert(data, 10000);
+//        if (err.err_code != 0) {
+//            printf("%d", err.err_code);
+//            free(data)
+//            return 2;
+//        }
+//    }
+//    free(data)
 //    return 0;
 //}
 
