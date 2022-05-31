@@ -137,24 +137,27 @@ int main(int argc, char **argv) {
 //        printf("%d", err.err_code);
 //        return 1;
 //    }
-//    auto *data = (InsertData_struct *) malloc(10000);
-//    auto ts = 1648841821;
+//    auto *data = (InsertData_struct *) malloc(sizeof(InsertData_struct) * 10000);
+//    auto ts = 1648841824;
 //    for (int i = 0; i < data2->size(); i++) {
 //        for (int j = 0; j < 10000; j++) {
-//            data[j].value = 1;
+//            data[j].value = j;
 //            data[j].type = 1;
 //            strcpy(data[j].pointName, data2[i].data()->name);
 //            data[j].status = 0;
 //            data[j].time = ts + j;
 //        }
+//        for (int j = 0; j < 10000; j++) {
+//            printf("%f,%ld\n", data[j].value,data[j].time);
+//        }
 //        err = DbVs::TagDataInsert(data, 10000);
 //        if (err.err_code != 0) {
 //            printf("%d", err.err_code);
-//            free(data)
+//            free(data);
 //            return 2;
 //        }
 //    }
-//    free(data)
+//    free(data);
 //    return 0;
 //}
 

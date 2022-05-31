@@ -119,11 +119,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "kvs is empty"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -211,11 +211,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "request->kvs().kvs_size() == 0"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -289,11 +289,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -380,11 +380,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error(boost::str(boost::format("configSetInternal(kvs): %1%") % err_c));
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error(boost::str(boost::format("configSetInternal(kvs): %1%") % err_c));
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -481,11 +481,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -547,11 +547,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -584,11 +584,11 @@ public:
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -653,11 +653,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -695,11 +695,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -764,11 +764,11 @@ public:
             log_->Error((boost::format("TagValuesGet:%1%") % "arg is not valid").str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];
@@ -812,11 +812,11 @@ public:
             log_->Error((boost::format("TagAppendRTTagDataByBatch:%1%") % "arg is not valid").str());
             return {StatusCode::INVALID_ARGUMENT, "no data to write"};
         }
-        auto err_c = configSetInternal(request->kvs().kvs());
-        if (err_c != 0) {
-            log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
-        }
+//        auto err_c = configSetInternal(request->kvs().kvs());
+//        if (err_c != 0) {
+//            log_->Error("configSetInternal(kvs);");
+//            return {StatusCode(err_c), "write config_file failed"};
+//        }
 
         char dll_path[128];
         char config_path[128];

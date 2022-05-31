@@ -129,10 +129,10 @@ DbError DbVs::DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2)
     strParameters[2] = opt1;
     strParameters[3] = opt2;
 #ifdef WIN32
-    //err.err_code = m_InitConnect(strParameters, 4);
-    std::call_once(once2_, [](char *para[4], DbError *err1) {
-        err1->err_code = m_InitConnect(para, 4);
-    }, strParameters, &err);
+    err.err_code = m_InitConnect(strParameters, 4);
+//    std::call_once(once2_, [](char *para[4], DbError *err1) {
+//        err1->err_code = m_InitConnect(para, 4);
+//    }, strParameters, &err);
 #else
     err.err_code = InitConnect(strParameters,4);
 #endif
@@ -336,7 +336,7 @@ DbVs::TagValuesGet(const std::string &tag_name, long start, long end, long &coun
     req.stTime = start;
     req.enTime = end;
     req.reqType = 0;
-    req.tPeriod = 0;
+    req.tPeriod = end - start;
     strcpy(req.pointName, tag_name.c_str());
     auto *tag = new TagData[count];
 #ifdef WIN32
@@ -707,7 +707,7 @@ DbError DbVs::TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *ta
 DbError DbVs::TagDataInsert(InsertData *data, int count) {
     DbError err;
 #ifdef WIN32
-    err.err_code = m_AppendRTTagDataByBatch(data,count);
+    err.err_code = m_AppendRTTagDataByBatch(data, count);
 #else
     err.err_code = m_AppendRTTagDataByBatch(data, count);
 #endif
