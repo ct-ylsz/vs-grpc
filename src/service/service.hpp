@@ -549,11 +549,11 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-//        auto err_c = configSetInternal(request->kvs().kvs());
-//        if (err_c != 0) {
-//            log_->Error("configSetInternal(kvs);");
-//            return {StatusCode(err_c), "write config_file failed"};
-//        }
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
 
         char dll_path[128];
         char config_path[128];
