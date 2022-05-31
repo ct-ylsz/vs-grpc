@@ -504,6 +504,7 @@ public:
         auto *data1 = new std::vector<TagData>();
         err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
         if (err.err_code != 0) {
+            DbVs::DbReleaseConnect();
             if (count == 0) {
                 response->set_start(0);
                 response->set_end(0);
@@ -528,6 +529,7 @@ public:
 
         err = DbVs::TagRealTimeDataGetByName(name.c_str(), &da);
         if (err.err_code != 0) {
+            DbVs::DbReleaseConnect();
             log_->Error(
                     (boost::format("TagRealTimeDataGetByName failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "TagRealTimeDataGetByNamefailed"};
@@ -787,6 +789,7 @@ public:
         err = DbVs::TagDescInfoGet(name, &tagInfo);
         free(name);
         if (err.err_code != 0) {
+            DbVs::DbReleaseConnect();
             log_->Error((boost::format("get desc info faield :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), err.err_msg};
         }
