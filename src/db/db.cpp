@@ -336,7 +336,7 @@ DbVs::TagValuesGet(const std::string &tag_name, long start, long end, long &coun
     req.stTime = start;
     req.enTime = end;
     req.reqType = 0;
-    req.tPeriod = end - start;
+    req.tPeriod = 0;
     strcpy(req.pointName, tag_name.c_str());
     auto *tag = new TagData[count];
 #ifdef WIN32

@@ -784,12 +784,11 @@ public:
         }
 
         TagInfo tagInfo;
-        char *name = (char *) malloc(128);
+        char *name = (char *) malloc(256);
         strcpy(name, request->tagname().c_str());
         err = DbVs::TagDescInfoGet(name, &tagInfo);
         free(name);
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
             log_->Error((boost::format("get desc info faield :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), err.err_msg};
         }
