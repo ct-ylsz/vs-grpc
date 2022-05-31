@@ -81,6 +81,12 @@ public:
         }
 
         auto path = kvs["db_config_path"];
+        if (boost::filesystem::is_regular_file(path + "VeStore.ini")) {
+            log_->Warn((boost::format("config is already exist")).str());
+            return 0;
+        }
+
+
         std::map<std::string, std::vector<Kv>> config;
         for (auto &kv: kvs) {
             std::vector<std::string> dest;
@@ -586,11 +592,12 @@ public:
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
-//        auto err_c = configSetInternal(request->kvs().kvs());
-//        if (err_c != 0) {
-//            log_->Error("configSetInternal(kvs);");
-//            return {StatusCode(err_c), "write config_file failed"};
-//        }
+
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
 
         char dll_path[128];
         char config_path[128];
@@ -655,11 +662,12 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-//        auto err_c = configSetInternal(request->kvs().kvs());
-//        if (err_c != 0) {
-//            log_->Error("configSetInternal(kvs);");
-//            return {StatusCode(err_c), "write config_file failed"};
-//        }
+
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
 
         char dll_path[128];
         char config_path[128];
@@ -697,11 +705,12 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-//        auto err_c = configSetInternal(request->kvs().kvs());
-//        if (err_c != 0) {
-//            log_->Error("configSetInternal(kvs);");
-//            return {StatusCode(err_c), "write config_file failed"};
-//        }
+
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
 
         char dll_path[128];
         char config_path[128];
@@ -766,11 +775,12 @@ public:
             log_->Error((boost::format("TagValuesGet:%1%") % "arg is not valid").str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
-//        auto err_c = configSetInternal(request->kvs().kvs());
-//        if (err_c != 0) {
-//            log_->Error("configSetInternal(kvs);");
-//            return {StatusCode(err_c), "write config_file failed"};
-//        }
+
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
 
         char dll_path[128];
         char config_path[128];
@@ -810,15 +820,16 @@ public:
             log_->Error((boost::format("TagAppendRTTagDataByBatch:%1%") % "arg is not valid").str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
-        if (request->data().empty()){
+        if (request->data().empty()) {
             log_->Error((boost::format("TagAppendRTTagDataByBatch:%1%") % "arg is not valid").str());
             return {StatusCode::INVALID_ARGUMENT, "no data to write"};
         }
-//        auto err_c = configSetInternal(request->kvs().kvs());
-//        if (err_c != 0) {
-//            log_->Error("configSetInternal(kvs);");
-//            return {StatusCode(err_c), "write config_file failed"};
-//        }
+
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
 
         char dll_path[128];
         char config_path[128];
