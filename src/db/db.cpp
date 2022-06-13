@@ -67,6 +67,7 @@ int DbVs::Init(const std::string &dll_path) {
             m_GetSummaryFilterEx = (pGetSummaryFilterEx) GetProcAddress(hInst, "GetSummaryFilterEx");
             m_AppendRTTagDataByTagName = (pAppendRTTagDataByTagName) GetProcAddress(hInst, "AppendRTTagDataByTagName");
         }
+        return 0;
     }, dll_path, &err);
     return err;
 #else

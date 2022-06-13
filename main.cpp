@@ -1,7 +1,5 @@
-#include <memory>
 #include <string>
 #include <iostream>
-#include <grpc++/grpc++.h>
 #include <boost/program_options.hpp>
 #include <boost/format.hpp>
 #include "log/log.h"
