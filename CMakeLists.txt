@@ -10,14 +10,14 @@ set(THIRD_PARTY_DIR ./thirdparty)
 set(GRPC_INCLUDE D:\\Work\\cpp_lib\\grpclib\\grpc32\\grpc\\include)
 set(PROTO_INCLUDE ./proto)
 set(INCLUDE ./include)
-set(BOOST_INCLUDE D:\\Work\\cpp_lib\\boost_1_70_0)
+set(BOOST_INCLUDE D:\\Work\\cpp_lib\\boost\\boost_1_70_0)
 set(YAML_INCLUDE D:\\Work\\cpp_lib\\yaml\\YAML_CPP\\include)
 include_directories(${GRPC_INCLUDE} ${PROTO_INCLUDE} ${THIRD_PARTY_DIR} ${BOOST_INCLUDE} ${INCLUDE} ${YAML_INCLUDE})
 
 # 库文件
 set(GRPC_LIB D:\\Work\\cpp_lib\\grpclib\\grpc32\\grpc\\lib)
 set(LIB ./lib)
-set(BOOST_LIBD:\\Work\\cpp_lib\\boost\\stage\\lib)
+set(BOOST_LIB D:\\Work\\cpp_lib\\boost\\boost_1_70_0\\lib64-msvc-14.1)
 set(YAML_LIB D:\\Work\\cpp_lib\\yaml\\YAML_CPP\\lib)
 link_directories(${GRPC_LIB} ${LIB} ${BOOST_LIB} ${YAML_LIB})
 
