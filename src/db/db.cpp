@@ -11,7 +11,6 @@
 #ifdef WIN32
 
 #include <windows.h>
-
 pInitConnect m_InitConnect;
 pReleaseConnect m_ReleaseConnect;
 pGetRTDataByTagName m_GetRTDataByTagName;
@@ -657,7 +656,7 @@ DbError DbVs::TagGetAggregation(const std::string &tag_name, long start, long en
 #ifdef WIN32
     err.err_code = m_GetAggregationDataByTagName(&req, tagData);
 #else
-    err.err_code = GetAggregationDataByTagName(req, tagData);
+    err.err_code = GetAggregationDataByTagName(&req, tagData);
 #endif
     if (err.err_code != 0) {
         GetErr(&err);
@@ -686,7 +685,7 @@ DbError DbVs::TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *ta
 #ifdef WIN32
     err.err_code = m_GetSnapshotDataByTagName(req, tag);
 #else
-    err.err_code = GetSnapshotDataByTagName(req, tagData);
+    err.err_code = GetSnapshotDataByTagName(req, tagValues->data());
 #endif
     if (err.err_code != 0) {
         GetErr(&err);
@@ -707,15 +706,15 @@ DbError DbVs::TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *ta
 
 DbError DbVs::TagDataInsert(InsertData *data, int count) {
     DbError err;
-#ifdef WIN32
-    err.err_code = m_AppendRTTagDataByBatch(data, count);
-#else
-    err.err_code = m_AppendRTTagDataByBatch(data, count);
-#endif
-    if (err.err_code != 0) {
-        GetErr(&err);
-        return err;
-    }
+//#ifdef WIN32
+//    err.err_code = m_AppendRTTagDataByBatch(data, count);
+//#else
+//    err.err_code = m_AppendRTTagDataByBatch(data, count);
+//#endif
+//    if (err.err_code != 0) {
+//        GetErr(&err);
+//        return err;
+//    }
     return err;
 }
 
