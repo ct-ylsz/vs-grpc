@@ -7,19 +7,17 @@ set(Boost_USE_STATIC_LIBS ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 # 头文件
 set(THIRD_PARTY_DIR ./thirdparty)
-set(GRPC_INCLUDE D:\\Work\\cpp_lib\\grpclib\\grpc32\\grpc\\include)
+set(GRPC_INCLUDE D:\\work\\cpp_lib\\grpclib\\grpc32\\grpc\\include)
 set(PROTO_INCLUDE ./proto)
 set(INCLUDE ./include)
-set(BOOST_INCLUDE D:\\Work\\cpp_lib\\boost\\boost_1_70_0)
-set(YAML_INCLUDE D:\\Work\\cpp_lib\\yaml\\YAML_CPP\\include)
+set(BOOST_INCLUDE D:\\work\\cpp_lib\\boost_1_70_0)
 include_directories(${GRPC_INCLUDE} ${PROTO_INCLUDE} ${THIRD_PARTY_DIR} ${BOOST_INCLUDE} ${INCLUDE} ${YAML_INCLUDE})
 
 # 库文件
-set(GRPC_LIB D:\\Work\\cpp_lib\\grpclib\\grpc32\\grpc\\lib)
+set(GRPC_LIB D:\\work\\cpp_lib\\grpclib\\grpc32\\grpc\\lib)
 set(LIB ./lib)
-set(BOOST_LIB D:\\Work\\cpp_lib\\boost\\boost_1_70_0\\lib64-msvc-14.1)
-set(YAML_LIB D:\\Work\\cpp_lib\\yaml\\YAML_CPP\\lib)
-link_directories(${GRPC_LIB} ${LIB} ${BOOST_LIB} ${YAML_LIB})
+set(BOOST_LIB D:\\work\\cpp_lib\\boost_1_70_0\\stage\\lib)
+link_directories(${GRPC_LIB} ${LIB} ${BOOST_LIB})
 
 
 add_executable(vs-grpc main.cpp proto/vs.grpc.pb.cc proto/vs.pb.cc src/utils/file.cpp src/db/dberr.cpp src/service/service.hpp src/db/db.cpp src/resclass/tag.cpp src/utils/config.cpp src/utils/util.cpp)
@@ -55,4 +53,4 @@ target_link_libraries(vs-grpc libprotobufd.lib grpc grpc++
         absl_city
         absl_wyhash
         absl_bad_variant_access
-        yaml-cppd)
+        )

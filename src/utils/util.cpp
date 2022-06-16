@@ -3,7 +3,7 @@
 //
 #include "utils/util.h"
 #include "ctime"
-#include <windows.h>
+#include <Windows.h>
 
 std::string RandStr(int length) {
     char tmp;
@@ -23,8 +23,7 @@ std::string RandStr(int length) {
     return buffer;
 }
 
-std::string UTF8_2_GBK(std::string utf8Str)
-{
+std::string UTF8_2_GBK(std::string utf8Str) {
     std::string outGBK = "";
     int n = MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, NULL, 0);
     WCHAR *str1 = new WCHAR[n];

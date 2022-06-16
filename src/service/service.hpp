@@ -82,7 +82,7 @@ public:
 
         auto path = kvs["db_config_path"];
         if (boost::filesystem::is_regular_file(path + "VeStore.ini")) {
-            log_->Warn((boost::format("config is already exist")).str());
+//            log_->Warn((boost::format("config is already exist")).str());
             return 0;
         }
 
@@ -880,9 +880,9 @@ public:
         c.ip_ = ip_;
         c.port_ = port_;
         c.config_path_ = config_path_;
-        if (boost::filesystem::is_regular_file(c.config_path_)) {
-            ParseYamlConfig(c.config_path_, &c);
-        }
+//        if (boost::filesystem::is_regular_file(c.config_path_)) {
+//            ParseYamlConfig(c.config_path_, &c);
+//        }
 
         std::string server_address((boost::format("%1%:%2%") % c.ip_ % c.port_).str());
         DbVs::Init("./");

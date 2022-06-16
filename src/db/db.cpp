@@ -10,7 +10,7 @@
 
 #ifdef WIN32
 
-#include <windows.h>
+#include <Windows.h>
 pInitConnect m_InitConnect;
 pReleaseConnect m_ReleaseConnect;
 pGetRTDataByTagName m_GetRTDataByTagName;
