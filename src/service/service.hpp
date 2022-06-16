@@ -82,7 +82,7 @@ public:
 
         auto path = kvs["db_config_path"];
         if (boost::filesystem::is_regular_file(path + "VeStore.ini")) {
-            log_->Warn((boost::format("config is already exist")).str());
+//            log_->Warn((boost::format("config is already exist")).str());
             return 0;
         }
 
