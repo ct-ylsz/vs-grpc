@@ -707,7 +707,7 @@ public:
                             GetRTDataByBatchResp *response) override {
         log_->Debug((boost::format("GetRTDataByBatch:%1%") % request->DebugString()).str());
         if (request->kvs().kvs().empty() || request->tagnames().empty()) {
-            log_->Error((boost::format("TagValuesGet:%1%") % request->tagnames().data()).str());
+            log_->Error((boost::format("GetRTDataByBatch:%1%") % request->tagnames().data()).str());
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
@@ -735,7 +735,7 @@ public:
         auto *data = new std::vector<TagData>();
         err = DbVs::GetRTDataByBatch(*names, data);
         if (err.err_code != 0) {
-            log_->Error((boost::format("get snapshot failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            log_->Error((boost::format("GetRTDataByBatch failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "get snapshot failed"};
         }
 

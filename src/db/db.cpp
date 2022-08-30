@@ -220,7 +220,6 @@ DbError DbVs::TagNamesGetByCount(long beginPos, std::vector<TagInfo *> *tags, lo
     for (int i = 0; i < nCount; i++) {
         tags->push_back(&tag[i]);
     }
-
     return err;
 }
 
@@ -307,8 +306,7 @@ DbError DbVs::TagsDescInfoGet(std::vector<TagInfo *> tags) {
     count = 2000;
     std::cout << "开始获取数据" << std::endl;
     int index = 0;
-    long sumCount = 0;
-    while ((count = 2000)) {
+    while ((count == 2000)) {
         auto *tag = new TagInfo[2000];
 #ifdef WIN32
         err.err_code = m_pGetNextTagInfo(index, tag, (long &) count);
@@ -360,6 +358,7 @@ DbVs::TagValuesGet(const std::string &tag_name, long start, long end, long &coun
             tagValues->push_back(tag[i]);
         }
     }
+    delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     return {err.err_code, err.err_msg};
 }
@@ -386,6 +385,7 @@ DbVs::TagValuesGet(ReadHiDataRequest req, long &count, std::vector<TagData> *tag
             tagValues->push_back(tag[i]);
         }
     }
+    delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     return {err.err_code, err.err_msg};
 }
@@ -700,10 +700,10 @@ DbError DbVs::TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *ta
     } else {
         log_->Error((boost::format("get value success ")).str());
         for (int i = 0; i < tmp_count; i++) {
-            auto x = tag[i];
             tagValues->push_back(tag[i]);
         }
     }
+    delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     log_->Info((boost::format("over")).str());
     return {err.err_code, err.err_msg};
@@ -739,9 +739,9 @@ DbError DbVs::GetRTDataByBatch(std::vector<std::string> names, std::vector<TagDa
         name[i] = n;
     }
 #ifdef WIN32
-    err.err_code = m_GetRTDataByBatch(name, tag, names.size());
+    err.err_code = m_GetRTDataByBatch(name, tag, (long) names.size());
 #else
-    err.err_code = GetRTDataByBatch(reinterpret_cast<char **>(names->data()), tag, names->size());
+    err.err_code = m_GetRTDataByBatch(name, tag, (long)names.size());
 #endif
     delete[]name;
     if (err.err_code != 0) {
@@ -755,6 +755,7 @@ DbError DbVs::GetRTDataByBatch(std::vector<std::string> names, std::vector<TagDa
             tagValues->push_back(tag[i]);
         }
     }
+    delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     log_->Info((boost::format("over")).str());
     return {err.err_code, err.err_msg};
