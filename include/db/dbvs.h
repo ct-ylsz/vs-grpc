@@ -148,7 +148,7 @@ public:
     static DbError TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *tagValues);
 
     // 批量获取历史快照值
-    static DbError GetRTDataByBatch(std::vector<std::string> *names, std::vector<TagData> *tagValues);
+    static DbError GetRTDataByBatch(std::vector<std::string> names, std::vector<TagData> *tagValues);
 
 
     // 插入数据

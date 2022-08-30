@@ -703,7 +703,7 @@ public:
             return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
         }
 
-        auto names = new std::vector<std::string>();
+        auto *names = new std::vector<std::string>();
         for (const auto &i: request->tagnames()) {
             names->push_back(i);
         }
@@ -725,7 +725,7 @@ public:
         }
 
         auto *data = new std::vector<TagData>();
-        err = DbVs::GetRTDataByBatch(names, data);
+        err = DbVs::GetRTDataByBatch(*names, data);
         if (err.err_code != 0) {
             log_->Error((boost::format("get snapshot failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "get snapshot failed"};

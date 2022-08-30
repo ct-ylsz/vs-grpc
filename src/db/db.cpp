@@ -719,21 +719,27 @@ DbError DbVs::TagDataInsert(InsertData *data, int count) {
     return err;
 }
 
-DbError DbVs::GetRTDataByBatch(std::vector<std::string> *names, std::vector<TagData> *tagValues) {
+DbError DbVs::GetRTDataByBatch(std::vector<std::string> names, std::vector<TagData> *tagValues) {
     DbError err;
     log_->Info(boost::format("start to collect GetRTDataByBatch ").str());
-    if (names->empty()) {
+    if (names.empty()) {
         err.err_code = kArgBad;
         GetErr(&err);
         return err;
     }
-    auto *tag = new TagData[names->size()];
-
+    auto *tag = new TagData[names.size()];
+    char **name = new char *[names.size()];
+    for (size_t i = 0; i < names.size(); i++) {
+        char n[128];
+        strcpy(n, (names)[i].c_str());
+        name[i] = n;
+    }
 #ifdef WIN32
-    err.err_code = m_GetRTDataByBatch(reinterpret_cast<char **>(names->data()), tag, 1);
+    err.err_code = m_GetRTDataByBatch(name, tag, names.size());
 #else
     err.err_code = GetRTDataByBatch(reinterpret_cast<char **>(names->data()), tag, names->size());
 #endif
+    delete[]name;
     if (err.err_code != 0) {
         GetErr(&err);
         log_->Error((boost::format("get value err :%1%,%2%") % err.err_code % err.err_msg).str());
@@ -741,8 +747,7 @@ DbError DbVs::GetRTDataByBatch(std::vector<std::string> *names, std::vector<TagD
         return {err.err_code, err.err_msg};
     } else {
         log_->Info((boost::format("get value success ")).str());
-        for (int i = 0; i < names->size(); i++) {
-            auto x = tag[i];
+        for (int i = 0; i < names.size(); i++) {
             tagValues->push_back(tag[i]);
         }
     }
