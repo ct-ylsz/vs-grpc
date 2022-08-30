@@ -129,8 +129,12 @@ DbError DbVs::DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2)
     strParameters[1] = configPath;
     strParameters[2] = opt1;
     strParameters[3] = opt2;
+    std::call_once(once2_, [](char *strParameters[4], DbError *err) {
+        err->err_code = m_InitConnect(strParameters, 4);
+    }, strParameters, &err);
+
 #ifdef WIN32
-    err.err_code = m_InitConnect(strParameters, 4);
+
 //    std::call_once(once2_, [](char *para[4], DbError *err1) {
 //        err1->err_code = m_InitConnect(para, 4);
 //    }, strParameters, &err);
