@@ -50,7 +50,7 @@ struct TableStruct_vs_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[41]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[43]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -85,6 +85,12 @@ extern KVInfoDefaultTypeInternal _KVInfo_default_instance_;
 class KVInfo_KvsEntry_DoNotUse;
 struct KVInfo_KvsEntry_DoNotUseDefaultTypeInternal;
 extern KVInfo_KvsEntry_DoNotUseDefaultTypeInternal _KVInfo_KvsEntry_DoNotUse_default_instance_;
+class ReleaseConnectReq;
+struct ReleaseConnectReqDefaultTypeInternal;
+extern ReleaseConnectReqDefaultTypeInternal _ReleaseConnectReq_default_instance_;
+class ReleaseConnectResp;
+struct ReleaseConnectRespDefaultTypeInternal;
+extern ReleaseConnectRespDefaultTypeInternal _ReleaseConnectResp_default_instance_;
 class ServiceStopReq;
 struct ServiceStopReqDefaultTypeInternal;
 extern ServiceStopReqDefaultTypeInternal _ServiceStopReq_default_instance_;
@@ -192,6 +198,8 @@ template<> ::vs::HeadReq* Arena::CreateMaybeMessage<::vs::HeadReq>(Arena*);
 template<> ::vs::InsertData* Arena::CreateMaybeMessage<::vs::InsertData>(Arena*);
 template<> ::vs::KVInfo* Arena::CreateMaybeMessage<::vs::KVInfo>(Arena*);
 template<> ::vs::KVInfo_KvsEntry_DoNotUse* Arena::CreateMaybeMessage<::vs::KVInfo_KvsEntry_DoNotUse>(Arena*);
+template<> ::vs::ReleaseConnectReq* Arena::CreateMaybeMessage<::vs::ReleaseConnectReq>(Arena*);
+template<> ::vs::ReleaseConnectResp* Arena::CreateMaybeMessage<::vs::ReleaseConnectResp>(Arena*);
 template<> ::vs::ServiceStopReq* Arena::CreateMaybeMessage<::vs::ServiceStopReq>(Arena*);
 template<> ::vs::ServiceStopResp* Arena::CreateMaybeMessage<::vs::ServiceStopResp>(Arena*);
 template<> ::vs::TagAppendRTTagDataByBatchReq* Arena::CreateMaybeMessage<::vs::TagAppendRTTagDataByBatchReq>(Arena*);
@@ -5024,6 +5032,236 @@ class ServiceStopResp final :
 };
 // -------------------------------------------------------------------
 
+class ReleaseConnectReq final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:vs.ReleaseConnectReq) */ {
+ public:
+  inline ReleaseConnectReq() : ReleaseConnectReq(nullptr) {}
+  explicit constexpr ReleaseConnectReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ReleaseConnectReq(const ReleaseConnectReq& from);
+  ReleaseConnectReq(ReleaseConnectReq&& from) noexcept
+    : ReleaseConnectReq() {
+    *this = ::std::move(from);
+  }
+
+  inline ReleaseConnectReq& operator=(const ReleaseConnectReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReleaseConnectReq& operator=(ReleaseConnectReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ReleaseConnectReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ReleaseConnectReq* internal_default_instance() {
+    return reinterpret_cast<const ReleaseConnectReq*>(
+               &_ReleaseConnectReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  friend void swap(ReleaseConnectReq& a, ReleaseConnectReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReleaseConnectReq* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ReleaseConnectReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ReleaseConnectReq* New() const final {
+    return new ReleaseConnectReq();
+  }
+
+  ReleaseConnectReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ReleaseConnectReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ReleaseConnectReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ReleaseConnectReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.ReleaseConnectReq";
+  }
+  protected:
+  explicit ReleaseConnectReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:vs.ReleaseConnectReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReleaseConnectResp final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:vs.ReleaseConnectResp) */ {
+ public:
+  inline ReleaseConnectResp() : ReleaseConnectResp(nullptr) {}
+  explicit constexpr ReleaseConnectResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ReleaseConnectResp(const ReleaseConnectResp& from);
+  ReleaseConnectResp(ReleaseConnectResp&& from) noexcept
+    : ReleaseConnectResp() {
+    *this = ::std::move(from);
+  }
+
+  inline ReleaseConnectResp& operator=(const ReleaseConnectResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReleaseConnectResp& operator=(ReleaseConnectResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ReleaseConnectResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ReleaseConnectResp* internal_default_instance() {
+    return reinterpret_cast<const ReleaseConnectResp*>(
+               &_ReleaseConnectResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  friend void swap(ReleaseConnectResp& a, ReleaseConnectResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReleaseConnectResp* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ReleaseConnectResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ReleaseConnectResp* New() const final {
+    return new ReleaseConnectResp();
+  }
+
+  ReleaseConnectResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ReleaseConnectResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ReleaseConnectResp& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ReleaseConnectResp& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.ReleaseConnectResp";
+  }
+  protected:
+  explicit ReleaseConnectResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:vs.ReleaseConnectResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
+// -------------------------------------------------------------------
+
 class TagSnapshotValueReq final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vs.TagSnapshotValueReq) */ {
  public:
@@ -5072,7 +5310,7 @@ class TagSnapshotValueReq final :
                &_TagSnapshotValueReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    36;
 
   friend void swap(TagSnapshotValueReq& a, TagSnapshotValueReq& b) {
     a.Swap(&b);
@@ -5262,7 +5500,7 @@ class TagSnapshotValueResp final :
                &_TagSnapshotValueResp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    37;
 
   friend void swap(TagSnapshotValueResp& a, TagSnapshotValueResp& b) {
     a.Swap(&b);
@@ -5434,7 +5672,7 @@ class InsertData final :
                &_InsertData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    38;
 
   friend void swap(InsertData& a, InsertData& b) {
     a.Swap(&b);
@@ -5626,7 +5864,7 @@ class TagAppendRTTagDataByBatchReq final :
                &_TagAppendRTTagDataByBatchReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    39;
 
   friend void swap(TagAppendRTTagDataByBatchReq& a, TagAppendRTTagDataByBatchReq& b) {
     a.Swap(&b);
@@ -5798,7 +6036,7 @@ class TagAppendRTTagDataByBatchResp final :
                &_TagAppendRTTagDataByBatchResp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    40;
 
   friend void swap(TagAppendRTTagDataByBatchResp& a, TagAppendRTTagDataByBatchResp& b) {
     a.Swap(&b);
@@ -5970,7 +6208,7 @@ class GetRTDataByBatchReq final :
                &_GetRTDataByBatchReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    41;
 
   friend void swap(GetRTDataByBatchReq& a, GetRTDataByBatchReq& b) {
     a.Swap(&b);
@@ -6148,7 +6386,7 @@ class GetRTDataByBatchResp final :
                &_GetRTDataByBatchResp_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    42;
 
   friend void swap(GetRTDataByBatchResp& a, GetRTDataByBatchResp& b) {
     a.Swap(&b);
@@ -9692,6 +9930,14 @@ inline void TagTimeSectionResp::set_end(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // -------------------------------------------------------------------
 
+// ReleaseConnectReq
+
+// -------------------------------------------------------------------
+
+// ReleaseConnectResp
+
+// -------------------------------------------------------------------
+
 // TagSnapshotValueReq
 
 // .vs.KVInfo Kvs = 1;
@@ -10758,6 +11004,10 @@ GetRTDataByBatchResp::values() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

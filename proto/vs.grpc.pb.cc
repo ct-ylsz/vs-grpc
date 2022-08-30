@@ -31,6 +31,7 @@ static const char* VsService_method_names[] = {
   "/vs.VsService/TagListGet",
   "/vs.VsService/TagValuesByCountGet",
   "/vs.VsService/ServiceStop",
+  "/vs.VsService/ReleaseConnect",
   "/vs.VsService/TagSnapshotValue",
   "/vs.VsService/GetRTDataByBatch",
   "/vs.VsService/TagFractureSectionGet",
@@ -53,10 +54,11 @@ VsService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel,
   , rpcmethod_TagListGet_(VsService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TagValuesByCountGet_(VsService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ServiceStop_(VsService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TagSnapshotValue_(VsService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetRTDataByBatch_(VsService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TagFractureSectionGet_(VsService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TagAppendRTTagDataByBatch_(VsService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReleaseConnect_(VsService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TagSnapshotValue_(VsService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRTDataByBatch_(VsService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TagFractureSectionGet_(VsService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TagAppendRTTagDataByBatch_(VsService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status VsService::Stub::TagValuesGet(::grpc::ClientContext* context, const ::vs::TagValuesGetReq& request, ::vs::TagValuesGetResp* response) {
@@ -266,6 +268,29 @@ void VsService::Stub::async::ServiceStop(::grpc::ClientContext* context, const :
   return result;
 }
 
+::grpc::Status VsService::Stub::ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::vs::ReleaseConnectResp* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ReleaseConnect_, context, request, response);
+}
+
+void VsService::Stub::async::ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReleaseConnect_, context, request, response, std::move(f));
+}
+
+void VsService::Stub::async::ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReleaseConnect_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>* VsService::Stub::PrepareAsyncReleaseConnectRaw(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::vs::ReleaseConnectResp, ::vs::ReleaseConnectReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ReleaseConnect_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>* VsService::Stub::AsyncReleaseConnectRaw(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncReleaseConnectRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status VsService::Stub::TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::vs::TagSnapshotValueResp* response) {
   return ::grpc::internal::BlockingUnaryCall< ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TagSnapshotValue_, context, request, response);
 }
@@ -452,6 +477,16 @@ VsService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       VsService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](VsService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::vs::ReleaseConnectReq* req,
+             ::vs::ReleaseConnectResp* resp) {
+               return service->ReleaseConnect(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      VsService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VsService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -460,7 +495,7 @@ VsService::Service::Service() {
                return service->TagSnapshotValue(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VsService_method_names[10],
+      VsService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VsService::Service* service,
@@ -470,7 +505,7 @@ VsService::Service::Service() {
                return service->GetRTDataByBatch(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VsService_method_names[11],
+      VsService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::TagFractureSectionGetReq, ::vs::TagFractureSectionGetResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VsService::Service* service,
@@ -480,7 +515,7 @@ VsService::Service::Service() {
                return service->TagFractureSectionGet(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VsService_method_names[12],
+      VsService_method_names[13],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VsService::Service* service,
@@ -551,6 +586,13 @@ VsService::Service::~Service() {
 }
 
 ::grpc::Status VsService::Service::ServiceStop(::grpc::ServerContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status VsService::Service::ReleaseConnect(::grpc::ServerContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response) {
   (void) context;
   (void) request;
   (void) response;

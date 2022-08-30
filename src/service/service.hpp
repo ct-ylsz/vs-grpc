@@ -650,6 +650,14 @@ public:
         return Status::OK;
     }
 
+    // 停止服务
+    Status
+    ReleaseConnect(ServerContext *context, const ReleaseConnectReq *request, ReleaseConnectResp *response) override {
+        log_->Debug((boost::format("ReleaseConnect:%1%") % request->DebugString()).str());
+        DbVs::DbReleaseConnect();
+        return Status::OK;
+    }
+
     // 获取快照值
     Status TagSnapshotValue(ServerContext *context, const TagSnapshotValueReq *request,
                             TagSnapshotValueResp *response) override {

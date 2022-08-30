@@ -98,6 +98,13 @@ class VsService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::ServiceStopResp>> PrepareAsyncServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::ServiceStopResp>>(PrepareAsyncServiceStopRaw(context, request, cq));
     }
+    virtual ::grpc::Status ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::vs::ReleaseConnectResp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::ReleaseConnectResp>> AsyncReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::ReleaseConnectResp>>(AsyncReleaseConnectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::ReleaseConnectResp>> PrepareAsyncReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::ReleaseConnectResp>>(PrepareAsyncReleaseConnectRaw(context, request, cq));
+    }
     virtual ::grpc::Status TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::vs::TagSnapshotValueResp* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagSnapshotValueResp>> AsyncTagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagSnapshotValueResp>>(AsyncTagSnapshotValueRaw(context, request, cq));
@@ -147,6 +154,8 @@ class VsService final {
       virtual void TagValuesByCountGet(::grpc::ClientContext* context, const ::vs::TagValuesByCountGetReq* request, ::vs::TagValuesByCountGetResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void ServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetRTDataByBatch(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq* request, ::vs::GetRTDataByBatchResp* response, std::function<void(::grpc::Status)>) = 0;
@@ -178,6 +187,8 @@ class VsService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagValuesByCountGetResp>* PrepareAsyncTagValuesByCountGetRaw(::grpc::ClientContext* context, const ::vs::TagValuesByCountGetReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::ServiceStopResp>* AsyncServiceStopRaw(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::ServiceStopResp>* PrepareAsyncServiceStopRaw(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::ReleaseConnectResp>* AsyncReleaseConnectRaw(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::ReleaseConnectResp>* PrepareAsyncReleaseConnectRaw(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagSnapshotValueResp>* AsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::TagSnapshotValueResp>* PrepareAsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::vs::GetRTDataByBatchResp>* AsyncGetRTDataByBatchRaw(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq& request, ::grpc::CompletionQueue* cq) = 0;
@@ -253,6 +264,13 @@ class VsService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::ServiceStopResp>> PrepareAsyncServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::ServiceStopResp>>(PrepareAsyncServiceStopRaw(context, request, cq));
     }
+    ::grpc::Status ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::vs::ReleaseConnectResp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>> AsyncReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>>(AsyncReleaseConnectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>> PrepareAsyncReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>>(PrepareAsyncReleaseConnectRaw(context, request, cq));
+    }
     ::grpc::Status TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::vs::TagSnapshotValueResp* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagSnapshotValueResp>> AsyncTagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::vs::TagSnapshotValueResp>>(AsyncTagSnapshotValueRaw(context, request, cq));
@@ -302,6 +320,8 @@ class VsService final {
       void TagValuesByCountGet(::grpc::ClientContext* context, const ::vs::TagValuesByCountGetReq* request, ::vs::TagValuesByCountGetResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response, std::function<void(::grpc::Status)>) override;
       void ServiceStop(::grpc::ClientContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response, std::function<void(::grpc::Status)>) override;
+      void ReleaseConnect(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       void TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, std::function<void(::grpc::Status)>) override;
       void TagSnapshotValue(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetRTDataByBatch(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq* request, ::vs::GetRTDataByBatchResp* response, std::function<void(::grpc::Status)>) override;
@@ -339,6 +359,8 @@ class VsService final {
     ::grpc::ClientAsyncResponseReader< ::vs::TagValuesByCountGetResp>* PrepareAsyncTagValuesByCountGetRaw(::grpc::ClientContext* context, const ::vs::TagValuesByCountGetReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vs::ServiceStopResp>* AsyncServiceStopRaw(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vs::ServiceStopResp>* PrepareAsyncServiceStopRaw(::grpc::ClientContext* context, const ::vs::ServiceStopReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>* AsyncReleaseConnectRaw(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::vs::ReleaseConnectResp>* PrepareAsyncReleaseConnectRaw(::grpc::ClientContext* context, const ::vs::ReleaseConnectReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vs::TagSnapshotValueResp>* AsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vs::TagSnapshotValueResp>* PrepareAsyncTagSnapshotValueRaw(::grpc::ClientContext* context, const ::vs::TagSnapshotValueReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::vs::GetRTDataByBatchResp>* AsyncGetRTDataByBatchRaw(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq& request, ::grpc::CompletionQueue* cq) override;
@@ -356,6 +378,7 @@ class VsService final {
     const ::grpc::internal::RpcMethod rpcmethod_TagListGet_;
     const ::grpc::internal::RpcMethod rpcmethod_TagValuesByCountGet_;
     const ::grpc::internal::RpcMethod rpcmethod_ServiceStop_;
+    const ::grpc::internal::RpcMethod rpcmethod_ReleaseConnect_;
     const ::grpc::internal::RpcMethod rpcmethod_TagSnapshotValue_;
     const ::grpc::internal::RpcMethod rpcmethod_GetRTDataByBatch_;
     const ::grpc::internal::RpcMethod rpcmethod_TagFractureSectionGet_;
@@ -376,6 +399,7 @@ class VsService final {
     virtual ::grpc::Status TagListGet(::grpc::ServerContext* context, const ::vs::TagListGetReq* request, ::vs::TagListGetResp* response);
     virtual ::grpc::Status TagValuesByCountGet(::grpc::ServerContext* context, const ::vs::TagValuesByCountGetReq* request, ::vs::TagValuesByCountGetResp* response);
     virtual ::grpc::Status ServiceStop(::grpc::ServerContext* context, const ::vs::ServiceStopReq* request, ::vs::ServiceStopResp* response);
+    virtual ::grpc::Status ReleaseConnect(::grpc::ServerContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response);
     virtual ::grpc::Status TagSnapshotValue(::grpc::ServerContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response);
     virtual ::grpc::Status GetRTDataByBatch(::grpc::ServerContext* context, const ::vs::GetRTDataByBatchReq* request, ::vs::GetRTDataByBatchResp* response);
     virtual ::grpc::Status TagFractureSectionGet(::grpc::ServerContext* context, const ::vs::TagFractureSectionGetReq* request, ::vs::TagFractureSectionGetResp* response);
@@ -562,12 +586,32 @@ class VsService final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_ReleaseConnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ReleaseConnect() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_ReleaseConnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReleaseConnect(::grpc::ServerContext* /*context*/, const ::vs::ReleaseConnectReq* /*request*/, ::vs::ReleaseConnectResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestReleaseConnect(::grpc::ServerContext* context, ::vs::ReleaseConnectReq* request, ::grpc::ServerAsyncResponseWriter< ::vs::ReleaseConnectResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_TagSnapshotValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TagSnapshotValue() {
-      ::grpc::Service::MarkMethodAsync(9);
+      ::grpc::Service::MarkMethodAsync(10);
     }
     ~WithAsyncMethod_TagSnapshotValue() override {
       BaseClassMustBeDerivedFromService(this);
@@ -578,7 +622,7 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTagSnapshotValue(::grpc::ServerContext* context, ::vs::TagSnapshotValueReq* request, ::grpc::ServerAsyncResponseWriter< ::vs::TagSnapshotValueResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -587,7 +631,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetRTDataByBatch() {
-      ::grpc::Service::MarkMethodAsync(10);
+      ::grpc::Service::MarkMethodAsync(11);
     }
     ~WithAsyncMethod_GetRTDataByBatch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -598,7 +642,7 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRTDataByBatch(::grpc::ServerContext* context, ::vs::GetRTDataByBatchReq* request, ::grpc::ServerAsyncResponseWriter< ::vs::GetRTDataByBatchResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -607,7 +651,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TagFractureSectionGet() {
-      ::grpc::Service::MarkMethodAsync(11);
+      ::grpc::Service::MarkMethodAsync(12);
     }
     ~WithAsyncMethod_TagFractureSectionGet() override {
       BaseClassMustBeDerivedFromService(this);
@@ -618,7 +662,7 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTagFractureSectionGet(::grpc::ServerContext* context, ::vs::TagFractureSectionGetReq* request, ::grpc::ServerAsyncResponseWriter< ::vs::TagFractureSectionGetResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -627,7 +671,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_TagAppendRTTagDataByBatch() {
-      ::grpc::Service::MarkMethodAsync(12);
+      ::grpc::Service::MarkMethodAsync(13);
     }
     ~WithAsyncMethod_TagAppendRTTagDataByBatch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -638,10 +682,10 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTagAppendRTTagDataByBatch(::grpc::ServerContext* context, ::vs::TagAppendRTTagDataByBatchReq* request, ::grpc::ServerAsyncResponseWriter< ::vs::TagAppendRTTagDataByBatchResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TagValuesGet<WithAsyncMethod_TagFeatureGet<WithAsyncMethod_TagTimeSection<WithAsyncMethod_TagDescGet<WithAsyncMethod_DbPing<WithAsyncMethod_TagCountByRangeGet<WithAsyncMethod_TagListGet<WithAsyncMethod_TagValuesByCountGet<WithAsyncMethod_ServiceStop<WithAsyncMethod_TagSnapshotValue<WithAsyncMethod_GetRTDataByBatch<WithAsyncMethod_TagFractureSectionGet<WithAsyncMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_TagValuesGet<WithAsyncMethod_TagFeatureGet<WithAsyncMethod_TagTimeSection<WithAsyncMethod_TagDescGet<WithAsyncMethod_DbPing<WithAsyncMethod_TagCountByRangeGet<WithAsyncMethod_TagListGet<WithAsyncMethod_TagValuesByCountGet<WithAsyncMethod_ServiceStop<WithAsyncMethod_ReleaseConnect<WithAsyncMethod_TagSnapshotValue<WithAsyncMethod_GetRTDataByBatch<WithAsyncMethod_TagFractureSectionGet<WithAsyncMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_TagValuesGet : public BaseClass {
    private:
@@ -886,18 +930,45 @@ class VsService final {
       ::grpc::CallbackServerContext* /*context*/, const ::vs::ServiceStopReq* /*request*/, ::vs::ServiceStopResp* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_ReleaseConnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ReleaseConnect() {
+      ::grpc::Service::MarkMethodCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::vs::ReleaseConnectReq* request, ::vs::ReleaseConnectResp* response) { return this->ReleaseConnect(context, request, response); }));}
+    void SetMessageAllocatorFor_ReleaseConnect(
+        ::grpc::MessageAllocator< ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ReleaseConnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReleaseConnect(::grpc::ServerContext* /*context*/, const ::vs::ReleaseConnectReq* /*request*/, ::vs::ReleaseConnectResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ReleaseConnect(
+      ::grpc::CallbackServerContext* /*context*/, const ::vs::ReleaseConnectReq* /*request*/, ::vs::ReleaseConnectResp* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_TagSnapshotValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TagSnapshotValue() {
-      ::grpc::Service::MarkMethodCallback(9,
+      ::grpc::Service::MarkMethodCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response) { return this->TagSnapshotValue(context, request, response); }));}
     void SetMessageAllocatorFor_TagSnapshotValue(
         ::grpc::MessageAllocator< ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -918,13 +989,13 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetRTDataByBatch() {
-      ::grpc::Service::MarkMethodCallback(10,
+      ::grpc::Service::MarkMethodCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::vs::GetRTDataByBatchReq* request, ::vs::GetRTDataByBatchResp* response) { return this->GetRTDataByBatch(context, request, response); }));}
     void SetMessageAllocatorFor_GetRTDataByBatch(
         ::grpc::MessageAllocator< ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -945,13 +1016,13 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TagFractureSectionGet() {
-      ::grpc::Service::MarkMethodCallback(11,
+      ::grpc::Service::MarkMethodCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::vs::TagFractureSectionGetReq, ::vs::TagFractureSectionGetResp>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::vs::TagFractureSectionGetReq* request, ::vs::TagFractureSectionGetResp* response) { return this->TagFractureSectionGet(context, request, response); }));}
     void SetMessageAllocatorFor_TagFractureSectionGet(
         ::grpc::MessageAllocator< ::vs::TagFractureSectionGetReq, ::vs::TagFractureSectionGetResp>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(11);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::vs::TagFractureSectionGetReq, ::vs::TagFractureSectionGetResp>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -972,13 +1043,13 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_TagAppendRTTagDataByBatch() {
-      ::grpc::Service::MarkMethodCallback(12,
+      ::grpc::Service::MarkMethodCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::vs::TagAppendRTTagDataByBatchReq* request, ::vs::TagAppendRTTagDataByBatchResp* response) { return this->TagAppendRTTagDataByBatch(context, request, response); }));}
     void SetMessageAllocatorFor_TagAppendRTTagDataByBatch(
         ::grpc::MessageAllocator< ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(12);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(13);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -993,7 +1064,7 @@ class VsService final {
     virtual ::grpc::ServerUnaryReactor* TagAppendRTTagDataByBatch(
       ::grpc::CallbackServerContext* /*context*/, const ::vs::TagAppendRTTagDataByBatchReq* /*request*/, ::vs::TagAppendRTTagDataByBatchResp* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_TagValuesGet<WithCallbackMethod_TagFeatureGet<WithCallbackMethod_TagTimeSection<WithCallbackMethod_TagDescGet<WithCallbackMethod_DbPing<WithCallbackMethod_TagCountByRangeGet<WithCallbackMethod_TagListGet<WithCallbackMethod_TagValuesByCountGet<WithCallbackMethod_ServiceStop<WithCallbackMethod_TagSnapshotValue<WithCallbackMethod_GetRTDataByBatch<WithCallbackMethod_TagFractureSectionGet<WithCallbackMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_TagValuesGet<WithCallbackMethod_TagFeatureGet<WithCallbackMethod_TagTimeSection<WithCallbackMethod_TagDescGet<WithCallbackMethod_DbPing<WithCallbackMethod_TagCountByRangeGet<WithCallbackMethod_TagListGet<WithCallbackMethod_TagValuesByCountGet<WithCallbackMethod_ServiceStop<WithCallbackMethod_ReleaseConnect<WithCallbackMethod_TagSnapshotValue<WithCallbackMethod_GetRTDataByBatch<WithCallbackMethod_TagFractureSectionGet<WithCallbackMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TagValuesGet : public BaseClass {
@@ -1149,12 +1220,29 @@ class VsService final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_ReleaseConnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ReleaseConnect() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_ReleaseConnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReleaseConnect(::grpc::ServerContext* /*context*/, const ::vs::ReleaseConnectReq* /*request*/, ::vs::ReleaseConnectResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_TagSnapshotValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TagSnapshotValue() {
-      ::grpc::Service::MarkMethodGeneric(9);
+      ::grpc::Service::MarkMethodGeneric(10);
     }
     ~WithGenericMethod_TagSnapshotValue() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1171,7 +1259,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetRTDataByBatch() {
-      ::grpc::Service::MarkMethodGeneric(10);
+      ::grpc::Service::MarkMethodGeneric(11);
     }
     ~WithGenericMethod_GetRTDataByBatch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1188,7 +1276,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TagFractureSectionGet() {
-      ::grpc::Service::MarkMethodGeneric(11);
+      ::grpc::Service::MarkMethodGeneric(12);
     }
     ~WithGenericMethod_TagFractureSectionGet() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1205,7 +1293,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_TagAppendRTTagDataByBatch() {
-      ::grpc::Service::MarkMethodGeneric(12);
+      ::grpc::Service::MarkMethodGeneric(13);
     }
     ~WithGenericMethod_TagAppendRTTagDataByBatch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1397,12 +1485,32 @@ class VsService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_ReleaseConnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ReleaseConnect() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_ReleaseConnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReleaseConnect(::grpc::ServerContext* /*context*/, const ::vs::ReleaseConnectReq* /*request*/, ::vs::ReleaseConnectResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestReleaseConnect(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_TagSnapshotValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TagSnapshotValue() {
-      ::grpc::Service::MarkMethodRaw(9);
+      ::grpc::Service::MarkMethodRaw(10);
     }
     ~WithRawMethod_TagSnapshotValue() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1413,7 +1521,7 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTagSnapshotValue(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1422,7 +1530,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetRTDataByBatch() {
-      ::grpc::Service::MarkMethodRaw(10);
+      ::grpc::Service::MarkMethodRaw(11);
     }
     ~WithRawMethod_GetRTDataByBatch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1433,7 +1541,7 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetRTDataByBatch(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1442,7 +1550,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TagFractureSectionGet() {
-      ::grpc::Service::MarkMethodRaw(11);
+      ::grpc::Service::MarkMethodRaw(12);
     }
     ~WithRawMethod_TagFractureSectionGet() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1453,7 +1561,7 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTagFractureSectionGet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(11, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1462,7 +1570,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_TagAppendRTTagDataByBatch() {
-      ::grpc::Service::MarkMethodRaw(12);
+      ::grpc::Service::MarkMethodRaw(13);
     }
     ~WithRawMethod_TagAppendRTTagDataByBatch() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1473,7 +1581,7 @@ class VsService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestTagAppendRTTagDataByBatch(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(12, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(13, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1675,12 +1783,34 @@ class VsService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_ReleaseConnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ReleaseConnect() {
+      ::grpc::Service::MarkMethodRawCallback(9,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ReleaseConnect(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ReleaseConnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ReleaseConnect(::grpc::ServerContext* /*context*/, const ::vs::ReleaseConnectReq* /*request*/, ::vs::ReleaseConnectResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ReleaseConnect(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_TagSnapshotValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TagSnapshotValue() {
-      ::grpc::Service::MarkMethodRawCallback(9,
+      ::grpc::Service::MarkMethodRawCallback(10,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TagSnapshotValue(context, request, response); }));
@@ -1702,7 +1832,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetRTDataByBatch() {
-      ::grpc::Service::MarkMethodRawCallback(10,
+      ::grpc::Service::MarkMethodRawCallback(11,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetRTDataByBatch(context, request, response); }));
@@ -1724,7 +1854,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TagFractureSectionGet() {
-      ::grpc::Service::MarkMethodRawCallback(11,
+      ::grpc::Service::MarkMethodRawCallback(12,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TagFractureSectionGet(context, request, response); }));
@@ -1746,7 +1876,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_TagAppendRTTagDataByBatch() {
-      ::grpc::Service::MarkMethodRawCallback(12,
+      ::grpc::Service::MarkMethodRawCallback(13,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->TagAppendRTTagDataByBatch(context, request, response); }));
@@ -2006,12 +2136,39 @@ class VsService final {
     virtual ::grpc::Status StreamedServiceStop(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vs::ServiceStopReq,::vs::ServiceStopResp>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_ReleaseConnect : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ReleaseConnect() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::vs::ReleaseConnectReq, ::vs::ReleaseConnectResp>* streamer) {
+                       return this->StreamedReleaseConnect(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ReleaseConnect() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ReleaseConnect(::grpc::ServerContext* /*context*/, const ::vs::ReleaseConnectReq* /*request*/, ::vs::ReleaseConnectResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedReleaseConnect(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vs::ReleaseConnectReq,::vs::ReleaseConnectResp>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_TagSnapshotValue : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TagSnapshotValue() {
-      ::grpc::Service::MarkMethodStreamed(9,
+      ::grpc::Service::MarkMethodStreamed(10,
         new ::grpc::internal::StreamedUnaryHandler<
           ::vs::TagSnapshotValueReq, ::vs::TagSnapshotValueResp>(
             [this](::grpc::ServerContext* context,
@@ -2038,7 +2195,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetRTDataByBatch() {
-      ::grpc::Service::MarkMethodStreamed(10,
+      ::grpc::Service::MarkMethodStreamed(11,
         new ::grpc::internal::StreamedUnaryHandler<
           ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp>(
             [this](::grpc::ServerContext* context,
@@ -2065,7 +2222,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TagFractureSectionGet() {
-      ::grpc::Service::MarkMethodStreamed(11,
+      ::grpc::Service::MarkMethodStreamed(12,
         new ::grpc::internal::StreamedUnaryHandler<
           ::vs::TagFractureSectionGetReq, ::vs::TagFractureSectionGetResp>(
             [this](::grpc::ServerContext* context,
@@ -2092,7 +2249,7 @@ class VsService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_TagAppendRTTagDataByBatch() {
-      ::grpc::Service::MarkMethodStreamed(12,
+      ::grpc::Service::MarkMethodStreamed(13,
         new ::grpc::internal::StreamedUnaryHandler<
           ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp>(
             [this](::grpc::ServerContext* context,
@@ -2113,9 +2270,9 @@ class VsService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTagAppendRTTagDataByBatch(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::vs::TagAppendRTTagDataByBatchReq,::vs::TagAppendRTTagDataByBatchResp>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_GetRTDataByBatch<WithStreamedUnaryMethod_TagFractureSectionGet<WithStreamedUnaryMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_ReleaseConnect<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_GetRTDataByBatch<WithStreamedUnaryMethod_TagFractureSectionGet<WithStreamedUnaryMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_GetRTDataByBatch<WithStreamedUnaryMethod_TagFractureSectionGet<WithStreamedUnaryMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_TagValuesGet<WithStreamedUnaryMethod_TagFeatureGet<WithStreamedUnaryMethod_TagTimeSection<WithStreamedUnaryMethod_TagDescGet<WithStreamedUnaryMethod_DbPing<WithStreamedUnaryMethod_TagCountByRangeGet<WithStreamedUnaryMethod_TagListGet<WithStreamedUnaryMethod_TagValuesByCountGet<WithStreamedUnaryMethod_ServiceStop<WithStreamedUnaryMethod_ReleaseConnect<WithStreamedUnaryMethod_TagSnapshotValue<WithStreamedUnaryMethod_GetRTDataByBatch<WithStreamedUnaryMethod_TagFractureSectionGet<WithStreamedUnaryMethod_TagAppendRTTagDataByBatch<Service > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace vs

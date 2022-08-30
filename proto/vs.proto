@@ -24,6 +24,8 @@ service VsService {
 
   rpc ServiceStop(ServiceStopReq) returns (ServiceStopResp);
 
+  rpc ReleaseConnect(ReleaseConnectReq) returns (ReleaseConnectResp);
+
   rpc TagSnapshotValue(TagSnapshotValueReq) returns (TagSnapshotValueResp);
 
   rpc GetRTDataByBatch(GetRTDataByBatchReq) returns (GetRTDataByBatchResp);
@@ -182,6 +184,12 @@ message ServiceStopReq{
 }
 
 message ServiceStopResp{
+}
+
+message ReleaseConnectReq{
+}
+
+message ReleaseConnectResp{
 }
 
 message TagSnapshotValueReq{

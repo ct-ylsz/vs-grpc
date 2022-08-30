@@ -466,6 +466,28 @@ struct ServiceStopRespDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ServiceStopRespDefaultTypeInternal _ServiceStopResp_default_instance_;
+constexpr ReleaseConnectReq::ReleaseConnectReq(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct ReleaseConnectReqDefaultTypeInternal {
+  constexpr ReleaseConnectReqDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ReleaseConnectReqDefaultTypeInternal() {}
+  union {
+    ReleaseConnectReq _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReleaseConnectReqDefaultTypeInternal _ReleaseConnectReq_default_instance_;
+constexpr ReleaseConnectResp::ReleaseConnectResp(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized){}
+struct ReleaseConnectRespDefaultTypeInternal {
+  constexpr ReleaseConnectRespDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ReleaseConnectRespDefaultTypeInternal() {}
+  union {
+    ReleaseConnectResp _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ReleaseConnectRespDefaultTypeInternal _ReleaseConnectResp_default_instance_;
 constexpr TagSnapshotValueReq::TagSnapshotValueReq(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : tagname_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
@@ -563,7 +585,7 @@ struct GetRTDataByBatchRespDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT GetRTDataByBatchRespDefaultTypeInternal _GetRTDataByBatchResp_default_instance_;
 }  // namespace vs
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_vs_2eproto[41];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_vs_2eproto[43];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_vs_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_vs_2eproto = nullptr;
 
@@ -879,6 +901,18 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_vs_2eproto::offsets[] PROTOBUF
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::vs::ReleaseConnectReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::vs::ReleaseConnectResp, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::vs::TagSnapshotValueReq, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -975,13 +1009,15 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 289, -1, -1, sizeof(::vs::TagTimeSectionResp)},
   { 298, -1, -1, sizeof(::vs::ServiceStopReq)},
   { 304, -1, -1, sizeof(::vs::ServiceStopResp)},
-  { 310, -1, -1, sizeof(::vs::TagSnapshotValueReq)},
-  { 320, -1, -1, sizeof(::vs::TagSnapshotValueResp)},
-  { 328, -1, -1, sizeof(::vs::InsertData)},
-  { 339, -1, -1, sizeof(::vs::TagAppendRTTagDataByBatchReq)},
-  { 347, -1, -1, sizeof(::vs::TagAppendRTTagDataByBatchResp)},
-  { 355, -1, -1, sizeof(::vs::GetRTDataByBatchReq)},
-  { 363, -1, -1, sizeof(::vs::GetRTDataByBatchResp)},
+  { 310, -1, -1, sizeof(::vs::ReleaseConnectReq)},
+  { 316, -1, -1, sizeof(::vs::ReleaseConnectResp)},
+  { 322, -1, -1, sizeof(::vs::TagSnapshotValueReq)},
+  { 332, -1, -1, sizeof(::vs::TagSnapshotValueResp)},
+  { 340, -1, -1, sizeof(::vs::InsertData)},
+  { 351, -1, -1, sizeof(::vs::TagAppendRTTagDataByBatchReq)},
+  { 359, -1, -1, sizeof(::vs::TagAppendRTTagDataByBatchResp)},
+  { 367, -1, -1, sizeof(::vs::GetRTDataByBatchReq)},
+  { 375, -1, -1, sizeof(::vs::GetRTDataByBatchResp)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -1019,6 +1055,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_TagTimeSectionResp_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_ServiceStopReq_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_ServiceStopResp_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_ReleaseConnectReq_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_ReleaseConnectResp_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_TagSnapshotValueReq_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_TagSnapshotValueResp_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::vs::_InsertData_default_instance_),
@@ -1093,49 +1131,52 @@ const char descriptor_table_protodef_vs_2eproto[] PROTOBUF_SECTION_VARIABLE(prot
   "\r\n\005Start\030\003 \001(\005\022\013\n\003End\030\004 \001(\005\"J\n\022TagTimeSe"
   "ctionResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrInfo\022\r\n\005S"
   "tart\030\002 \001(\005\022\013\n\003End\030\003 \001(\005\"\020\n\016ServiceStopRe"
-  "q\"\021\n\017ServiceStopResp\"[\n\023TagSnapshotValue"
-  "Req\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\017\n\007TagName\030"
-  "\002 \001(\014\022\r\n\005Start\030\003 \001(\005\022\013\n\003End\030\004 \001(\005\"P\n\024Tag"
-  "SnapshotValueResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrI"
-  "nfo\022\036\n\006Values\030\002 \001(\0132\016.vs.VsValueMap\"X\n\nI"
-  "nsertData\022\014\n\004Type\030\001 \001(\005\022\016\n\006Status\030\002 \001(\005\022"
-  "\r\n\005Value\030\003 \001(\001\022\014\n\004Time\030\004 \001(\005\022\017\n\007TagName\030"
-  "\005 \001(\t\"U\n\034TagAppendRTTagDataByBatchReq\022\027\n"
-  "\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\034\n\004Data\030\002 \003(\0132\016.v"
-  "s.InsertData\"W\n\035TagAppendRTTagDataByBatc"
-  "hResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrInfo\022\034\n\004Data\030"
-  "\002 \003(\0132\016.vs.InsertData\"@\n\023GetRTDataByBatc"
-  "hReq\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\020\n\010TagName"
-  "s\030\002 \003(\t\"P\n\024GetRTDataByBatchResp\022\030\n\003Err\030\001"
-  " \001(\0132\013.vs.ErrInfo\022\036\n\006Values\030\002 \003(\0132\016.vs.V"
-  "sValueMap2\363\006\n\tVsService\0229\n\014TagValuesGet\022"
-  "\023.vs.TagValuesGetReq\032\024.vs.TagValuesGetRe"
-  "sp\022<\n\rTagFeatureGet\022\024.vs.TagFeatureGetRe"
-  "q\032\025.vs.TagFeatureGetResp\022\?\n\016TagTimeSecti"
-  "on\022\025.vs.TagTimeSectionReq\032\026.vs.TagTimeSe"
-  "ctionResp\0223\n\nTagDescGet\022\021.vs.TagDescGetR"
-  "eq\032\022.vs.TagDescGetResp\022\'\n\006DbPing\022\r.vs.Db"
-  "PingReq\032\016.vs.DbPingResp\022K\n\022TagCountByRan"
-  "geGet\022\031.vs.TagCountByRangeGetReq\032\032.vs.Ta"
-  "gCountByRangeGetResp\0223\n\nTagListGet\022\021.vs."
-  "TagListGetReq\032\022.vs.TagListGetResp\022N\n\023Tag"
-  "ValuesByCountGet\022\032.vs.TagValuesByCountGe"
-  "tReq\032\033.vs.TagValuesByCountGetResp\0226\n\013Ser"
-  "viceStop\022\022.vs.ServiceStopReq\032\023.vs.Servic"
-  "eStopResp\022E\n\020TagSnapshotValue\022\027.vs.TagSn"
-  "apshotValueReq\032\030.vs.TagSnapshotValueResp"
-  "\022E\n\020GetRTDataByBatch\022\027.vs.GetRTDataByBat"
-  "chReq\032\030.vs.GetRTDataByBatchResp\022T\n\025TagFr"
-  "actureSectionGet\022\034.vs.TagFractureSection"
-  "GetReq\032\035.vs.TagFractureSectionGetResp\022`\n"
-  "\031TagAppendRTTagDataByBatch\022 .vs.TagAppen"
-  "dRTTagDataByBatchReq\032!.vs.TagAppendRTTag"
-  "DataByBatchRespB\007Z\005pb/vsb\006proto3"
+  "q\"\021\n\017ServiceStopResp\"\023\n\021ReleaseConnectRe"
+  "q\"\024\n\022ReleaseConnectResp\"[\n\023TagSnapshotVa"
+  "lueReq\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\017\n\007TagNa"
+  "me\030\002 \001(\014\022\r\n\005Start\030\003 \001(\005\022\013\n\003End\030\004 \001(\005\"P\n\024"
+  "TagSnapshotValueResp\022\030\n\003Err\030\001 \001(\0132\013.vs.E"
+  "rrInfo\022\036\n\006Values\030\002 \001(\0132\016.vs.VsValueMap\"X"
+  "\n\nInsertData\022\014\n\004Type\030\001 \001(\005\022\016\n\006Status\030\002 \001"
+  "(\005\022\r\n\005Value\030\003 \001(\001\022\014\n\004Time\030\004 \001(\005\022\017\n\007TagNa"
+  "me\030\005 \001(\t\"U\n\034TagAppendRTTagDataByBatchReq"
+  "\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\034\n\004Data\030\002 \003(\0132"
+  "\016.vs.InsertData\"W\n\035TagAppendRTTagDataByB"
+  "atchResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrInfo\022\034\n\004Da"
+  "ta\030\002 \003(\0132\016.vs.InsertData\"@\n\023GetRTDataByB"
+  "atchReq\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\020\n\010TagN"
+  "ames\030\002 \003(\t\"P\n\024GetRTDataByBatchResp\022\030\n\003Er"
+  "r\030\001 \001(\0132\013.vs.ErrInfo\022\036\n\006Values\030\002 \003(\0132\016.v"
+  "s.VsValueMap2\264\007\n\tVsService\0229\n\014TagValuesG"
+  "et\022\023.vs.TagValuesGetReq\032\024.vs.TagValuesGe"
+  "tResp\022<\n\rTagFeatureGet\022\024.vs.TagFeatureGe"
+  "tReq\032\025.vs.TagFeatureGetResp\022\?\n\016TagTimeSe"
+  "ction\022\025.vs.TagTimeSectionReq\032\026.vs.TagTim"
+  "eSectionResp\0223\n\nTagDescGet\022\021.vs.TagDescG"
+  "etReq\032\022.vs.TagDescGetResp\022\'\n\006DbPing\022\r.vs"
+  ".DbPingReq\032\016.vs.DbPingResp\022K\n\022TagCountBy"
+  "RangeGet\022\031.vs.TagCountByRangeGetReq\032\032.vs"
+  ".TagCountByRangeGetResp\0223\n\nTagListGet\022\021."
+  "vs.TagListGetReq\032\022.vs.TagListGetResp\022N\n\023"
+  "TagValuesByCountGet\022\032.vs.TagValuesByCoun"
+  "tGetReq\032\033.vs.TagValuesByCountGetResp\0226\n\013"
+  "ServiceStop\022\022.vs.ServiceStopReq\032\023.vs.Ser"
+  "viceStopResp\022\?\n\016ReleaseConnect\022\025.vs.Rele"
+  "aseConnectReq\032\026.vs.ReleaseConnectResp\022E\n"
+  "\020TagSnapshotValue\022\027.vs.TagSnapshotValueR"
+  "eq\032\030.vs.TagSnapshotValueResp\022E\n\020GetRTDat"
+  "aByBatch\022\027.vs.GetRTDataByBatchReq\032\030.vs.G"
+  "etRTDataByBatchResp\022T\n\025TagFractureSectio"
+  "nGet\022\034.vs.TagFractureSectionGetReq\032\035.vs."
+  "TagFractureSectionGetResp\022`\n\031TagAppendRT"
+  "TagDataByBatch\022 .vs.TagAppendRTTagDataBy"
+  "BatchReq\032!.vs.TagAppendRTTagDataByBatchR"
+  "espB\007Z\005pb/vsb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_vs_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_vs_2eproto = {
-  false, false, 4072, descriptor_table_protodef_vs_2eproto, "vs.proto", 
-  &descriptor_table_vs_2eproto_once, nullptr, 0, 41,
+  false, false, 4180, descriptor_table_protodef_vs_2eproto, "vs.proto", 
+  &descriptor_table_vs_2eproto_once, nullptr, 0, 43,
   schemas, file_default_instances, TableStruct_vs_2eproto::offsets,
   file_level_metadata_vs_2eproto, file_level_enum_descriptors_vs_2eproto, file_level_service_descriptors_vs_2eproto,
 };
@@ -7885,6 +7926,84 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ServiceStopResp::GetClassData(
 
 // ===================================================================
 
+class ReleaseConnectReq::_Internal {
+ public:
+};
+
+ReleaseConnectReq::ReleaseConnectReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:vs.ReleaseConnectReq)
+}
+ReleaseConnectReq::ReleaseConnectReq(const ReleaseConnectReq& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:vs.ReleaseConnectReq)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReleaseConnectReq::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReleaseConnectReq::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReleaseConnectReq::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
+      file_level_metadata_vs_2eproto[34]);
+}
+
+// ===================================================================
+
+class ReleaseConnectResp::_Internal {
+ public:
+};
+
+ReleaseConnectResp::ReleaseConnectResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:vs.ReleaseConnectResp)
+}
+ReleaseConnectResp::ReleaseConnectResp(const ReleaseConnectResp& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:vs.ReleaseConnectResp)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReleaseConnectResp::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReleaseConnectResp::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReleaseConnectResp::GetMetadata() const {
+  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
+      &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
+      file_level_metadata_vs_2eproto[35]);
+}
+
+// ===================================================================
+
 class TagSnapshotValueReq::_Internal {
  public:
   static const ::vs::KVInfo& kvs(const TagSnapshotValueReq* msg);
@@ -8173,7 +8292,7 @@ void TagSnapshotValueReq::InternalSwap(TagSnapshotValueReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TagSnapshotValueReq::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
-      file_level_metadata_vs_2eproto[34]);
+      file_level_metadata_vs_2eproto[36]);
 }
 
 // ===================================================================
@@ -8417,7 +8536,7 @@ void TagSnapshotValueResp::InternalSwap(TagSnapshotValueResp* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TagSnapshotValueResp::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
-      file_level_metadata_vs_2eproto[35]);
+      file_level_metadata_vs_2eproto[37]);
 }
 
 // ===================================================================
@@ -8718,7 +8837,7 @@ void InsertData::InternalSwap(InsertData* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata InsertData::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
-      file_level_metadata_vs_2eproto[36]);
+      file_level_metadata_vs_2eproto[38]);
 }
 
 // ===================================================================
@@ -8946,7 +9065,7 @@ void TagAppendRTTagDataByBatchReq::InternalSwap(TagAppendRTTagDataByBatchReq* ot
 ::PROTOBUF_NAMESPACE_ID::Metadata TagAppendRTTagDataByBatchReq::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
-      file_level_metadata_vs_2eproto[37]);
+      file_level_metadata_vs_2eproto[39]);
 }
 
 // ===================================================================
@@ -9174,7 +9293,7 @@ void TagAppendRTTagDataByBatchResp::InternalSwap(TagAppendRTTagDataByBatchResp* 
 ::PROTOBUF_NAMESPACE_ID::Metadata TagAppendRTTagDataByBatchResp::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
-      file_level_metadata_vs_2eproto[38]);
+      file_level_metadata_vs_2eproto[40]);
 }
 
 // ===================================================================
@@ -9407,7 +9526,7 @@ void GetRTDataByBatchReq::InternalSwap(GetRTDataByBatchReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRTDataByBatchReq::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
-      file_level_metadata_vs_2eproto[39]);
+      file_level_metadata_vs_2eproto[41]);
 }
 
 // ===================================================================
@@ -9635,7 +9754,7 @@ void GetRTDataByBatchResp::InternalSwap(GetRTDataByBatchResp* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetRTDataByBatchResp::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_vs_2eproto_getter, &descriptor_table_vs_2eproto_once,
-      file_level_metadata_vs_2eproto[40]);
+      file_level_metadata_vs_2eproto[42]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -9742,6 +9861,12 @@ template<> PROTOBUF_NOINLINE ::vs::ServiceStopReq* Arena::CreateMaybeMessage< ::
 }
 template<> PROTOBUF_NOINLINE ::vs::ServiceStopResp* Arena::CreateMaybeMessage< ::vs::ServiceStopResp >(Arena* arena) {
   return Arena::CreateMessageInternal< ::vs::ServiceStopResp >(arena);
+}
+template<> PROTOBUF_NOINLINE ::vs::ReleaseConnectReq* Arena::CreateMaybeMessage< ::vs::ReleaseConnectReq >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vs::ReleaseConnectReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::vs::ReleaseConnectResp* Arena::CreateMaybeMessage< ::vs::ReleaseConnectResp >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::vs::ReleaseConnectResp >(arena);
 }
 template<> PROTOBUF_NOINLINE ::vs::TagSnapshotValueReq* Arena::CreateMaybeMessage< ::vs::TagSnapshotValueReq >(Arena* arena) {
   return Arena::CreateMessageInternal< ::vs::TagSnapshotValueReq >(arena);
