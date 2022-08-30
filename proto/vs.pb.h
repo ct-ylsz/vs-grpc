@@ -50,7 +50,7 @@ struct TableStruct_vs_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[39]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[41]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -67,6 +67,12 @@ extern DbPingRespDefaultTypeInternal _DbPingResp_default_instance_;
 class ErrInfo;
 struct ErrInfoDefaultTypeInternal;
 extern ErrInfoDefaultTypeInternal _ErrInfo_default_instance_;
+class GetRTDataByBatchReq;
+struct GetRTDataByBatchReqDefaultTypeInternal;
+extern GetRTDataByBatchReqDefaultTypeInternal _GetRTDataByBatchReq_default_instance_;
+class GetRTDataByBatchResp;
+struct GetRTDataByBatchRespDefaultTypeInternal;
+extern GetRTDataByBatchRespDefaultTypeInternal _GetRTDataByBatchResp_default_instance_;
 class HeadReq;
 struct HeadReqDefaultTypeInternal;
 extern HeadReqDefaultTypeInternal _HeadReq_default_instance_;
@@ -180,6 +186,8 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::vs::DbPingReq* Arena::CreateMaybeMessage<::vs::DbPingReq>(Arena*);
 template<> ::vs::DbPingResp* Arena::CreateMaybeMessage<::vs::DbPingResp>(Arena*);
 template<> ::vs::ErrInfo* Arena::CreateMaybeMessage<::vs::ErrInfo>(Arena*);
+template<> ::vs::GetRTDataByBatchReq* Arena::CreateMaybeMessage<::vs::GetRTDataByBatchReq>(Arena*);
+template<> ::vs::GetRTDataByBatchResp* Arena::CreateMaybeMessage<::vs::GetRTDataByBatchResp>(Arena*);
 template<> ::vs::HeadReq* Arena::CreateMaybeMessage<::vs::HeadReq>(Arena*);
 template<> ::vs::InsertData* Arena::CreateMaybeMessage<::vs::InsertData>(Arena*);
 template<> ::vs::KVInfo* Arena::CreateMaybeMessage<::vs::KVInfo>(Arena*);
@@ -5912,6 +5920,356 @@ class TagAppendRTTagDataByBatchResp final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_vs_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GetRTDataByBatchReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vs.GetRTDataByBatchReq) */ {
+ public:
+  inline GetRTDataByBatchReq() : GetRTDataByBatchReq(nullptr) {}
+  ~GetRTDataByBatchReq() override;
+  explicit constexpr GetRTDataByBatchReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetRTDataByBatchReq(const GetRTDataByBatchReq& from);
+  GetRTDataByBatchReq(GetRTDataByBatchReq&& from) noexcept
+    : GetRTDataByBatchReq() {
+    *this = ::std::move(from);
+  }
+
+  inline GetRTDataByBatchReq& operator=(const GetRTDataByBatchReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetRTDataByBatchReq& operator=(GetRTDataByBatchReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetRTDataByBatchReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetRTDataByBatchReq* internal_default_instance() {
+    return reinterpret_cast<const GetRTDataByBatchReq*>(
+               &_GetRTDataByBatchReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    39;
+
+  friend void swap(GetRTDataByBatchReq& a, GetRTDataByBatchReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetRTDataByBatchReq* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetRTDataByBatchReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetRTDataByBatchReq* New() const final {
+    return new GetRTDataByBatchReq();
+  }
+
+  GetRTDataByBatchReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetRTDataByBatchReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetRTDataByBatchReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetRTDataByBatchReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetRTDataByBatchReq* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.GetRTDataByBatchReq";
+  }
+  protected:
+  explicit GetRTDataByBatchReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagNamesFieldNumber = 2,
+    kKvsFieldNumber = 1,
+  };
+  // repeated string TagNames = 2;
+  int tagnames_size() const;
+  private:
+  int _internal_tagnames_size() const;
+  public:
+  void clear_tagnames();
+  const std::string& tagnames(int index) const;
+  std::string* mutable_tagnames(int index);
+  void set_tagnames(int index, const std::string& value);
+  void set_tagnames(int index, std::string&& value);
+  void set_tagnames(int index, const char* value);
+  void set_tagnames(int index, const char* value, size_t size);
+  std::string* add_tagnames();
+  void add_tagnames(const std::string& value);
+  void add_tagnames(std::string&& value);
+  void add_tagnames(const char* value);
+  void add_tagnames(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tagnames() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tagnames();
+  private:
+  const std::string& _internal_tagnames(int index) const;
+  std::string* _internal_add_tagnames();
+  public:
+
+  // .vs.KVInfo Kvs = 1;
+  bool has_kvs() const;
+  private:
+  bool _internal_has_kvs() const;
+  public:
+  void clear_kvs();
+  const ::vs::KVInfo& kvs() const;
+  PROTOBUF_MUST_USE_RESULT ::vs::KVInfo* release_kvs();
+  ::vs::KVInfo* mutable_kvs();
+  void set_allocated_kvs(::vs::KVInfo* kvs);
+  private:
+  const ::vs::KVInfo& _internal_kvs() const;
+  ::vs::KVInfo* _internal_mutable_kvs();
+  public:
+  void unsafe_arena_set_allocated_kvs(
+      ::vs::KVInfo* kvs);
+  ::vs::KVInfo* unsafe_arena_release_kvs();
+
+  // @@protoc_insertion_point(class_scope:vs.GetRTDataByBatchReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tagnames_;
+  ::vs::KVInfo* kvs_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetRTDataByBatchResp final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:vs.GetRTDataByBatchResp) */ {
+ public:
+  inline GetRTDataByBatchResp() : GetRTDataByBatchResp(nullptr) {}
+  ~GetRTDataByBatchResp() override;
+  explicit constexpr GetRTDataByBatchResp(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetRTDataByBatchResp(const GetRTDataByBatchResp& from);
+  GetRTDataByBatchResp(GetRTDataByBatchResp&& from) noexcept
+    : GetRTDataByBatchResp() {
+    *this = ::std::move(from);
+  }
+
+  inline GetRTDataByBatchResp& operator=(const GetRTDataByBatchResp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetRTDataByBatchResp& operator=(GetRTDataByBatchResp&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetRTDataByBatchResp& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetRTDataByBatchResp* internal_default_instance() {
+    return reinterpret_cast<const GetRTDataByBatchResp*>(
+               &_GetRTDataByBatchResp_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    40;
+
+  friend void swap(GetRTDataByBatchResp& a, GetRTDataByBatchResp& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetRTDataByBatchResp* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetRTDataByBatchResp* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetRTDataByBatchResp* New() const final {
+    return new GetRTDataByBatchResp();
+  }
+
+  GetRTDataByBatchResp* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetRTDataByBatchResp>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetRTDataByBatchResp& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetRTDataByBatchResp& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetRTDataByBatchResp* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "vs.GetRTDataByBatchResp";
+  }
+  protected:
+  explicit GetRTDataByBatchResp(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValuesFieldNumber = 2,
+    kErrFieldNumber = 1,
+  };
+  // repeated .vs.VsValueMap Values = 2;
+  int values_size() const;
+  private:
+  int _internal_values_size() const;
+  public:
+  void clear_values();
+  ::vs::VsValueMap* mutable_values(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::vs::VsValueMap >*
+      mutable_values();
+  private:
+  const ::vs::VsValueMap& _internal_values(int index) const;
+  ::vs::VsValueMap* _internal_add_values();
+  public:
+  const ::vs::VsValueMap& values(int index) const;
+  ::vs::VsValueMap* add_values();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::vs::VsValueMap >&
+      values() const;
+
+  // .vs.ErrInfo Err = 1;
+  bool has_err() const;
+  private:
+  bool _internal_has_err() const;
+  public:
+  void clear_err();
+  const ::vs::ErrInfo& err() const;
+  PROTOBUF_MUST_USE_RESULT ::vs::ErrInfo* release_err();
+  ::vs::ErrInfo* mutable_err();
+  void set_allocated_err(::vs::ErrInfo* err);
+  private:
+  const ::vs::ErrInfo& _internal_err() const;
+  ::vs::ErrInfo* _internal_mutable_err();
+  public:
+  void unsafe_arena_set_allocated_err(
+      ::vs::ErrInfo* err);
+  ::vs::ErrInfo* unsafe_arena_release_err();
+
+  // @@protoc_insertion_point(class_scope:vs.GetRTDataByBatchResp)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::vs::VsValueMap > values_;
+  ::vs::ErrInfo* err_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_vs_2eproto;
+};
 // ===================================================================
 
 
@@ -10094,9 +10452,316 @@ TagAppendRTTagDataByBatchResp::data() const {
   return data_;
 }
 
+// -------------------------------------------------------------------
+
+// GetRTDataByBatchReq
+
+// .vs.KVInfo Kvs = 1;
+inline bool GetRTDataByBatchReq::_internal_has_kvs() const {
+  return this != internal_default_instance() && kvs_ != nullptr;
+}
+inline bool GetRTDataByBatchReq::has_kvs() const {
+  return _internal_has_kvs();
+}
+inline void GetRTDataByBatchReq::clear_kvs() {
+  if (GetArenaForAllocation() == nullptr && kvs_ != nullptr) {
+    delete kvs_;
+  }
+  kvs_ = nullptr;
+}
+inline const ::vs::KVInfo& GetRTDataByBatchReq::_internal_kvs() const {
+  const ::vs::KVInfo* p = kvs_;
+  return p != nullptr ? *p : reinterpret_cast<const ::vs::KVInfo&>(
+      ::vs::_KVInfo_default_instance_);
+}
+inline const ::vs::KVInfo& GetRTDataByBatchReq::kvs() const {
+  // @@protoc_insertion_point(field_get:vs.GetRTDataByBatchReq.Kvs)
+  return _internal_kvs();
+}
+inline void GetRTDataByBatchReq::unsafe_arena_set_allocated_kvs(
+    ::vs::KVInfo* kvs) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(kvs_);
+  }
+  kvs_ = kvs;
+  if (kvs) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:vs.GetRTDataByBatchReq.Kvs)
+}
+inline ::vs::KVInfo* GetRTDataByBatchReq::release_kvs() {
+  
+  ::vs::KVInfo* temp = kvs_;
+  kvs_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::vs::KVInfo* GetRTDataByBatchReq::unsafe_arena_release_kvs() {
+  // @@protoc_insertion_point(field_release:vs.GetRTDataByBatchReq.Kvs)
+  
+  ::vs::KVInfo* temp = kvs_;
+  kvs_ = nullptr;
+  return temp;
+}
+inline ::vs::KVInfo* GetRTDataByBatchReq::_internal_mutable_kvs() {
+  
+  if (kvs_ == nullptr) {
+    auto* p = CreateMaybeMessage<::vs::KVInfo>(GetArenaForAllocation());
+    kvs_ = p;
+  }
+  return kvs_;
+}
+inline ::vs::KVInfo* GetRTDataByBatchReq::mutable_kvs() {
+  ::vs::KVInfo* _msg = _internal_mutable_kvs();
+  // @@protoc_insertion_point(field_mutable:vs.GetRTDataByBatchReq.Kvs)
+  return _msg;
+}
+inline void GetRTDataByBatchReq::set_allocated_kvs(::vs::KVInfo* kvs) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete kvs_;
+  }
+  if (kvs) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::vs::KVInfo>::GetOwningArena(kvs);
+    if (message_arena != submessage_arena) {
+      kvs = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, kvs, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  kvs_ = kvs;
+  // @@protoc_insertion_point(field_set_allocated:vs.GetRTDataByBatchReq.Kvs)
+}
+
+// repeated string TagNames = 2;
+inline int GetRTDataByBatchReq::_internal_tagnames_size() const {
+  return tagnames_.size();
+}
+inline int GetRTDataByBatchReq::tagnames_size() const {
+  return _internal_tagnames_size();
+}
+inline void GetRTDataByBatchReq::clear_tagnames() {
+  tagnames_.Clear();
+}
+inline std::string* GetRTDataByBatchReq::add_tagnames() {
+  std::string* _s = _internal_add_tagnames();
+  // @@protoc_insertion_point(field_add_mutable:vs.GetRTDataByBatchReq.TagNames)
+  return _s;
+}
+inline const std::string& GetRTDataByBatchReq::_internal_tagnames(int index) const {
+  return tagnames_.Get(index);
+}
+inline const std::string& GetRTDataByBatchReq::tagnames(int index) const {
+  // @@protoc_insertion_point(field_get:vs.GetRTDataByBatchReq.TagNames)
+  return _internal_tagnames(index);
+}
+inline std::string* GetRTDataByBatchReq::mutable_tagnames(int index) {
+  // @@protoc_insertion_point(field_mutable:vs.GetRTDataByBatchReq.TagNames)
+  return tagnames_.Mutable(index);
+}
+inline void GetRTDataByBatchReq::set_tagnames(int index, const std::string& value) {
+  tagnames_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:vs.GetRTDataByBatchReq.TagNames)
+}
+inline void GetRTDataByBatchReq::set_tagnames(int index, std::string&& value) {
+  tagnames_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:vs.GetRTDataByBatchReq.TagNames)
+}
+inline void GetRTDataByBatchReq::set_tagnames(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tagnames_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:vs.GetRTDataByBatchReq.TagNames)
+}
+inline void GetRTDataByBatchReq::set_tagnames(int index, const char* value, size_t size) {
+  tagnames_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:vs.GetRTDataByBatchReq.TagNames)
+}
+inline std::string* GetRTDataByBatchReq::_internal_add_tagnames() {
+  return tagnames_.Add();
+}
+inline void GetRTDataByBatchReq::add_tagnames(const std::string& value) {
+  tagnames_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:vs.GetRTDataByBatchReq.TagNames)
+}
+inline void GetRTDataByBatchReq::add_tagnames(std::string&& value) {
+  tagnames_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:vs.GetRTDataByBatchReq.TagNames)
+}
+inline void GetRTDataByBatchReq::add_tagnames(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tagnames_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:vs.GetRTDataByBatchReq.TagNames)
+}
+inline void GetRTDataByBatchReq::add_tagnames(const char* value, size_t size) {
+  tagnames_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:vs.GetRTDataByBatchReq.TagNames)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+GetRTDataByBatchReq::tagnames() const {
+  // @@protoc_insertion_point(field_list:vs.GetRTDataByBatchReq.TagNames)
+  return tagnames_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+GetRTDataByBatchReq::mutable_tagnames() {
+  // @@protoc_insertion_point(field_mutable_list:vs.GetRTDataByBatchReq.TagNames)
+  return &tagnames_;
+}
+
+// -------------------------------------------------------------------
+
+// GetRTDataByBatchResp
+
+// .vs.ErrInfo Err = 1;
+inline bool GetRTDataByBatchResp::_internal_has_err() const {
+  return this != internal_default_instance() && err_ != nullptr;
+}
+inline bool GetRTDataByBatchResp::has_err() const {
+  return _internal_has_err();
+}
+inline void GetRTDataByBatchResp::clear_err() {
+  if (GetArenaForAllocation() == nullptr && err_ != nullptr) {
+    delete err_;
+  }
+  err_ = nullptr;
+}
+inline const ::vs::ErrInfo& GetRTDataByBatchResp::_internal_err() const {
+  const ::vs::ErrInfo* p = err_;
+  return p != nullptr ? *p : reinterpret_cast<const ::vs::ErrInfo&>(
+      ::vs::_ErrInfo_default_instance_);
+}
+inline const ::vs::ErrInfo& GetRTDataByBatchResp::err() const {
+  // @@protoc_insertion_point(field_get:vs.GetRTDataByBatchResp.Err)
+  return _internal_err();
+}
+inline void GetRTDataByBatchResp::unsafe_arena_set_allocated_err(
+    ::vs::ErrInfo* err) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(err_);
+  }
+  err_ = err;
+  if (err) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:vs.GetRTDataByBatchResp.Err)
+}
+inline ::vs::ErrInfo* GetRTDataByBatchResp::release_err() {
+  
+  ::vs::ErrInfo* temp = err_;
+  err_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::vs::ErrInfo* GetRTDataByBatchResp::unsafe_arena_release_err() {
+  // @@protoc_insertion_point(field_release:vs.GetRTDataByBatchResp.Err)
+  
+  ::vs::ErrInfo* temp = err_;
+  err_ = nullptr;
+  return temp;
+}
+inline ::vs::ErrInfo* GetRTDataByBatchResp::_internal_mutable_err() {
+  
+  if (err_ == nullptr) {
+    auto* p = CreateMaybeMessage<::vs::ErrInfo>(GetArenaForAllocation());
+    err_ = p;
+  }
+  return err_;
+}
+inline ::vs::ErrInfo* GetRTDataByBatchResp::mutable_err() {
+  ::vs::ErrInfo* _msg = _internal_mutable_err();
+  // @@protoc_insertion_point(field_mutable:vs.GetRTDataByBatchResp.Err)
+  return _msg;
+}
+inline void GetRTDataByBatchResp::set_allocated_err(::vs::ErrInfo* err) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete err_;
+  }
+  if (err) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper<::vs::ErrInfo>::GetOwningArena(err);
+    if (message_arena != submessage_arena) {
+      err = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, err, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  err_ = err;
+  // @@protoc_insertion_point(field_set_allocated:vs.GetRTDataByBatchResp.Err)
+}
+
+// repeated .vs.VsValueMap Values = 2;
+inline int GetRTDataByBatchResp::_internal_values_size() const {
+  return values_.size();
+}
+inline int GetRTDataByBatchResp::values_size() const {
+  return _internal_values_size();
+}
+inline void GetRTDataByBatchResp::clear_values() {
+  values_.Clear();
+}
+inline ::vs::VsValueMap* GetRTDataByBatchResp::mutable_values(int index) {
+  // @@protoc_insertion_point(field_mutable:vs.GetRTDataByBatchResp.Values)
+  return values_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::vs::VsValueMap >*
+GetRTDataByBatchResp::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_list:vs.GetRTDataByBatchResp.Values)
+  return &values_;
+}
+inline const ::vs::VsValueMap& GetRTDataByBatchResp::_internal_values(int index) const {
+  return values_.Get(index);
+}
+inline const ::vs::VsValueMap& GetRTDataByBatchResp::values(int index) const {
+  // @@protoc_insertion_point(field_get:vs.GetRTDataByBatchResp.Values)
+  return _internal_values(index);
+}
+inline ::vs::VsValueMap* GetRTDataByBatchResp::_internal_add_values() {
+  return values_.Add();
+}
+inline ::vs::VsValueMap* GetRTDataByBatchResp::add_values() {
+  ::vs::VsValueMap* _add = _internal_add_values();
+  // @@protoc_insertion_point(field_add:vs.GetRTDataByBatchResp.Values)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::vs::VsValueMap >&
+GetRTDataByBatchResp::values() const {
+  // @@protoc_insertion_point(field_list:vs.GetRTDataByBatchResp.Values)
+  return values_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -11,6 +11,7 @@
 #ifdef WIN32
 
 #include <Windows.h>
+
 pInitConnect m_InitConnect;
 pReleaseConnect m_ReleaseConnect;
 pGetRTDataByTagName m_GetRTDataByTagName;
@@ -716,5 +717,37 @@ DbError DbVs::TagDataInsert(InsertData *data, int count) {
 //        return err;
 //    }
     return err;
+}
+
+DbError DbVs::GetRTDataByBatch(std::vector<std::string> *names, std::vector<TagData> *tagValues) {
+    DbError err;
+    log_->Info(boost::format("start to collect GetRTDataByBatch ").str());
+    if (names->empty()) {
+        err.err_code = kArgBad;
+        GetErr(&err);
+        return err;
+    }
+    auto *tag = new TagData[names->size()];
+
+#ifdef WIN32
+    err.err_code = m_GetRTDataByBatch(reinterpret_cast<char **>(names->data()), tag, 1);
+#else
+    err.err_code = GetRTDataByBatch(reinterpret_cast<char **>(names->data()), tag, names->size());
+#endif
+    if (err.err_code != 0) {
+        GetErr(&err);
+        log_->Error((boost::format("get value err :%1%,%2%") % err.err_code % err.err_msg).str());
+        delete[] tag;
+        return {err.err_code, err.err_msg};
+    } else {
+        log_->Info((boost::format("get value success ")).str());
+        for (int i = 0; i < names->size(); i++) {
+            auto x = tag[i];
+            tagValues->push_back(tag[i]);
+        }
+    }
+    log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
+    log_->Info((boost::format("over")).str());
+    return {err.err_code, err.err_msg};
 }
 

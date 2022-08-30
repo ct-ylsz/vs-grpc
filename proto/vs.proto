@@ -26,6 +26,8 @@ service VsService {
 
   rpc TagSnapshotValue(TagSnapshotValueReq) returns (TagSnapshotValueResp);
 
+  rpc GetRTDataByBatch(GetRTDataByBatchReq) returns (GetRTDataByBatchResp);
+
   rpc TagFractureSectionGet(TagFractureSectionGetReq) returns (TagFractureSectionGetResp);
 
   rpc TagAppendRTTagDataByBatch(TagAppendRTTagDataByBatchReq) returns (TagAppendRTTagDataByBatchResp);
@@ -210,4 +212,14 @@ message TagAppendRTTagDataByBatchReq{
 message TagAppendRTTagDataByBatchResp{
   ErrInfo Err = 1;
   repeated InsertData Data = 2;
+}
+
+message GetRTDataByBatchReq{
+  KVInfo Kvs = 1;
+  repeated string TagNames = 2;
+}
+
+message GetRTDataByBatchResp{
+  ErrInfo Err = 1;
+  repeated VsValueMap Values = 2;
 }

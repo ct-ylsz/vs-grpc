@@ -32,6 +32,7 @@ static const char* VsService_method_names[] = {
   "/vs.VsService/TagValuesByCountGet",
   "/vs.VsService/ServiceStop",
   "/vs.VsService/TagSnapshotValue",
+  "/vs.VsService/GetRTDataByBatch",
   "/vs.VsService/TagFractureSectionGet",
   "/vs.VsService/TagAppendRTTagDataByBatch",
 };
@@ -53,8 +54,9 @@ VsService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel,
   , rpcmethod_TagValuesByCountGet_(VsService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ServiceStop_(VsService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_TagSnapshotValue_(VsService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TagFractureSectionGet_(VsService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_TagAppendRTTagDataByBatch_(VsService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRTDataByBatch_(VsService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TagFractureSectionGet_(VsService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_TagAppendRTTagDataByBatch_(VsService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status VsService::Stub::TagValuesGet(::grpc::ClientContext* context, const ::vs::TagValuesGetReq& request, ::vs::TagValuesGetResp* response) {
@@ -287,6 +289,29 @@ void VsService::Stub::async::TagSnapshotValue(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status VsService::Stub::GetRTDataByBatch(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq& request, ::vs::GetRTDataByBatchResp* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetRTDataByBatch_, context, request, response);
+}
+
+void VsService::Stub::async::GetRTDataByBatch(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq* request, ::vs::GetRTDataByBatchResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRTDataByBatch_, context, request, response, std::move(f));
+}
+
+void VsService::Stub::async::GetRTDataByBatch(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq* request, ::vs::GetRTDataByBatchResp* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetRTDataByBatch_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::GetRTDataByBatchResp>* VsService::Stub::PrepareAsyncGetRTDataByBatchRaw(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::vs::GetRTDataByBatchResp, ::vs::GetRTDataByBatchReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetRTDataByBatch_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::vs::GetRTDataByBatchResp>* VsService::Stub::AsyncGetRTDataByBatchRaw(::grpc::ClientContext* context, const ::vs::GetRTDataByBatchReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetRTDataByBatchRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 ::grpc::Status VsService::Stub::TagFractureSectionGet(::grpc::ClientContext* context, const ::vs::TagFractureSectionGetReq& request, ::vs::TagFractureSectionGetResp* response) {
   return ::grpc::internal::BlockingUnaryCall< ::vs::TagFractureSectionGetReq, ::vs::TagFractureSectionGetResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_TagFractureSectionGet_, context, request, response);
 }
@@ -437,6 +462,16 @@ VsService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       VsService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::GetRTDataByBatchReq, ::vs::GetRTDataByBatchResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](VsService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::vs::GetRTDataByBatchReq* req,
+             ::vs::GetRTDataByBatchResp* resp) {
+               return service->GetRTDataByBatch(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      VsService_method_names[11],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::TagFractureSectionGetReq, ::vs::TagFractureSectionGetResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VsService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -445,7 +480,7 @@ VsService::Service::Service() {
                return service->TagFractureSectionGet(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      VsService_method_names[11],
+      VsService_method_names[12],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< VsService::Service, ::vs::TagAppendRTTagDataByBatchReq, ::vs::TagAppendRTTagDataByBatchResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](VsService::Service* service,
@@ -523,6 +558,13 @@ VsService::Service::~Service() {
 }
 
 ::grpc::Status VsService::Service::TagSnapshotValue(::grpc::ServerContext* context, const ::vs::TagSnapshotValueReq* request, ::vs::TagSnapshotValueResp* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status VsService::Service::GetRTDataByBatch(::grpc::ServerContext* context, const ::vs::GetRTDataByBatchReq* request, ::vs::GetRTDataByBatchResp* response) {
   (void) context;
   (void) request;
   (void) response;

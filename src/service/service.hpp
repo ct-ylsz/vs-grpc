@@ -693,6 +693,54 @@ public:
         return Status::OK;
     }
 
+
+    // 批量获取快照值
+    Status GetRTDataByBatch(ServerContext *context, const GetRTDataByBatchReq *request,
+                            GetRTDataByBatchResp *response) override {
+        log_->Debug((boost::format("GetRTDataByBatch:%1%") % request->DebugString()).str());
+        if (request->kvs().kvs().empty() || request->tagnames().empty()) {
+            log_->Error((boost::format("TagValuesGet:%1%") % request->tagnames().data()).str());
+            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+        }
+
+        auto names = new std::vector<std::string>();
+        for (const auto &i: request->tagnames()) {
+            names->push_back(i);
+        }
+
+        auto err_c = configSetInternal(request->kvs().kvs());
+        if (err_c != 0) {
+            log_->Error("configSetInternal(kvs);");
+            return {StatusCode(err_c), "write config_file failed"};
+        }
+
+        char dll_path[128];
+        char config_path[128];
+        strcpy(dll_path, "./");
+        strcpy(config_path, "./");
+        auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
+        if (err.err_code != 0) {
+            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), "connect database failed"};
+        }
+
+        auto *data = new std::vector<TagData>();
+        err = DbVs::GetRTDataByBatch(names, data);
+        if (err.err_code != 0) {
+            log_->Error((boost::format("get snapshot failed :%1%:%2%") % err.err_code % err.err_msg).str());
+            return {StatusCode(err.err_code), "get snapshot failed"};
+        }
+
+        for (auto &value: *data) {
+            auto t = response->add_values()->mutable_valuemap();
+            (*t)["ts"] = std::to_string(value.time);
+            (*t)["value"] = std::to_string(value.value);
+            (*t)["status"] = std::to_string(value.status);
+        }
+
+        return Status::OK;
+    }
+
     // 获取断面值
     Status TagFractureSectionGet(ServerContext *context, const TagFractureSectionGetReq *request,
                                  TagFractureSectionGetResp *response) override {
