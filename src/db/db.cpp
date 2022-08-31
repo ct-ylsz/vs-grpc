@@ -129,10 +129,7 @@ DbError DbVs::DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2)
     strParameters[1] = configPath;
     strParameters[2] = opt1;
     strParameters[3] = opt2;
-    std::call_once(once2_, [](char *strParameters[4], DbError *err) {
-        err->err_code = m_InitConnect(strParameters, 4);
-    }, strParameters, &err);
-
+    err.err_code = m_InitConnect(strParameters, 4);
 #ifdef WIN32
 
 //    std::call_once(once2_, [](char *para[4], DbError *err1) {
@@ -385,7 +382,7 @@ DbVs::TagValuesGet(ReadHiDataRequest req, long &count, std::vector<TagData> *tag
             tagValues->push_back(tag[i]);
         }
     }
-    delete[] tag;
+    // delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     return {err.err_code, err.err_msg};
 }
@@ -703,7 +700,7 @@ DbError DbVs::TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *ta
             tagValues->push_back(tag[i]);
         }
     }
-    delete[] tag;
+    //delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     log_->Info((boost::format("over")).str());
     return {err.err_code, err.err_msg};
@@ -755,7 +752,7 @@ DbError DbVs::GetRTDataByBatch(std::vector<std::string> names, std::vector<TagDa
             tagValues->push_back(tag[i]);
         }
     }
-    delete[] tag;
+    //delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     log_->Info((boost::format("over")).str());
     return {err.err_code, err.err_msg};
