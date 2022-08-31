@@ -358,7 +358,7 @@ DbVs::TagValuesGet(const std::string &tag_name, long start, long end, long &coun
             tagValues->push_back(tag[i]);
         }
     }
-    delete[] tag;
+    //delete[] tag;
     log_->Info((boost::format("get value size :%1%") % tagValues->size()).str());
     return {err.err_code, err.err_msg};
 }
