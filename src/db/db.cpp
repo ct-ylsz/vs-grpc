@@ -129,7 +129,14 @@ DbError DbVs::DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2)
     strParameters[1] = configPath;
     strParameters[2] = opt1;
     strParameters[3] = opt2;
-    err.err_code = m_InitConnect(strParameters, 4);
+    if (!conn_flag) {
+        log_->Info("connect to database");
+        err.err_code = m_InitConnect(strParameters, 4);
+        if (err.err_code == 0) {
+            log_->Info("connect to database success");
+            conn_flag = true;
+        }
+    }
 #ifdef WIN32
 
 //    std::call_once(once2_, [](char *para[4], DbError *err1) {

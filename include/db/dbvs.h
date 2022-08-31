@@ -65,6 +65,8 @@ public:
 
     static int Init(const std::string &dll_path);
 
+    static inline std::atomic_bool conn_flag = false;
+
     // 检测数据库连接
     static DbError DbConnect(char *dllPath, char *configPath, char *opt1, char *opt2);
 
