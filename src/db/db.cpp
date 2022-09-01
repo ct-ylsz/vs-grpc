@@ -17,6 +17,7 @@ pReleaseConnect m_ReleaseConnect;
 pGetRTDataByTagName m_GetRTDataByTagName;
 pGetRTDataByBatch m_GetRTDataByBatch;
 pGetRawDataByTagName m_GetRawDataByTagName;
+pGetMainDataByTagName m_GetMainDataByTagName;
 pGetSnapshotDataByTagName m_GetSnapshotDataByTagName;
 pGetAggregationDataByTagName m_GetAggregationDataByTag;
 pGetHistoryDataByTime m_GetHistoryDataByTime;
@@ -55,7 +56,9 @@ int DbVs::Init(const std::string &dll_path) {
             m_GetRawDataByTagName = (pGetRawDataByTagName) GetProcAddress(hInst, "GetRawDataByTagName");
             m_GetSnapshotDataByTagName = (pGetSnapshotDataByTagName) GetProcAddress(hInst, "GetSnapshotDataByTagName");
             m_GetHistoryDataByTime = (pGetHistoryDataByTime) GetProcAddress(hInst, "GetHistoryDataByTime");
+            m_GetHistoryDataByTimeSpan = (pGetHistoryDataByTimeSpan) GetProcAddress(hInst, "GetHistoryDataByTimeSpan");
             m_GetTagInfoByTagName = (pGetTagInfoByTagName) GetProcAddress(hInst, "GetTagInfoByTagName");
+            m_GetMainDataByTagName = (pGetMainDataByTagName) GetProcAddress(hInst, "GetMainDataByTagName");
             m_GetTagInfoByBatch = (pGetTagInfoByBatch) GetProcAddress(hInst, "GetTagInfoByBatch");
             m_AppendRTTagDataByTagName = (pAppendRTTagDataByTagName) GetProcAddress(hInst, "AppendRTTagDataByTagName");
             m_AppendRTTagDataByBatch = (pAppendRTTagDataByBatch) GetProcAddress(hInst, "AppendRTTagDataByBatch");

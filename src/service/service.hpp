@@ -138,7 +138,6 @@ public:
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
         if (err.err_code != 0) {
-            //DbVs::DbReleaseConnect();
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
@@ -504,13 +503,11 @@ public:
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
         }
-
-        long count = 1;
         TagData da;
+        long count = 1;
         auto *data1 = new std::vector<TagData>();
         err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
         if (err.err_code != 0) {
-            DbVs::DbReleaseConnect();
             if (count == 0) {
                 response->set_start(0);
                 response->set_end(0);
@@ -538,7 +535,7 @@ public:
             DbVs::DbReleaseConnect();
             log_->Error(
                     (boost::format("TagRealTimeDataGetByName failed :%1%:%2%") % err.err_code % err.err_msg).str());
-            return {StatusCode(err.err_code), "TagRealTimeDataGetByNamefailed"};
+            return {StatusCode(err.err_code), "TagRealTimeDataGetByName failed"};
         }
 
         response->set_start(start);

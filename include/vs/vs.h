@@ -14,6 +14,8 @@ typedef int (*pGetRTDataByBatch)(char *tagNames[], TagData *pTagData, long nCoun
 
 typedef int (*pGetRawDataByTagName)(ReadHiDataRequest *pReadHiDataRequest, TagData *&pTagData, long *nCount);
 
+typedef int (*pGetMainDataByTagName)(ReadHiDataRequest *pReadHiDataRequest, long nDataNum, TagData *pTagData);
+
 typedef int (*pGetSnapshotDataByTagName)(ReadHiDataRequest *pReadHiDataRequest, TagData *pTagData);
 
 typedef int (*pGetAggregationDataByTagName)(ReadHiDataRequest *pReadHiDataRequest, TagData *pTagData);
