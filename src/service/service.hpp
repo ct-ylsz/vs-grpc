@@ -144,7 +144,7 @@ public:
 
         auto *tags = new std::vector<TagInfo>();
         if (request->page() >= 0 && request->size() > 0) {
-            if (request->size() > 2000) {
+            if (request->size() > 10000) {
                 log_->Error((boost::format("size is too large ")).str());
                 delete tags;
                 return {StatusCode::INVALID_ARGUMENT, "size is too large"};
