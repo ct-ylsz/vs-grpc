@@ -737,7 +737,7 @@ DbError DbVs::GetRTDataByBatch(std::vector<std::string> names, std::vector<TagDa
     auto *tag = new TagData[names.size()];
     char **name = new char *[names.size()];
     for (size_t i = 0; i < names.size(); i++) {
-        char n[128];
+        char *n = new char[128];
         strcpy(n, (names)[i].c_str());
         name[i] = n;
     }
