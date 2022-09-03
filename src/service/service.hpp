@@ -498,8 +498,6 @@ public:
         strcpy(config_path, "./");
 
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-
-
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
             return {StatusCode(err.err_code), "connect database failed"};
@@ -512,6 +510,7 @@ public:
             return {StatusCode(err.err_code), "TagRealTimeDataGetByName failed"};
         }
 
+        log_->Info((boost::format("TagRealTimeDataGetByName success :%1%:%2%") % da.value % da.time).str());
         if (da.time == 943891200) {
             response->set_start(0);
             response->set_end(0);
@@ -944,12 +943,19 @@ public:
 //            ParseYamlConfig(c.config_path_, &c);
 //        }
 
+        boost::thread th([]() {
+            while (true) {
+                Sleep(10000);
+                std::cout << "Server is running ................ " << std::endl;
+            }
+        });//创建新的进程，并传递参数
+
         std::string server_address((boost::format("%1%:%2%") % c.ip_ % c.port_).str());
         DbVs::Init("./");
         ServerBuilder builder;
         builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
         builder.RegisterService(this);
-        builder.SetMaxMessageSize(500 * 1024 * 1024);
+        builder.SetMaxMessageSize(10 * 1024 * 1024 * 1024);
         log_->Info((boost::format("Server listening on:%1%-%2%") % c.ip_ % c.port_).str());
         std::unique_ptr<Server> server(builder.BuildAndStart());
         server->Wait();
