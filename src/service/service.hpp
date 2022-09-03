@@ -955,7 +955,7 @@ public:
         ServerBuilder builder;
         builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
         builder.RegisterService(this);
-        builder.SetMaxMessageSize(10 * 1024 * 1024 * 1024);
+        builder.SetMaxMessageSize(1024 * 1024 * 1024);
         log_->Info((boost::format("Server listening on:%1%-%2%") % c.ip_ % c.port_).str());
         std::unique_ptr<Server> server(builder.BuildAndStart());
         server->Wait();
