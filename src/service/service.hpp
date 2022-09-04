@@ -942,7 +942,7 @@ public:
 
     static void RunningLog(Logger *log) {
         while (true) {
-            Sleep(10000);
+            Sleep(5000);
             log->Info(boost::format("--------------- Server is running ------------------").str());
         }
     }
