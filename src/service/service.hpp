@@ -940,6 +940,12 @@ public:
         return Status::OK;
     }
 
+    static void RunningLog(Logger *log) {
+        while (true) {
+            Sleep(10000);
+            log->Info(boost::format("--------------- Server is running ------------------").str());
+        }
+    }
 
     void Run() {
         if (ip_.empty() || port_.empty()) {
@@ -951,17 +957,9 @@ public:
         c.ip_ = ip_;
         c.port_ = port_;
         c.config_path_ = config_path_;
-//        if (boost::filesystem::is_regular_file(c.config_path_)) {
-//            ParseYamlConfig(c.config_path_, &c);
-//        }
 
-        boost::thread th([]() {
-            while (true) {
-                Sleep(10000);
-                std::cout << "Server is running ................ " << std::endl;
-            }
-        });//创建新的进程，并传递参数
-
+        boost::thread runLog(RunningLog, log_);
+        runLog.detach();
         std::string server_address((boost::format("%1%:%2%") % c.ip_ % c.port_).str());
         DbVs::Init("./");
         ServerBuilder builder;
