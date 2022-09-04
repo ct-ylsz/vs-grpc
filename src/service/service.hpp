@@ -195,6 +195,7 @@ public:
             tags->clear();
         }
         delete tags;
+        log_->Info((boost::format("response TagListGet success ")).str());
         return Status::OK;
     }
 
@@ -278,6 +279,7 @@ public:
         }
 
         delete dataF;
+        log_->Info((boost::format("response TagValuesGet success ")).str());
         return Status::OK;
     }
 
@@ -369,6 +371,7 @@ public:
         }
 
         delete dataF;
+        log_->Info((boost::format("response TagValuesByCountGet success ")).str());
         return Status::OK;
     }
 
@@ -470,6 +473,7 @@ public:
                     continue;
             }
         }
+        log_->Info((boost::format("response TagFeatureGet success ")).str());
         return Status::OK;
     }
 
@@ -496,7 +500,6 @@ public:
         char config_path[128];
         strcpy(dll_path, "./");
         strcpy(config_path, "./");
-
         auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
         if (err.err_code != 0) {
             log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
@@ -511,7 +514,7 @@ public:
         }
 
         log_->Info((boost::format("TagRealTimeDataGetByName success :%1%:%2%") % da.value % da.time).str());
-        if (da.time == 943891200) {
+        if (da.time <= 946656000) {
             response->set_start(0);
             response->set_end(0);
             return Status::OK;
@@ -546,6 +549,7 @@ public:
 
         response->set_start(start);
         response->set_end(da.time);
+        log_->Info((boost::format("response TagTimeSection success ")).str());
         return Status::OK;
     }
 
@@ -584,6 +588,7 @@ public:
         }
 
         response->set_flag(true);
+        log_->Info((boost::format("response DbPing success ")).str());
         return Status::OK;
     }
 
@@ -639,6 +644,7 @@ public:
             }
         }
         response->set_count(tmp_count);
+        log_->Info((boost::format("response TagCountByRangeGet success ")).str());
         return Status::OK;
     }
 
@@ -650,6 +656,7 @@ public:
             Sleep(10000);
             exit(0);
         });//创建新的进程，并传递参数
+        log_->Info((boost::format("response ServiceStop success ")).str());
         return Status::OK;
     }
 
@@ -658,6 +665,7 @@ public:
     ReleaseConnect(ServerContext *context, const ReleaseConnectReq *request, ReleaseConnectResp *response) override {
         log_->Debug((boost::format("ReleaseConnect:%1%") % request->DebugString()).str());
         DbVs::DbReleaseConnect();
+        log_->Info((boost::format("response ReleaseConnect success ")).str());
         return Status::OK;
     }
 
@@ -701,6 +709,7 @@ public:
         (*t)["ts"] = std::to_string(value.time);
         (*t)["value"] = std::to_string(value.value);
         (*t)["status"] = std::to_string(value.status);
+        log_->Info((boost::format("response TagSnapshotValue success ")).str());
         return Status::OK;
     }
 
@@ -748,7 +757,7 @@ public:
             (*t)["value"] = std::to_string(value.value);
             (*t)["status"] = std::to_string(value.status);
         }
-
+        log_->Info((boost::format("response GetRTDataByBatch success ")).str());
         return Status::OK;
     }
 
@@ -824,6 +833,7 @@ public:
             (*t)["status"] = std::to_string(value.status_);
         }
         delete dataF;
+        log_->Info((boost::format("response TagFractureSectionGet success ")).str());
         return Status::OK;
     }
 
@@ -868,6 +878,7 @@ public:
         (*it)["min"] = std::to_string(tagInfo.min);
         (*it)["max"] = std::to_string(tagInfo.max);
         (*it)["unit"] = tagInfo.unit;
+        log_->Info((boost::format("response TagDescGet success")).str());
         return Status::OK;
     }
 
@@ -925,6 +936,7 @@ public:
             x->set_time(data[i].time);
         }
         free(data);
+        log_->Info((boost::format("response TagAppendRTTagDataByBatch success")).str());
         return Status::OK;
     }
 
