@@ -714,15 +714,15 @@ DbError DbVs::TagSnapshotByName(ReadHiDataRequest *req, std::vector<TagData> *ta
 
 DbError DbVs::TagDataInsert(InsertData *data, int count) {
     DbError err;
-//#ifdef WIN32
-//    err.err_code = m_AppendRTTagDataByBatch(data, count);
-//#else
-//    err.err_code = m_AppendRTTagDataByBatch(data, count);
-//#endif
-//    if (err.err_code != 0) {
-//        GetErr(&err);
-//        return err;
-//    }
+#ifdef WIN32
+    err.err_code = m_AppendRTTagDataByBatch(data, count);
+#else
+    err.err_code = m_AppendRTTagDataByBatch(data, count);
+#endif
+    if (err.err_code != 0) {
+        GetErr(&err);
+        return err;
+    }
     return err;
 }
 

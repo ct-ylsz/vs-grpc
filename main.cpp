@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
 //        return 1;
 //    }
 //
-//    long count = 1024;
+//    //  long count = 1024;
 ////    auto *dataF = new TagDataF();
 ////    ReadHiDataRequest req;
 ////    strcpy(req.pointName, "test_001");
@@ -129,33 +129,46 @@ int main(int argc, char **argv) {
 ////    req.reqType = 1;
 //    //auto *data2 = new std::vector<TagData>();
 //
-//    auto *data2 = new std::vector<TagInfo>();
-//    err = DbVs::TagListByCount(0, data2, count);
+//    //auto *data2 = new std::vector<TagInfo>();
+////    err = DbVs::TagListByCount(0, data2, count);
+////    if (err.err_code != 0) {
+////        printf("%d", err.err_code);
+////        return 1;
+////    }
+//    InsertData_struct x;
+//    x.value = 1.11;
+//    x.status = 1;
+//    x.type = 1;
+//    x.time = 1662273447;
+//    strcpy(x.pointName, "ECMS13_J0BCA01GH011_C131IED12_YX045");
+//    err = DbVs::TagDataInsert(&x, 1);
 //    if (err.err_code != 0) {
+//        DbVs::DbReleaseConnect();
 //        printf("%d", err.err_code);
-//        return 1;
+//        return 2;
 //    }
-//    auto *data = (InsertData_struct *) malloc(sizeof(InsertData_struct) * 10000);
-//    auto ts = 1648841824;
-//    for (int i = 0; i < data2->size(); i++) {
-//        for (int j = 0; j < 10000; j++) {
-//            data[j].value = j;
-//            data[j].type = 1;
-//            strcpy(data[j].pointName, data2[i].data()->name);
-//            data[j].status = 0;
-//            data[j].time = ts + j;
-//        }
-//        for (int j = 0; j < 10000; j++) {
-//            printf("%f,%ld\n", data[j].value,data[j].time);
-//        }
-//        err = DbVs::TagDataInsert(data, 10000);
-//        if (err.err_code != 0) {
-//            printf("%d", err.err_code);
-//            free(data);
-//            return 2;
-//        }
-//    }
-//    free(data);
+//    std::cout << "write data success" << std::endl;
+////    auto *data = (InsertData_struct *) malloc(sizeof(InsertData_struct) * 10000);
+////    auto ts = 1662273226;
+////    for (int i = 0; i < data2->size(); i++) {
+////        for (int j = 0; j < 10000; j++) {
+////            data[j].value = j;
+////            data[j].type = 1;
+////            strcpy(data[j].pointName, data2[i].data()->name);
+////            data[j].status = 0;
+////            data[j].time = ts + j;
+////        }
+////        for (int j = 0; j < 10000; j++) {
+////            printf("%f,%ld\n", data[j].value, data[j].time);
+////        }
+////        err = DbVs::TagDataInsert(data, 10000);
+////        if (err.err_code != 0) {
+////            printf("%d", err.err_code);
+////            free(data);
+////            return 2;
+////        }
+////    }
+////    free(data);
 //    return 0;
 //}
 
