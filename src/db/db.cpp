@@ -746,7 +746,10 @@ DbError DbVs::GetRTDataByBatch(std::vector<std::string> names, std::vector<TagDa
 #else
     err.err_code = m_GetRTDataByBatch(name, tag, (long)names.size());
 #endif
-    delete[]name;
+    for (int i = 0; i < names.size(); i++) {
+        free(name[i]);
+    }
+    delete[] name;
     if (err.err_code != 0) {
         GetErr(&err);
         log_->Error((boost::format("get value err :%1%,%2%") % err.err_code % err.err_msg).str());
