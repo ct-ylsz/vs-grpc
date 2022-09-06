@@ -71,83 +71,94 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-
-//string GBK_2_UTF8(string gbkStr)
-//{
-//    string outUtf8 = "";
-//    int n = MultiByteToWideChar(CP_ACP, 0, gbkStr.c_str(), -1, NULL, 0);
-//    WCHAR *str1 = new WCHAR[n];
-//    MultiByteToWideChar(CP_ACP, 0, gbkStr.c_str(), -1, str1, n);
-//    n = WideCharToMultiByte(CP_UTF8, 0, str1, -1, NULL, 0, NULL, NULL);
-//    char *str2 = new char[n];
-//    WideCharToMultiByte(CP_UTF8, 0, str1, -1, str2, n, NULL, NULL);
-//    outUtf8 = str2;
-//    delete[]str1;
-//    str1 = NULL;
-//    delete[]str2;
-//    str2 = NULL;
-//    return outUtf8;
-//}
 //
-//string UTF8_2_GBK(string utf8Str)
-//{
-//    string outGBK = "";
-//    int n = MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, NULL, 0);
-//    WCHAR *str1 = new WCHAR[n];
-//    MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, str1, n);
-//    n = WideCharToMultiByte(CP_ACP, 0, str1, -1, NULL, 0, NULL, NULL);
-//    char *str2 = new char[n];
-//    WideCharToMultiByte(CP_ACP, 0, str1, -1, str2, n, NULL, NULL);
-//    outGBK = str2;
-//    delete[] str1;
-//    str1 = NULL;
-//    delete[] str2;
-//    str2 = NULL;
-//    return outGBK;
-//}
-//
-//
-//int main(int argc, char **argv) {
-//    char dll_path[128];
-//    char config_path[128];
-//    strcpy(dll_path, "./");
-//    strcpy(config_path, "./");
-//
-//    auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
-//    if (err.err_code != 0) {
-//        printf("%d", err.err_code);
-//        return 1;
-//    }
-//
-//    //  long count = 1024;
+////string GBK_2_UTF8(string gbkStr)
+////{
+////    string outUtf8 = "";
+////    int n = MultiByteToWideChar(CP_ACP, 0, gbkStr.c_str(), -1, NULL, 0);
+////    WCHAR *str1 = new WCHAR[n];
+////    MultiByteToWideChar(CP_ACP, 0, gbkStr.c_str(), -1, str1, n);
+////    n = WideCharToMultiByte(CP_UTF8, 0, str1, -1, NULL, 0, NULL, NULL);
+////    char *str2 = new char[n];
+////    WideCharToMultiByte(CP_UTF8, 0, str1, -1, str2, n, NULL, NULL);
+////    outUtf8 = str2;
+////    delete[]str1;
+////    str1 = NULL;
+////    delete[]str2;
+////    str2 = NULL;
+////    return outUtf8;
+////}
+////
+////string UTF8_2_GBK(string utf8Str)
+////{
+////    string outGBK = "";
+////    int n = MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, NULL, 0);
+////    WCHAR *str1 = new WCHAR[n];
+////    MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, str1, n);
+////    n = WideCharToMultiByte(CP_ACP, 0, str1, -1, NULL, 0, NULL, NULL);
+////    char *str2 = new char[n];
+////    WideCharToMultiByte(CP_ACP, 0, str1, -1, str2, n, NULL, NULL);
+////    outGBK = str2;
+////    delete[] str1;
+////    str1 = NULL;
+////    delete[] str2;
+////    str2 = NULL;
+////    return outGBK;
+////}
+////
+////
+////int main(int argc, char **argv) {
+////    char dll_path[128];
+////    char config_path[128];
+////    strcpy(dll_path, "./");
+////    strcpy(config_path, "./");
+////
+////    auto err = DbVs::DbConnect(dll_path, config_path, nullptr, nullptr);
+////    if (err.err_code != 0) {
+////        printf("%d", err.err_code);
+////        return 1;
+////    }
+////
+////    long count = 90000;
 ////    auto *dataF = new TagDataF();
-////    ReadHiDataRequest req;
-////    strcpy(req.pointName, "test_001");
-////    req.stTime = 1638841806;
-////    req.enTime = 1638841821;
-////    req.tPeriod = 1638841821 - 1638841806;
-////    req.reqType = 1;
-//    //auto *data2 = new std::vector<TagData>();
-//
-//    //auto *data2 = new std::vector<TagInfo>();
+//////    ReadHiDataRequest req;
+//////    strcpy(req.pointName, "test_001");
+//////    req.stTime = 1638841806;
+//////    req.enTime = 1638841821;
+//////    req.tPeriod = 1638841821 - 1638841806;
+//////    req.reqType = 1;
+////    //auto *data2 = new std::vector<TagData>();
+////
+////    auto *data2 = new std::vector<TagInfo>();
 ////    err = DbVs::TagListByCount(0, data2, count);
 ////    if (err.err_code != 0) {
 ////        printf("%d", err.err_code);
 ////        return 1;
 ////    }
-//    InsertData_struct x;
-//    x.value = 1.11;
-//    x.status = 1;
-//    x.type = 1;
-//    x.time = 1662273447;
-//    strcpy(x.pointName, "ECMS13_J0BCA01GH011_C131IED12_YX045");
-//    err = DbVs::TagDataInsert(&x, 1);
-//    if (err.err_code != 0) {
-//        DbVs::DbReleaseConnect();
-//        printf("%d", err.err_code);
-//        return 2;
-//    }
-//    std::cout << "write data success" << std::endl;
+////    std::vector<std::string> names;
+////    for (int i = 0; i < count; i++) {
+////        names.emplace_back(data2->data()->name);
+////    }
+////    while (true) {
+////        auto *data = new std::vector<TagData>();
+////        err = DbVs::GetRTDataByBatch(names, data);
+////        delete data;
+////    }
+////
+//
+////    InsertData_struct x;
+////    x.value = 1.11;
+////    x.status = 1;
+////    x.type = 1;
+////    x.time = 1662273447;
+////    strcpy(x.pointName, "ECMS13_J0BCA01GH011_C131IED12_YX045");
+////    err = DbVs::TagDataInsert(&x, 1);
+////    if (err.err_code != 0) {
+////        DbVs::DbReleaseConnect();
+////        printf("%d", err.err_code);
+////        return 2;
+////    }
+////    std::cout << "write data success" << std::endl;
 ////    auto *data = (InsertData_struct *) malloc(sizeof(InsertData_struct) * 10000);
 ////    auto ts = 1662273226;
 ////    for (int i = 0; i < data2->size(); i++) {
@@ -170,7 +181,7 @@ int main(int argc, char **argv) {
 ////    }
 ////    free(data);
 //    return 0;
-//}
+////}
 
 
 //int main(int argc, char **argv) {
