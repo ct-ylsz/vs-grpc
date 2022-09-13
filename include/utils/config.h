@@ -9,7 +9,6 @@
 #include <iostream>
 #include <string>
 #include "resclass/sourceinfo.h"
-#include "resclass/pi_config.h"
 
 const std::string ConfigKeyDbIp = "VESTORE.SERVER NAME";
 const std::string ConfigKeyDbPort = "VESTORE.SERVER PORT";
