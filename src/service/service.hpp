@@ -575,7 +575,7 @@ public:
 
         long count = 1;
         auto *data1 = new std::vector<TagData>();
-        err = DbVs::TagValuesGet(name, (long) start, (long) end, count, data1);
+        err = DbVs::TagValuesGet(name, (long) start, da.time, count, data1);
         if (err.err_code != 0) {
             SetLogCount("TagTimeSection", -1);
             if (count == 0) {
