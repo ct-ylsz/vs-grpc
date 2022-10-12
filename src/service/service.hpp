@@ -1011,7 +1011,7 @@ public:
         }
 
 
-        auto *data = (InsertData_struct *) malloc(request->data().size());
+        auto *data = (InsertData_struct *) malloc(sizeof(InsertData_struct) * request->data().size());
         for (int i = 0; i < request->data().size(); i++) {
             data[i].value = request->data()[i].value();
             data[i].type = request->data()[i].type();
