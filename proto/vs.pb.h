@@ -6282,7 +6282,7 @@ class GetRTDataByBatchReq final :
     kTagNamesFieldNumber = 2,
     kKvsFieldNumber = 1,
   };
-  // repeated string TagNames = 2;
+  // repeated bytes TagNames = 2;
   int tagnames_size() const;
   private:
   int _internal_tagnames_size() const;
@@ -6293,12 +6293,12 @@ class GetRTDataByBatchReq final :
   void set_tagnames(int index, const std::string& value);
   void set_tagnames(int index, std::string&& value);
   void set_tagnames(int index, const char* value);
-  void set_tagnames(int index, const char* value, size_t size);
+  void set_tagnames(int index, const void* value, size_t size);
   std::string* add_tagnames();
   void add_tagnames(const std::string& value);
   void add_tagnames(std::string&& value);
   void add_tagnames(const char* value);
-  void add_tagnames(const char* value, size_t size);
+  void add_tagnames(const void* value, size_t size);
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tagnames() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tagnames();
   private:
@@ -10792,7 +10792,7 @@ inline void GetRTDataByBatchReq::set_allocated_kvs(::vs::KVInfo* kvs) {
   // @@protoc_insertion_point(field_set_allocated:vs.GetRTDataByBatchReq.Kvs)
 }
 
-// repeated string TagNames = 2;
+// repeated bytes TagNames = 2;
 inline int GetRTDataByBatchReq::_internal_tagnames_size() const {
   return tagnames_.size();
 }
@@ -10831,7 +10831,7 @@ inline void GetRTDataByBatchReq::set_tagnames(int index, const char* value) {
   tagnames_.Mutable(index)->assign(value);
   // @@protoc_insertion_point(field_set_char:vs.GetRTDataByBatchReq.TagNames)
 }
-inline void GetRTDataByBatchReq::set_tagnames(int index, const char* value, size_t size) {
+inline void GetRTDataByBatchReq::set_tagnames(int index, const void* value, size_t size) {
   tagnames_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_set_pointer:vs.GetRTDataByBatchReq.TagNames)
@@ -10852,7 +10852,7 @@ inline void GetRTDataByBatchReq::add_tagnames(const char* value) {
   tagnames_.Add()->assign(value);
   // @@protoc_insertion_point(field_add_char:vs.GetRTDataByBatchReq.TagNames)
 }
-inline void GetRTDataByBatchReq::add_tagnames(const char* value, size_t size) {
+inline void GetRTDataByBatchReq::add_tagnames(const void* value, size_t size) {
   tagnames_.Add()->assign(reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_add_pointer:vs.GetRTDataByBatchReq.TagNames)
 }

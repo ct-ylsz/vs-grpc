@@ -224,7 +224,7 @@ message TagAppendRTTagDataByBatchResp{
 
 message GetRTDataByBatchReq{
   KVInfo Kvs = 1;
-  repeated string TagNames = 2;
+  repeated bytes TagNames = 2;
 }
 
 message GetRTDataByBatchResp{

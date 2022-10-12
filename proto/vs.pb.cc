@@ -1145,7 +1145,7 @@ const char descriptor_table_protodef_vs_2eproto[] PROTOBUF_SECTION_VARIABLE(prot
   "atchResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrInfo\022\034\n\004Da"
   "ta\030\002 \003(\0132\016.vs.InsertData\"@\n\023GetRTDataByB"
   "atchReq\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\020\n\010TagN"
-  "ames\030\002 \003(\t\"P\n\024GetRTDataByBatchResp\022\030\n\003Er"
+  "ames\030\002 \003(\014\"P\n\024GetRTDataByBatchResp\022\030\n\003Er"
   "r\030\001 \001(\0132\013.vs.ErrInfo\022\036\n\006Values\030\002 \003(\0132\016.v"
   "s.VsValueMap2\264\007\n\tVsService\0229\n\014TagValuesG"
   "et\022\023.vs.TagValuesGetReq\032\024.vs.TagValuesGe"
@@ -9383,7 +9383,7 @@ const char* GetRTDataByBatchReq::_InternalParse(const char* ptr, ::PROTOBUF_NAME
         } else
           goto handle_unusual;
         continue;
-      // repeated string TagNames = 2;
+      // repeated bytes TagNames = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr -= 1;
@@ -9391,7 +9391,6 @@ const char* GetRTDataByBatchReq::_InternalParse(const char* ptr, ::PROTOBUF_NAME
             ptr += 1;
             auto str = _internal_add_tagnames();
             ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "vs.GetRTDataByBatchReq.TagNames"));
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
@@ -9435,14 +9434,10 @@ failure:
         1, _Internal::kvs(this), target, stream);
   }
 
-  // repeated string TagNames = 2;
+  // repeated bytes TagNames = 2;
   for (int i = 0, n = this->_internal_tagnames_size(); i < n; i++) {
     const auto& s = this->_internal_tagnames(i);
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      s.data(), static_cast<int>(s.length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "vs.GetRTDataByBatchReq.TagNames");
-    target = stream->WriteString(2, s, target);
+    target = stream->WriteBytes(2, s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -9461,11 +9456,11 @@ size_t GetRTDataByBatchReq::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated string TagNames = 2;
+  // repeated bytes TagNames = 2;
   total_size += 1 *
       ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tagnames_.size());
   for (int i = 0, n = tagnames_.size(); i < n; i++) {
-    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
       tagnames_.Get(i));
   }
 
