@@ -209,7 +209,7 @@ message InsertData{
   int32 Status = 2;
   double Value = 3;
   int32 Time = 4;
-  string TagName = 5;
+  bytes TagName = 5;
 }
 
 message TagAppendRTTagDataByBatchReq{

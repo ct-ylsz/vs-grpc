@@ -1139,7 +1139,7 @@ const char descriptor_table_protodef_vs_2eproto[] PROTOBUF_SECTION_VARIABLE(prot
   "rrInfo\022\036\n\006Values\030\002 \001(\0132\016.vs.VsValueMap\"X"
   "\n\nInsertData\022\014\n\004Type\030\001 \001(\005\022\016\n\006Status\030\002 \001"
   "(\005\022\r\n\005Value\030\003 \001(\001\022\014\n\004Time\030\004 \001(\005\022\017\n\007TagNa"
-  "me\030\005 \001(\t\"U\n\034TagAppendRTTagDataByBatchReq"
+  "me\030\005 \001(\014\"U\n\034TagAppendRTTagDataByBatchReq"
   "\022\027\n\003Kvs\030\001 \001(\0132\n.vs.KVInfo\022\034\n\004Data\030\002 \003(\0132"
   "\016.vs.InsertData\"W\n\035TagAppendRTTagDataByB"
   "atchResp\022\030\n\003Err\030\001 \001(\0132\013.vs.ErrInfo\022\034\n\004Da"
@@ -8649,12 +8649,11 @@ const char* InsertData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
         } else
           goto handle_unusual;
         continue;
-      // string TagName = 5;
+      // bytes TagName = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           auto str = _internal_mutable_tagname();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "vs.InsertData.TagName"));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -8712,13 +8711,9 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_time(), target);
   }
 
-  // string TagName = 5;
+  // bytes TagName = 5;
   if (!this->_internal_tagname().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_tagname().data(), static_cast<int>(this->_internal_tagname().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "vs.InsertData.TagName");
-    target = stream->WriteStringMaybeAliased(
+    target = stream->WriteBytesMaybeAliased(
         5, this->_internal_tagname(), target);
   }
 
@@ -8738,10 +8733,10 @@ size_t InsertData::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string TagName = 5;
+  // bytes TagName = 5;
   if (!this->_internal_tagname().empty()) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_tagname());
   }
 

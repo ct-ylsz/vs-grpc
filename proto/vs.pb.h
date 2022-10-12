@@ -5749,7 +5749,7 @@ class InsertData final :
     kValueFieldNumber = 3,
     kTimeFieldNumber = 4,
   };
-  // string TagName = 5;
+  // bytes TagName = 5;
   void clear_tagname();
   const std::string& tagname() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -10384,7 +10384,7 @@ inline void InsertData::set_time(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:vs.InsertData.Time)
 }
 
-// string TagName = 5;
+// bytes TagName = 5;
 inline void InsertData::clear_tagname() {
   tagname_.ClearToEmpty();
 }
@@ -10396,7 +10396,7 @@ template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void InsertData::set_tagname(ArgT0&& arg0, ArgT... args) {
  
- tagname_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+ tagname_.SetBytes(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:vs.InsertData.TagName)
 }
 inline std::string* InsertData::mutable_tagname() {
