@@ -638,14 +638,14 @@ public:
             return {StatusCode(err.err_code), "connect database failed"};
         }
 
-        long size = 1;
-        auto *tags = new std::vector<TagInfo>();
-        err = DbVs::TagListByCount(0, tags, size);
-        if (err.err_code != 0) {
-            SetLogCount("DbPing", -1);
-            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
-            return {StatusCode(err.err_code), "connect database failed"};
-        }
+//        long size = 1;
+//        auto *tags = new std::vector<TagInfo>();
+//        err = DbVs::TagListByCount(0, tags, size);
+//        if (err.err_code != 0) {
+//            SetLogCount("DbPing", -1);
+//            log_->Error((boost::format("connect database failed :%1%:%2%") % err.err_code % err.err_msg).str());
+//            return {StatusCode(err.err_code), "connect database failed"};
+//        }
         response->set_flag(true);
         SetLogCount("DbPing", -1);
         log_->Info((boost::format("response DbPing success ")).str());
