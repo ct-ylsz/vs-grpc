@@ -107,6 +107,8 @@ int main(int argc, char **argv) {
 //}
 //
 //
+
+
 //int main(int argc, char **argv) {
 //    char dll_path[128];
 //    char config_path[128];
@@ -119,15 +121,18 @@ int main(int argc, char **argv) {
 //        return 1;
 //    }
 //
-////    long count = 90000;
+////    long count = 1;
 ////    auto *dataF = new TagDataF();
-//////    ReadHiDataRequest req;
-//////    strcpy(req.pointName, "test_001");
-//////    req.stTime = 1638841806;
-//////    req.enTime = 1638841821;
-//////    req.tPeriod = 1638841821 - 1638841806;
-//////    req.reqType = 1;
-////    //auto *data2 = new std::vector<TagData>();
+////    ReadHiDataRequest req;
+////    strcpy(req.pointName, "d1");
+////    req.stTime = 946656000;
+////    req.enTime = 1666041499;
+////    req.tPeriod = 0;
+////    req.reqType = 0;
+////    auto *data3 = new std::vector<TagData>();
+////
+////    err = DbVs::TagValuesGet("d1", req.stTime, req.enTime, count, data3);
+////
 ////
 ////    auto *data2 = new std::vector<TagInfo>();
 ////    err = DbVs::TagListByCount(0, data2, count);
@@ -158,27 +163,48 @@ int main(int argc, char **argv) {
 ////        printf("%d", err.err_code);
 ////        return 2;
 ////    }
-//    //  std::cout << "write data success" << std::endl;
-//    auto *data = (InsertData_struct *) malloc(sizeof(InsertData_struct) * 10000);
-//    auto ts = 1665557920;
+////    long count = 1024;
+////    ReadHiDataRequest req;
+////    strcpy(req.pointName, "d5");
+////    req.stTime = 1538323200;
+////    req.enTime = 1541001600;
+////    long tmp_count = 0;
+////    while (count == 1024 && req.stTime < req.enTime) {
+////        auto *data2 = new std::vector<TagData>();
+////        err = DbVs::TagValuesGet(req, count, data2);
+////        if (err.err_code != 0) {
+////            break;
+////        }
+////        if (!data2->empty()) {
+////            tmp_count += count; //总数量
+////            req.stTime = data2->back().time + 1;
+////            delete data2;
+////        } else {
+////            tmp_count += count;
+////            delete data2;
+////        }
+////    }
+////    std::cout << tmp_count;
+//
+//    // auto count = 1501603199 - 1498838400 + 1;
+//
+//    auto *data = (InsertData_struct *) malloc(sizeof(InsertData_struct) * 1);
 //    for (int i = 0; i < 1; i++) {
-//        for (int j = 0; j < 10000; j++) {
-//            data[j].value = j;
-//            data[j].type = 1;
-//            strcpy(data[j].pointName, "DCS10_");
-//            data[j].status = 0;
-//            data[j].time = ts + j;
+//        for (int j = 0; j < 1; j++) {
+//            data[j].value = 2.0;
+//            data[j].type = 0;
+//            strcpy(data[j].pointName, "dd2");
+//            data[j].status = 2;
+//            data[j].time = 1501603198 + j;
 //        }
-//        for (int j = 0; j < 10000; j++) {
-//            printf("%f,%ld\n", data[j].value, data[j].time);
-//        }
-//        err = DbVs::TagDataInsert(data, 10000);
+//        err = DbVs::TagDataInsert(data, 1);
 //        if (err.err_code != 0) {
 //            printf("%d", err.err_code);
 //            free(data);
 //            return 2;
 //        }
 //    }
+//    std::cout << "write data success" << std::endl;
 //    free(data);
 //    return 0;
 //}
