@@ -144,7 +144,7 @@ public:
         if (request->kvs().kvs_size() == 0) {
             SetLogCount("TagListGet", -1);
             log_->Error("request->kvs().kvs_size() == 0");
-            return {StatusCode::INVALID_ARGUMENT, "kvs is empty"};
+            return {StatusCode::INVALID_ARGUMENT, "TagListGet kvs is empty"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -238,7 +238,9 @@ public:
         if (start > end || start <= 0 || end <= 0 || tag_name.empty() || request->kvs().kvs().empty()) {
             SetLogCount("TagValuesGet", -1);
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT,
+                    "TagValuesByCountGet arg is not valid " + tag_name + " start " + std::to_string(start) + " end " +
+                    std::to_string(end)};
         }
 
         // ¼ì²ékvs ÊÇ·ñÊäÈë
@@ -330,7 +332,9 @@ public:
         if (start > end || start <= 0 || end <= 0 || tag_name.empty() || request->kvs().kvs().empty()) {
             SetLogCount("TagValuesByCountGet", -1);
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT,
+                    "TagValuesByCountGet arg is not valid " + tag_name + " start " + std::to_string(start) + " end " +
+                    std::to_string(end)};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -429,7 +433,7 @@ public:
         if (request->kvs().kvs().empty()) {
             SetLogCount("TagFeatureGet", -1);
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "TagFeatureGet arg is not valid"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -536,7 +540,7 @@ public:
         if (request->kvs().kvs().empty() || request->tagname().empty()) {
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
             SetLogCount("TagTimeSection", -1);
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "TagTimeSection arg is not valid"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -561,7 +565,8 @@ public:
         if (err.err_code != 0) {
             SetLogCount("TagTimeSection", -1);
             log_->Error(
-                    (boost::format("TagRealTimeDataGetByName failed :%1%:%2%") % err.err_code % err.err_msg).str());
+                    (boost::format("TagRealTimeDataGetByName failed :%1%:%2%,%3%") % err.err_code % err.err_msg %
+                     name).str());
             return {StatusCode(err.err_code), "TagRealTimeDataGetByName failed"};
         }
 
@@ -616,7 +621,7 @@ public:
         if (request->kvs().kvs().empty()) {
             SetLogCount("DbPing", -1);
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "DbPing arg is not valid"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -659,7 +664,7 @@ public:
         log_->Debug((boost::format("TagCountByRangeGet:%1%") % request->Utf8DebugString()).str());
         if (request->kvs().kvs().empty()) {
             log_->Error(boost::str(boost::format("%1%") % "arg is not valid"));
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "TagCountByRangeGet arg is not valid"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -749,7 +754,7 @@ public:
         if (tag_name.empty() || request->kvs().kvs().empty()) {
             SetLogCount("TagSnapshotValue", -1);
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % start % end % tag_name).str());
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "TagSnapshotValue arg is not valid"};
         }
 
 
@@ -797,7 +802,7 @@ public:
         if (request->kvs().kvs().empty() || request->tagnames().empty()) {
             SetLogCount("TagSnapshotValue", -1);
             log_->Error((boost::format("GetRTDataByBatch:%1%") % request->tagnames().data()).str());
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "TagSnapshotValue arg is not valid"};
         }
 
         auto *names = new std::vector<std::string>();
@@ -853,7 +858,7 @@ public:
             SetLogCount("TagFractureSectionGet", -1);
             log_->Error((boost::format("TagValuesGet:%1%:%2%:%3%") % request->head().start() % request->head().end() %
                          request->head().tagname()).str());
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "TagFractureSectionGet arg is not valid"};
         }
 
 
@@ -932,7 +937,7 @@ public:
         if (request->kvs().kvs().empty()) {
             SetLogCount("TagDescGet", -1);
             log_->Error((boost::format("TagValuesGet:%1%") % "arg is not valid").str());
-            return {StatusCode::INVALID_ARGUMENT, "arg is not valid"};
+            return {StatusCode::INVALID_ARGUMENT, "TagDescGet arg is not valid"};
         }
 
         auto err_c = configSetInternal(request->kvs().kvs());
@@ -995,7 +1000,7 @@ public:
         if (err_c != 0) {
             SetLogCount("TagAppendRTTagDataByBatch", -1);
             log_->Error("configSetInternal(kvs);");
-            return {StatusCode(err_c), "write config_file failed"};
+            return {StatusCode(err_c), "TagAppendRTTagDataByBatch write config_file failed"};
         }
 
         char dll_path[128];
